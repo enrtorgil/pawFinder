@@ -83,7 +83,7 @@
                                         <button type="submit" class="btn btn-primary">
                                             Registrarse
                                         </button>
-                                        <a class="btn btn-link" href="{{ route('login') }}">
+                                        <a class="btn btn-link" href="{{ route('index') }}">
                                             ¿Ya tienes cuenta? Inicia sesión
                                         </a>
                                     </div>
