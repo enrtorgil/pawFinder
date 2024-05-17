@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
         return [
             'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $userId,
-            'phone' => 'required|string|max:15|min:9',
+            'phone' => 'required|string|max:9|min:9',
             'password' => 'sometimes|nullable|string|min:8|confirmed',
         ];
     }
@@ -45,7 +45,7 @@ class UserRequest extends FormRequest
             'email.unique' => 'El correo electrónico ya está en uso.',
             'phone.required' => 'El número de teléfono es obligatorio.',
             'phone.string' => 'El número de teléfono debe ser una cadena de caracteres.',
-            'phone.max' => 'El número de teléfono no puede tener más de 15 caracteres.',
+            'phone.max' => 'El número de teléfono no puede tener más de 9 caracteres.',
             'phone.min' => 'El número de teléfono no puede tener menos de 9 caracteres.',
             'password.string' => 'La contraseña debe ser una cadena de caracteres.',
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="my-3">¿Quieres modificar tu perfil, <strong>{{$user->username}}</strong>?</h1>
+        <h1 class="my-3">¿Quieres modificar tu perfil, <strong>{{ $user->username }}</strong>?</h1>
 
         <form action="{{ route('users.update', $user) }}" method="POST">
             @csrf
@@ -63,11 +63,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>
+            <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>
         </form>
-        @if (session('success'))
-            <div class="alert alert-success mt-3">
-                {{ session('success') }}
-            </div>
-        @endif
     </div>
 @endsection
