@@ -38,8 +38,7 @@
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="nav-link btn btn-link"
-                                style="text-decoration: none; padding: 0;">Cerrar sesión</button>
+                            <button type="submit" class="nav-link btn btn-link">Cerrar sesión</button>
                         </form>
                     </li>
                 @else
