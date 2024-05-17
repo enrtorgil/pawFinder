@@ -13,13 +13,13 @@
             <ul class="navbar-nav w-100">
                 @if (Auth::check() && Auth::user()->role == 'administrador')
                     <li class="nav-item mx-4">
-                        <a class="nav-link" href="#">Admin</a>
+                        <a class="nav-link" href="{{ route('admin.index') }}">Admin</a>
                     </li>
                 @endif
 
                 @if (Auth::check())
                     <li class="nav-item mx-4">
-                        <a class="nav-link" href="#">Publicaciones</a>
+                        <a class="nav-link" href="{{--{{ route('publications.index') }}--}}">Publicaciones</a>
                     </li>
                     <li class="nav-item dropdown mx-4">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -27,13 +27,14 @@
                             Mi espacio
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Mis anuncios</a></li>
-                            <li><a class="dropdown-item" href="#">Favoritos</a></li>
+                            <li><a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">Perfil</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{{--{{ route('publications.my') }}--}}">Mis anuncios</a></li>
+                            <li><a class="dropdown-item" href="{{--{{ route('favorites.index') }}--}}">Favoritos</a></li>
                         </ul>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link" href="#">Mensajes</a>
+                        <a class="nav-link" href="{{--{{ route('messages.index') }}--}}">Mensajes</a>
                     </li>
                 @endif
 
