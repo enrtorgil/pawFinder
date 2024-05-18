@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,9 +16,8 @@ class LoginController extends Controller
     }
 
     // Maneja el registro del usuario
-    public function register(RegisterRequest $request)
+    public function register(Request $request)
     {
-
         $user = new User();
         $user->username = $request->get('username');
         $user->email = $request->get('email');
@@ -33,44 +30,33 @@ class LoginController extends Controller
         return redirect()->route('index');
     }
 
+    // Maneja el inicio de sesión del usuario
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        $rememberLogin = $request->get('remember') ? true : false;
+        $rememberLogin = $request->filled('remember'); // Verifica si el checkbox está marcado
 
+        // Verifica las credenciales manualmente
         $user = User::where('email', $credentials['email'])->first();
 
-        if ($user) {
-            // Verificar si la contraseña coincide
-            if (Hash::check($credentials['password'], $user->password)) {
-                // Intentar iniciar sesión
-                if (Auth::guard('web')->attempt($credentials, $rememberLogin)) {
-                    $request->session()->regenerate();
-                    return redirect()->intended('/');
-                }
-            } else {
-                // Contraseña en texto plano coincide, actualizar a bcrypt
-                if ($user->password === $credentials['password']) {
-                    $user->password = Hash::make($credentials['password']);
-                    $user->save();
-
-                    // Intentar iniciar sesión nuevamente
-                    if (Auth::guard('web')->attempt($credentials, $rememberLogin)) {
-                        $request->session()->regenerate();
-                        return redirect()->intended('/');
-                    }
-                }
+        if ($user && Hash::check($credentials['password'], $user->password)) {
+            if (Auth::attempt($credentials, $rememberLogin)) {
+                $request->session()->regenerate();
+                return redirect()->route('index');
             }
+        } else {
+            return back()->withErrors([
+                'email' => 'Las credenciales no coinciden con nuestros registros.',
+            ])->onlyInput('email');
         }
 
-        return back()->withErrors([
-            'email' => 'Las credenciales no coinciden con nuestros registros.',
-        ]);
+        return view('index');
     }
 
+    // Maneja el cierre de sesión del usuario
     public function logout(Request $request)
     {
-        Auth::guard('web')->logout();
+        Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('index');

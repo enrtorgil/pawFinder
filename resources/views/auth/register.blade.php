@@ -13,7 +13,7 @@
             <div class="row mb-4">
                 <div class="col-md-12 text-center">
                     <h1>Bienvenido a PawFinder</h1>
-                    <p>Encuentra tu mascota perdida o adopta una nueva</p>
+                    <p>Adopta o encuentra a tu mascota perdida</p>
                 </div>
             </div>
             <div class="row justify-content-center">

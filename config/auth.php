@@ -16,7 +16,7 @@ return [
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
-        'remember' => 1440,
+        'remember' => 1440, /*(24 horas)*/
     ],
 
     /*
