@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container mt-5">
+        <a href="{{ route('publications.create') }}" class="btn btn-primary">Crear Publicación</a>
         <div class="list-group">
             @foreach ($publications as $publication)
                 <a href="{{ route('publications.show', $publication) }}" class="list-group-item list-group-item-action">
