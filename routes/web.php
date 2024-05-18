@@ -17,7 +17,8 @@ Route::get('register', [LoginController::class, 'showRegistrationForm'])->name('
 Route::post('register', [LoginController::class, 'register']);
 
 Route::get('publications/my', [PublicationController::class, 'myPublications'])->name('publications.my');
-Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+
+Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.index')->middleware(['auth', 'isAdmin']);
 
 Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('publications', PublicationController::class)->middleware('auth');

@@ -55,6 +55,8 @@
                             <td>{{ $publication->created_at }}</td>
                             <td>{{ $publication->updated_at }}</td>
                             <td>
+                                <a href="{{ route('publications.show', $publication) }}"
+                                    class="btn btn-sm btn-secondary">Show</a>
                                 <a href="{{ route('publications.edit', $publication) }}"
                                     class="btn btn-sm btn-primary">Edit</a>
                                 <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
