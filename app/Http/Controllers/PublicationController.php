@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Publication;
 use App\Http\Requests\PublicationRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PublicationController extends Controller
 {
@@ -45,6 +46,12 @@ class PublicationController extends Controller
         $publication->user_id = Auth::id();
         $publication->save();
 
+        if ($request->hasFile('image')) {
+            $request->file('image')->storeAs('publications', $publication->id . '.jpg', 'public');
+            $publication->image = 'publications/' . $publication->id . '.jpg';
+            $publication->save();
+        }
+
         return redirect()->route('publications.index')->with('success', 'Publicación creada exitosamente');
     }
 
@@ -72,10 +79,27 @@ class PublicationController extends Controller
     {
         $validatedData = $request->validated();
 
+        // Manejar la imagen
+        if ($request->hasFile('image')) {
+            // Elimina la imagen anterior si existe
+            if ($publication->image) {
+                Storage::disk('public')->delete($publication->image);
+            }
+
+            // Almacena la nueva imagen
+            $path = $request->file('image')->storeAs('publications', $publication->id . '.jpg', 'public');
+            $validatedData['image'] = $path;
+        } else {
+            // Mantiene la imagen actual
+            $validatedData['image'] = $publication->image;
+        }
+
+        // Actualiza la publicación
         $publication->update($validatedData);
 
-        return redirect()->route('publications.index')->with('success', 'Publicación actualizada exitosamente');
+        return redirect()->route('publications.my')->with('success', 'Publicación actualizada exitosamente');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -83,7 +107,18 @@ class PublicationController extends Controller
     public function destroy(Publication $publication)
     {
         $publication->delete();
-        return redirect()->route('publications.index')->with('success', 'Publicación eliminada exitosamente');
+        return redirect()->route('publications.my')->with('success', 'Publicación eliminada exitosamente');
+    }
+
+    /**
+     * Display the user's publications.
+     */
+    public function myPublications()
+    {
+        $user = Auth::user();
+        $publications = Publication::where('user_id', $user->id)->get();
+
+        return view('publications.my', compact('publications'));
     }
 
     /**

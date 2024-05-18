@@ -17,7 +17,7 @@ class PublicationRequest extends FormRequest
         $oneYearAgo = now()->subYear()->format('Y-m-d');
         $today = now()->format('Y-m-d');
 
-        return [
+        $rules = [
             'name' => 'required|string|max:255',
             'type' => [
                 'required',
@@ -31,7 +31,6 @@ class PublicationRequest extends FormRequest
                 'required',
                 Rule::in(['Grande', 'Mediano', 'Pequeño']),
             ],
-            'image' => 'required|image',
             'date' => 'required|date|after_or_equal:' . $oneYearAgo . '|before_or_equal:' . $today,
             'description' => 'nullable|string|max:5000',
             'street' => 'nullable|string|max:255',
@@ -41,6 +40,14 @@ class PublicationRequest extends FormRequest
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
         ];
+
+        if ($this->isMethod('post')) {
+            $rules['image'] = 'required|image';
+        } elseif ($this->isMethod('put')) {
+            $rules['image'] = 'nullable|image';
+        }
+
+        return $rules;
     }
 
     public function messages()
