@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Publication;
 use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
@@ -61,5 +63,18 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         //
+    }
+    public function report(Request $request, Publication $publication)
+    {
+        // Aquí puedes agregar la lógica para manejar el reporte
+        // Por ejemplo, guardar el reporte en la base de datos
+
+        $report = new Report();
+        $report->publication_id = $publication->id;
+        $report->user_id = Auth::id();
+        $report->reason = $request->input('reason');
+        $report->save();
+
+        return back()->with('success', 'Reporte enviado al administrador.');
     }
 }

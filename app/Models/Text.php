@@ -10,15 +10,15 @@ class Text extends Model
     use HasFactory;
 
     protected $fillable = [
-        'emitter_id', 'receiver_id', 'subject', 'short_description'
+        'id', 'emitter_id', 'receiver_id', 'subject', 'short_description'
     ];
 
-    public function sender() // Pertenece a un emisor (usuario).
+    public function sender()
     {
         return $this->belongsTo(User::class, 'emitter_id');
     }
 
-    public function receiver() // Pertenece a un receptor (usuario).
+    public function receiver()
     {
         return $this->belongsTo(User::class, 'receiver_id');
     }

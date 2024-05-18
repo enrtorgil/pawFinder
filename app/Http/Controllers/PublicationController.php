@@ -6,15 +6,42 @@ use App\Models\Publication;
 use App\Http\Requests\PublicationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class PublicationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $publications = Publication::all();
+        $query = Publication::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->input('name') . '%');
+        }
+
+        if ($request->filled('type')) {
+            $query->where('type', $request->input('type'));
+        }
+
+        if ($request->filled('type_animal')) {
+            $query->where('type_animal', $request->input('type_animal'));
+        }
+
+        if ($request->filled('size')) {
+            $query->where('size', $request->input('size'));
+        }
+
+        if ($request->filled('date')) {
+            $order = $request->input('date') == 'asc' ? 'asc' : 'desc';
+            $query->orderBy('date', $order);
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $publications = $query->paginate(10);
+
         return view('publications.index', compact('publications'));
     }
 

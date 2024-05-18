@@ -1,16 +1,146 @@
 @extends('layout')
 
 @section('content')
-    <div class="container mt-5">
-        <a href="{{ route('publications.create') }}" class="btn btn-primary">Crear Publicación</a>
-        <div class="list-group">
+    <div class="container mt-3">
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <a href="{{ route('publications.create') }}" class="btn btn-primary"><i class='bx bx-plus'></i> Crear
+                            Publicación</a>
+                    </div>
+                    <div class="col">
+                        <form method="GET" action="{{ route('publications.index') }}" class="row g-3">
+                            <div class="col">
+                                <input type="text" name="name" class="form-control" placeholder="Nombre"
+                                    value="{{ request('name') }}">
+                            </div>
+                            <div class="col">
+                                <select name="type" class="form-select">
+                                    <option value="">Tipo</option>
+                                    <option value="se busca" {{ request('type') == 'se busca' ? 'selected' : '' }}>Se busca
+                                    </option>
+                                    <option value="se adopta" {{ request('type') == 'se adopta' ? 'selected' : '' }}>Se
+                                        adopta</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select name="type_animal" class="form-select">
+                                    <option value="">Tipo de Animal</option>
+                                    <option value="perro" {{ request('type_animal') == 'perro' ? 'selected' : '' }}>Perro
+                                    </option>
+                                    <option value="gato" {{ request('type_animal') == 'gato' ? 'selected' : '' }}>Gato
+                                    </option>
+                                    <option value="otro" {{ request('type_animal') == 'otro' ? 'selected' : '' }}>Otro
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select name="size" class="form-select">
+                                    <option value="">Tamaño</option>
+                                    <option value="Grande" {{ request('size') == 'Grande' ? 'selected' : '' }}>Grande
+                                    </option>
+                                    <option value="Mediano" {{ request('size') == 'Mediano' ? 'selected' : '' }}>Mediano
+                                    </option>
+                                    <option value="Pequeño" {{ request('size') == 'Pequeño' ? 'selected' : '' }}>Pequeño
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select name="date" class="form-select">
+                                    <option value="desc" {{ request('date') == 'desc' ? 'selected' : '' }}><i
+                                            class='bx bx-sort-down'></i> Más Recientes</option>
+                                    <option value="asc" {{ request('date') == 'asc' ? 'selected' : '' }}><i
+                                            class='bx bx-sort-up'></i> Más Antiguos</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary w-100"><i class='bx bx-filter-alt'></i>
+                                    Filtrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             @foreach ($publications as $publication)
-                <a href="{{ route('publications.show', $publication) }}" class="list-group-item list-group-item-action">
-                    <h5 class="mb-1">{{ $publication->name }}</h5>
-                    <p class="mb-1">{{ Str::limit($publication->description, 150) }}</p>
-                    <small>{{ $publication->created_at->diffForHumans() }}</small>
-                </a>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <h6 class="card-title mb-0 me-2">{{ $publication->name }}</h6>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-secondary mx-3">{{ $publication->type }}</span>
+                                @if ($publication->type_animal == 'perro')
+                                    <i class='bx bxs-dog'></i>
+                                @elseif ($publication->type_animal == 'gato')
+                                    <i class='bx bxs-cat'></i>
+                                @else
+                                    <i class='bx bx-question-mark'></i>
+                                @endif
+                            </div>
+                        </div>
+                        <img src="{{ Storage::url($publication->image) }}" class="card-img-top img-fluid img-custom"
+                            alt="{{ $publication->name }}">
+                        <div class="card-body p-1">
+                            <div class="d-flex flex-wrap gap-1">
+                                <a href="{{ route('publications.show', $publication->id) }}"
+                                    class="btn btn-primary flex-grow-1 border-0 rounded-0"><i class='bx bx-show'></i></a>
+                                <a href="{{ route('texts.create', ['publication_id' => $publication->id]) }}"
+                                    class="btn btn-success flex-grow-1 border-0 rounded-0"><i
+                                        class='bx bx-envelope'></i></a>
+                                <button type="button" class="btn btn-danger flex-grow-1 border-0 rounded-0"
+                                    data-bs-toggle="modal" data-id="{{ $publication->id }}"
+                                    data-bs-target="#reportModal"><i class='bx bx-flag'></i></button>
+                                <form action="{{ route('publications.favorite', $publication->id) }}" method="POST"
+                                    class="d-inline flex-grow-1 m-0">
+                                    @csrf
+                                    <button type="submit" class="btn btn-warning w-100 border-0 rounded-0"><i
+                                            class='bx bx-heart'></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted d-flex justify-content-between">
+                            <span><i class='bx bx-ruler'></i> {{ $publication->size }}</span>
+                            <span><i class='bx bx-calendar'></i> {{ $publication->date }}</span>
+                        </div>
+                    </div>
+                </div>
             @endforeach
         </div>
+        {{ $publications->links() }}
     </div>
+
+    <!-- Modal para reportar -->
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportModalLabel">Reportar Publicación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="reportForm" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="reason" class="form-label">Razón del Reporte</label>
+                            <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Enviar Reporte</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .img-custom {
+            width: 100%;
+            height: 14rem;
+            object-fit: cover;
+        }
+    </style>
 @endsection

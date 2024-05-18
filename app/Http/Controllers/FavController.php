@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fav;
+use App\Models\Publication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FavController extends Controller
 {
@@ -61,5 +63,16 @@ class FavController extends Controller
     public function destroy(Fav $fav)
     {
         //
+    }
+
+    public function favorite(Publication $publication)
+    {
+        // Aquí puedes agregar la lógica para marcar la publicación como favorita
+        // Por ejemplo, puedes crear una relación de muchos a muchos entre usuarios y publicaciones favoritas
+
+        $user = Auth::user();
+        // $user->favorites()->attach($publication->id);
+
+        return back()->with('success', 'Publicación marcada como favorita.');
     }
 }

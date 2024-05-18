@@ -35,7 +35,7 @@
                         </ul>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link" href="{{-- {{ route('messages.index') }} --}}">Mensajes</a>
+                        <a class="nav-link" href="{{ route('texts.index') }}">Mensajes</a>
                     </li>
                 @endif
 
