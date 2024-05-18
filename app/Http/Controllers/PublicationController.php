@@ -97,7 +97,7 @@ class PublicationController extends Controller
         // Actualiza la publicación
         $publication->update($validatedData);
 
-        return redirect()->route('publications.my')->with('success', 'Publicación actualizada exitosamente');
+        return redirect()->route('publications.index')->with('success', 'Publicación actualizada exitosamente');
     }
 
 

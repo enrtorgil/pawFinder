@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1>Editar Publicación</h1>
 
         <form action="{{ route('publications.update', $publication->id) }}" method="POST" enctype="multipart/form-data">
             @csrf

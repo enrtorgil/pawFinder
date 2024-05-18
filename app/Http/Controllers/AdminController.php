@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Publication;
 use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {

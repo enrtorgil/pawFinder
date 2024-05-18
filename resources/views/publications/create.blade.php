@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container mt-4">
+
         <form action="{{ route('publications.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
