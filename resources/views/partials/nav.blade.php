@@ -19,7 +19,7 @@
 
                 @if (Auth::check())
                     <li class="nav-item mx-4">
-                        <a class="nav-link" href="{{--{{ route('publications.index') }}--}}">Publicaciones</a>
+                        <a class="nav-link" href="{{ route('publications.index') }}">Publicaciones</a>
                     </li>
                     <li class="nav-item dropdown mx-4">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

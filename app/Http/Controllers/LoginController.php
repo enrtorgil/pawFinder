@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Publication;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -60,5 +61,12 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('index');
+    }
+
+    // Cargar la vista de index con la última publicación
+    public function index()
+    {
+        $latestPublication = Publication::latest()->first();
+        return view('index', compact('latestPublication'));
     }
 }

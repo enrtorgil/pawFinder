@@ -3,10 +3,33 @@
 @section('content')
     <div class="container mt-5">
         @if (Auth::check())
+            <div class="row mb-3">
+                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                    <h1>Bienvenido, {{ Auth::user()->username }}</h1>
+                    <a href="{{ route('publications.create') }}" class="btn btn-primary">Crear Publicación</a>
+                </div>
+                <p>Explora nuestras publicaciones y más.</p>
+            </div>
+
+            <!-- Última publicación -->
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Bienvenido, {{ Auth::user()->username }}</h1>
-                    <p>Explora nuestras publicaciones y más.</p>
+                    <h2>Última Publicación</h2>
+                    @if ($latestPublication)
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $latestPublication->name }}</h5>
+                                <p class="card-text">{{ Str::limit($latestPublication->description, 150) }}</p>
+                                <a href="{{ route('publications.show', $latestPublication) }}" class="btn btn-primary">Ver
+                                    Detalles</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Publicado {{ $latestPublication->created_at->diffForHumans() }}
+                            </div>
+                        </div>
+                    @else
+                        <p>No hay publicaciones disponibles.</p>
+                    @endif
                 </div>
             </div>
         @else
