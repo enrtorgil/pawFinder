@@ -27,7 +27,7 @@
                             Mi espacio
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">Perfil</a>
+                            <li><a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">Editar Perfil</a>
                             </li>
                             <li><a class="dropdown-item" href="{{--{{ route('publications.my') }}--}}">Mis anuncios</a></li>
                             <li><a class="dropdown-item" href="{{--{{ route('favorites.index') }}--}}">Favoritos</a></li>

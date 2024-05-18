@@ -62,8 +62,8 @@
                 @endif
             </div>
 
+            <a href="{{ route('index') }}" class="btn btn-secondary">Volver a Inicio</a>
             <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>
         </form>
     </div>
 @endsection
