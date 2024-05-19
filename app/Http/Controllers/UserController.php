@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -73,7 +74,15 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $isSelfDelete = Auth::id() === $user->id;
+
         $user->delete();
+
+        if ($isSelfDelete || Auth::user()->role != 'administrador') {
+            Auth::logout();
+            return redirect()->route('index')->with('success', 'Cuenta eliminada correctamente.');
+        }
+
         return redirect()->route('admin.index')->with('success', 'User deleted successfully.');
     }
 }
