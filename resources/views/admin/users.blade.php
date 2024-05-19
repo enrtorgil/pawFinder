@@ -5,7 +5,6 @@
         <h1 class="my-3">Administrar Usuarios</h1>
 
         <div class="mb-4">
-            <h2>Usuarios</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered align-middle">
                     <thead class="table-dark">
@@ -31,20 +30,27 @@
                                         <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-primary">Editar</a>
                                     @endif
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#deleteUserModal" data-user-id="{{ $user->id }}">Eliminar</button>
+                                        data-bs-target="#deleteUserModal"
+                                        data-user-id="{{ $user->id }}">Eliminar</button>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            <div class="d-flex justify-content-between">
-                {{ $users->links() }}
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    {{ $users->links() }}
+                </div>
+                <a class="btn btn-link" href="{{ route('index') }}">
+                    Volver a inicio
+                </a>
             </div>
         </div>
 
         <!-- Modal de Confirmación para Eliminar Usuario -->
-        <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

@@ -73,13 +73,13 @@
                                 <h6 class="card-title mb-0 me-2">{{ $publication->name }}</h6>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="badge bg-secondary mx-3">{{ $publication->type }}</span>
+                                <span class="badge bg-secondary mx-3">{{ strtoupper($publication->type) }}</span>
                                 @if ($publication->type_animal == 'perro')
                                     <i class='bx bxs-dog'></i>
                                 @elseif ($publication->type_animal == 'gato')
                                     <i class='bx bxs-cat'></i>
                                 @else
-                                    <i class='bx bx-question-mark'></i>
+                                    <i class="fas fa-question-circle"></i>
                                 @endif
                             </div>
                         </div>
@@ -105,13 +105,14 @@
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-between">
                             <span><i class='bx bx-ruler'></i> {{ $publication->size }}</span>
-                            <span><i class='bx bx-calendar'></i> {{ $publication->date }}</span>
+                            <span><i class='bx bx-calendar'></i>
+                                {{ \Carbon\Carbon::parse($publication->date)->format('d-m-Y') }}</span>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        {{ $publications->links() }}
+        {{ $publications->appends(request()->query())->links() }}
     </div>
 
     <!-- Modal para reportar -->

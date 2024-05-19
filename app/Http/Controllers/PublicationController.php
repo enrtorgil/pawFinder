@@ -17,6 +17,11 @@ class PublicationController extends Controller
     {
         $query = Publication::query();
 
+        // Excluir las publicaciones del usuario logueado
+        if (Auth::check()) {
+            $query->where('user_id', '!=', Auth::id());
+        }
+
         if ($request->filled('name')) {
             $query->where('name', 'like', '%' . $request->input('name') . '%');
         }
@@ -40,7 +45,7 @@ class PublicationController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
-        $publications = $query->paginate(10);
+        $publications = $query->simplePaginate(6);
 
         return view('publications.index', compact('publications'));
     }

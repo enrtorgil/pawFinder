@@ -96,7 +96,10 @@
             </div>
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary my-3 w-100">Volver</a>
+                </div>
+                <div class="col-md-6">
                     <button type="submit" class="btn btn-primary my-3 w-100">Crear Publicación</button>
                 </div>
             </div>

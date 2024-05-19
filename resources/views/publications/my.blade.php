@@ -10,21 +10,41 @@
             <div class="row">
                 @foreach ($publications as $publication)
                     <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <img src="{{ Storage::url($publication->image) }}" class="card-img-top"
+                        <div class="card h-100">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <h6 class="card-title mb-0 me-2">{{ $publication->name }}</h6>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="badge bg-secondary mx-3">{{ strtoupper($publication->type) }}</span>
+                                    @if ($publication->type_animal == 'perro')
+                                        <i class='bx bxs-dog'></i>
+                                    @elseif ($publication->type_animal == 'gato')
+                                        <i class='bx bxs-cat'></i>
+                                    @else
+                                        <i class="fas fa-question-circle"></i>
+                                    @endif
+                                </div>
+                            </div>
+                            <img src="{{ Storage::url($publication->image) }}" class="card-img-top img-fluid img-custom"
                                 alt="{{ $publication->name }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $publication->name }}</h5>
-                                <p><strong>Tipo:</strong> {{ $publication->type }}</p>
-                                <p><strong>Tipo de Animal:</strong> {{ $publication->type_animal }}</p>
-                                <p><strong>Tamaño:</strong> {{ $publication->size }}</p>
-                                <p><strong>Fecha:</strong> {{ $publication->date }}</p>
-                                <a href="{{ route('publications.show', $publication->id) }}" class="btn btn-primary">Ver
-                                    Detalles</a>
-                                <a href="{{ route('publications.edit', $publication->id) }}"
-                                    class="btn btn-warning">Editar</a>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal" data-id="{{ $publication->id }}">Eliminar</button>
+                            <div class="card-body p-1">
+                                <div class="d-flex flex-wrap gap-1">
+                                    <a href="{{ route('publications.show', $publication->id) }}"
+                                        class="btn btn-primary flex-grow-1 border-0 rounded-0"><i
+                                            class='bx bx-show'></i></a>
+                                    <a href="{{ route('publications.edit', $publication->id) }}"
+                                        class="btn btn-warning flex-grow-1 border-0 rounded-0"><i
+                                            class='bx bx-edit'></i></a>
+                                    <button type="button" class="btn btn-danger flex-grow-1 border-0 rounded-0"
+                                        data-bs-toggle="modal" data-id="{{ $publication->id }}"
+                                        data-bs-target="#deleteModal"><i class='bx bx-trash'></i></button>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted d-flex justify-content-between">
+                                <span><i class='bx bx-ruler'></i> {{ $publication->size }}</span>
+                                <span><i class='bx bx-calendar'></i>
+                                    {{ \Carbon\Carbon::parse($publication->date)->format('d-m-Y') }}</span>
                             </div>
                         </div>
                     </div>
@@ -33,7 +53,7 @@
         @endif
     </div>
 
-    <!-- Modal -->
+    <!-- Modal para eliminar -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -65,4 +85,12 @@
             deleteForm.action = `/publications/${publicationId}`;
         });
     </script>
+
+    <style>
+        .img-custom {
+            width: 100%;
+            height: 14rem;
+            object-fit: cover;
+        }
+    </style>
 @endsection

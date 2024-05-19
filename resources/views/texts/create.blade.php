@@ -15,6 +15,7 @@
                 <label for="short_description" class="form-label">Descripción</label>
                 <textarea class="form-control" id="short_description" name="short_description" rows="3" required></textarea>
             </div>
+            <a href="{{ url()->previous() }}" class="btn btn-secondary flex-grow-1 m-1"><i class='bx bx-arrow-back'></i></a>
             <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
         </form>
     </div>

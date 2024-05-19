@@ -6,7 +6,7 @@
             <div class="row mb-3">
                 <div class="col-md-12 d-flex justify-content-between align-items-center">
                     <h1>Bienvenido, {{ Auth::user()->username }}</h1>
-                    <a href="{{ route('publications.create') }}" class="btn btn-primary">Crear Publicación</a>
+                    <a href="{{ route('publications.create') }}" class="btn btn-primary"><i class='bx bx-plus'></i> Crear Publicación</a>
                 </div>
                 <p>Explora nuestras publicaciones y más.</p>
             </div>

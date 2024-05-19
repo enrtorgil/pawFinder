@@ -5,7 +5,6 @@
         <h1 class="my-3">Administrar Publicaciones</h1>
 
         <div class="mb-4">
-            <h2>Publicaciones</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered align-middle">
                     <thead class="table-dark">
@@ -38,8 +37,13 @@
                     </tbody>
                 </table>
             </div>
-            <div class="d-flex justify-content-between">
-                {{ $publications->links() }}
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    {{ $publications->links() }}
+                </div>
+                <a class="btn btn-link" href="{{ route('index') }}">
+                    Volver a inicio
+                </a>
             </div>
         </div>
 

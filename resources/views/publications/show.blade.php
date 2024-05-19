@@ -6,18 +6,42 @@
 
         <div class="row mb-4">
             <div class="col-md-6">
-                <img src="{{ Storage::url($publication->image) }}" class="img-fluid" alt="{{ $publication->name }}">
+                <img src="{{ Storage::url($publication->image) }}" class="img-fluid img-custom" alt="{{ $publication->name }}">
+                <div class="d-flex justify-content-between mt-2">
+                    <a href="{{ route('texts.create', ['publication_id' => $publication->id]) }}"
+                        class="btn btn-success flex-grow-1 m-1"><i class='bx bx-envelope'></i></a>
+                    <form action="{{ route('publications.favorite', $publication->id) }}" method="POST"
+                        class="d-inline flex-grow-1 m-1">
+                        @csrf
+                        <button type="submit" class="btn btn-warning w-100"><i class='bx bx-heart'></i></button>
+                    </form>
+                    <button type="button" class="btn btn-danger flex-grow-1 m-1" data-bs-toggle="modal"
+                        data-id="{{ $publication->id }}" data-bs-target="#reportModal"><i class='bx bx-flag'></i></button>
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary flex-grow-1 m-1"><i
+                            class='bx bx-arrow-back'></i></a>
+                </div>
             </div>
-            <div class="col-md-6">
-                <ul class="list-group mb-2">
-                    <li class="list-group-item"><strong>Autor:</strong> {{ $publication->user->username }}</li>
-                    <li class="list-group-item"><strong>Tipo:</strong> {{ $publication->type }}</li>
-                    <li class="list-group-item"><strong>Tipo de Animal:</strong> {{ $publication->type_animal }}</li>
-                    <li class="list-group-item"><strong>Tamaño:</strong> {{ $publication->size }}</li>
-                    <li class="list-group-item"><strong>Fecha:</strong> {{ $publication->date }}</li>
-                    <li class="list-group-item"><strong>Descripción:</strong> {{ $publication->description }}</li>
-                </ul>
-                <div id="mi_mapa" style="width: 100%; height: 400px;"></div>
+            <div class="col-md-6 d-flex flex-column">
+                <div class="flex-grow-1 mb-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Detalles de la Publicación</h5>
+                            <p class="card-text"><strong>Autor:</strong> {{ $publication->user->username }}</p>
+                            <p class="card-text"><strong>Tipo:</strong> {{ $publication->type }}</p>
+                            <p class="card-text"><strong>Tipo de Animal:</strong> {{ $publication->type_animal }}</p>
+                            <p class="card-text"><strong>Tamaño:</strong> {{ $publication->size }}</p>
+                            <p class="card-text"><strong>Fecha:</strong>
+                                {{ \Carbon\Carbon::parse($publication->date)->format('d-m-Y') }}</p>
+                            <p class="card-text"><strong>Descripción:</strong>
+                                {{ \Illuminate\Support\Str::limit($publication->description, 40) }}
+                                @if (strlen($publication->description) > 40)
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#descriptionModal">Leer más</a>
+                                @endif
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-grow-1 mt-2" id="mi_mapa" style="width: 100%; height: 100%;"></div>
             </div>
         </div>
 
@@ -33,4 +57,71 @@
             });
         </script>
     </div>
+
+    <!-- Modal para la descripción -->
+    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="descriptionModalLabel">Descripción completa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ $publication->description }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para reportar -->
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportModalLabel">Reportar Publicación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="reportForm" method="POST" action="{{ route('publications.report', $publication->id) }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="reason" class="form-label">Razón del Reporte</label>
+                            <select class="form-select" id="reason" name="reason" required>
+                                <option value="Contenido inapropiado">Contenido inapropiado</option>
+                                <option value="Información incorrecta">Información incorrecta</option>
+                                <option value="Spam">Spam</option>
+                                <option value="Otra razón">Otra razón</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="additional_info" class="form-label">Información Adicional</label>
+                            <textarea class="form-control" id="additional_info" name="additional_info" rows="3" maxlength="200"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Enviar Reporte</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .img-custom {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: cover;
+        }
+
+        .btn {
+            padding: 0.5rem;
+            margin: 0;
+        }
+
+        .modal-body {
+            word-wrap: break-word;
+        }
+    </style>
 @endsection
