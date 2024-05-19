@@ -4,77 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Publication;
 use App\Models\Report;
-use Illuminate\Http\Request;
+use App\Http\Requests\ReportRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $reports = Report::with(['publication', 'user'])->get();
+        return view('admin.index', compact('reports'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function report(ReportRequest $request, Publication $publication)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Report $report)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Report $report)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Report $report)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Report $report)
-    {
-        //
-    }
-    public function report(Request $request, Publication $publication)
-    {
-        // Aquí puedes agregar la lógica para manejar el reporte
-        // Por ejemplo, guardar el reporte en la base de datos
-
-        $report = new Report();
-        $report->publication_id = $publication->id;
-        $report->user_id = Auth::id();
-        $report->reason = $request->input('reason');
-        $report->save();
+        Report::create([
+            'publication_id' => $publication->id,
+            'user_id' => Auth::id(),
+            'reason' => $request->input('reason'),
+            'additional_info' => $request->input('additional_info')
+        ]);
 
         return back()->with('success', 'Reporte enviado al administrador.');
+    }
+
+    public function destroy(Report $report)
+    {
+        $report->delete();
+        return back()->with('success', 'Reporte eliminado correctamente.');
     }
 }

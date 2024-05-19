@@ -95,12 +95,12 @@
                                 <button type="button" class="btn btn-danger flex-grow-1 border-0 rounded-0"
                                     data-bs-toggle="modal" data-id="{{ $publication->id }}"
                                     data-bs-target="#reportModal"><i class='bx bx-flag'></i></button>
-                                <form action="{{ route('publications.favorite', $publication->id) }}" method="POST"
+                                {{-- <form action="{{ route('publications.favorite', $publication->id) }}" method="POST"
                                     class="d-inline flex-grow-1 m-0">
                                     @csrf
                                     <button type="submit" class="btn btn-warning w-100 border-0 rounded-0"><i
                                             class='bx bx-heart'></i></button>
-                                </form>
+                                </form> --}}
                             </div>
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-between">
@@ -127,7 +127,16 @@
                         @csrf
                         <div class="mb-3">
                             <label for="reason" class="form-label">Razón del Reporte</label>
-                            <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+                            <select class="form-select" id="reason" name="reason" required>
+                                <option value="Contenido inapropiado">Contenido inapropiado</option>
+                                <option value="Información incorrecta">Información incorrecta</option>
+                                <option value="Spam">Spam</option>
+                                <option value="Otra razón">Otra razón</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="additional_info" class="form-label">Información Adicional</label>
+                            <textarea class="form-control" id="additional_info" name="additional_info" rows="3" maxlength="200"></textarea>
                         </div>
                         <button type="submit" class="btn btn-danger">Enviar Reporte</button>
                     </form>
@@ -135,6 +144,18 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var reportModal = document.getElementById('reportModal');
+            reportModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget;
+                var publicationId = button.getAttribute('data-id');
+                var reportForm = document.getElementById('reportForm');
+                reportForm.action = '/publications/' + publicationId + '/report';
+            });
+        });
+    </script>
 
     <style>
         .img-custom {

@@ -21,14 +21,11 @@ Route::post('register', [LoginController::class, 'register']);
 
 Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.index')->middleware(['auth', 'isAdmin']);
 Route::get('publications/my', [PublicationController::class, 'myPublications'])->name('publications.my');
-Route::post('/publications/{publication}/favorite', [FavController::class, 'favorite'])->name('publications.favorite');
-Route::post('/publications/{publication}/report', [ReportController::class, 'report'])->name('publications.report');
-
-
 Route::get('/messages/unread-count', [TextController::class, 'unreadCount'])->name('messages.unreadCount');
 Route::post('/texts/{id}/toggle-read', [TextController::class, 'toggleRead'])->name('texts.toggleRead');
+Route::post('/publications/{publication}/report', [ReportController::class, 'report'])->name('publications.report');
 
 Route::resource('texts', TextController::class)->middleware('auth');
 Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('publications', PublicationController::class)->middleware('auth');
-
+Route::resource('reports', ReportController::class)->middleware('auth');

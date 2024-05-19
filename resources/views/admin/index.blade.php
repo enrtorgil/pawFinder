@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-
         <h1 class="my-3">Admin Dashboard</h1>
 
         <div class="mb-4">
@@ -84,19 +83,23 @@
                 <table class="table table-striped table-hover table-bordered align-middle">
                     <thead class="table-dark">
                         <tr>
-                            <th>Reportero</th>
-                            <th>Contenido del Reporte</th>
+                            <th>Publicación</th>
+                            <th>Usuario</th>
+                            <th>Razón</th>
+                            <th>Información Adicional</th>
+                            <th>Creado en</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($reports as $report)
                             <tr>
-                                <td>{{ $report->reporter }}</td>
-                                <td>{{ $report->content }}</td>
+                                <td>{{ $report->publication->name }}</td>
+                                <td>{{ $report->user->username }}</td>
+                                <td>{{ $report->reason }}</td>
+                                <td>{{ $report->additional_info }}</td>
+                                <td>{{ $report->created_at->format('d-m-Y H:i') }}</td>
                                 <td>
-                                    <a href="{{ route('reports.edit', $report) }}"
-                                        class="btn btn-sm btn-primary">Editar</a>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteReportModal"
                                         data-report-id="{{ $report->id }}">Eliminar</button>
@@ -156,6 +159,30 @@
         </div>
     </div>
 
+    <!-- Modal de Confirmación para Eliminar Reporte -->
+    <div class="modal fade" id="deleteReportModal" tabindex="-1" aria-labelledby="deleteReportModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteReportModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar este reporte?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form id="deleteReportForm" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var deleteUserModal = document.getElementById('deleteUserModal');
@@ -174,6 +201,15 @@
                 var button = event.relatedTarget;
                 var publicationId = button.getAttribute('data-publication-id');
                 deletePublicationForm.action = '/publications/' + publicationId;
+            });
+
+            var deleteReportModal = document.getElementById('deleteReportModal');
+            var deleteReportForm = document.getElementById('deleteReportForm');
+
+            deleteReportModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget;
+                var reportId = button.getAttribute('data-report-id');
+                deleteReportForm.action = '/reports/' + reportId;
             });
         });
     </script>
