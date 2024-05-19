@@ -7,6 +7,7 @@
             <thead>
                 <tr>
                     <th>De</th>
+                    <th>Teléfono</th>
                     <th>Asunto</th>
                     <th>Descripción breve</th>
                     <th>Fecha</th>
@@ -17,6 +18,7 @@
                 @foreach ($messages as $message)
                     <tr id="message-{{ $message->id }}">
                         <td>{{ $message->sender->username }}</td>
+                        <td>{{ $message->sender->phone }}</td>
                         <td>{{ $message->subject }}</td>
                         <td>
                             {{ Str::limit($message->short_description, 50) }}

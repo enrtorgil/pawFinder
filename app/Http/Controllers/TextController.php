@@ -27,8 +27,9 @@ class TextController extends Controller
         $publication_id = $request->query('publication_id');
         $publication = Publication::findOrFail($publication_id);
         $receiver_id = $publication->user_id;
+        $phone = Auth::user()->phone;
 
-        return view('texts.create', compact('receiver_id'));
+        return view('texts.create', compact('receiver_id', 'phone'));
     }
 
     /**

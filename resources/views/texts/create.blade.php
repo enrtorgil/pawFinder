@@ -6,6 +6,7 @@
         <form action="{{ route('texts.store') }}" method="POST">
             @csrf
             <input type="hidden" name="receiver_id" value="{{ $receiver_id }}">
+            <input type="hidden" name="phone" value="{{ $phone }}"> <!-- Campo oculto para el teléfono -->
             <div class="mb-3">
                 <label for="subject" class="form-label">Asunto</label>
                 <input type="text" class="form-control" id="subject" name="subject" required>
