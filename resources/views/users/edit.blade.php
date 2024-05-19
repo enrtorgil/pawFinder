@@ -62,11 +62,18 @@
                 @endif
             </div>
 
-            <a href="{{ route('index') }}" class="btn btn-secondary">Volver a Inicio</a>
-            <button type="submit" class="btn btn-primary">Update</button>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
-                Eliminar Cuenta
-            </button>
+            <div class="d-flex justify-content-between">
+                <div>
+                    <a href="{{ route('index') }}" class="btn btn-secondary">Volver a Inicio</a>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#deleteAccountModal">
+                        Eliminar Cuenta
+                    </button>
+                </div>
+            </div>
         </form>
     </div>
 
