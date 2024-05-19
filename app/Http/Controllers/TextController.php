@@ -13,11 +13,16 @@ class TextController extends Controller
     /**
      * Muestra una lista de los mensajes recibidos.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $messages = Text::where('receiver_id', Auth::id())->with('sender')->simplePaginate(4);
-        return view('texts.index', compact('messages'));
+        $sort = $request->input('sort', 'desc');
+        $messages = Text::where('receiver_id', Auth::id())
+            ->with('sender')
+            ->orderBy('created_at', $sort)
+            ->simplePaginate(4);
+        return view('texts.index', compact('messages', 'sort'));
     }
+
 
     /**
      * Muestra el formulario de contacto.
@@ -44,7 +49,7 @@ class TextController extends Controller
             'short_description' => $request->input('short_description'),
         ]);
 
-        return redirect()->route('publications.index')->with('success', 'Mensaje enviado correctamente.');
+        return redirect()->back()->with('success', 'Mensaje enviado correctamente.');
     }
 
     /**
@@ -55,5 +60,22 @@ class TextController extends Controller
         $text = Text::findOrFail($id);
         $text->delete();
         return redirect()->route('texts.index')->with('success', 'Mensaje eliminado correctamente.');
+    }
+
+    public function unreadCount()
+    {
+        $unreadCount = Text::where('receiver_id', Auth::id())
+            ->where('is_read', false) // Asegúrate de tener una columna 'is_read' en tu tabla 'texts'
+            ->count();
+        return response()->json(['unread_count' => $unreadCount]);
+    }
+
+    public function toggleRead(Request $request, $id)
+    {
+        $message = Text::findOrFail($id);
+        $message->is_read = !$message->is_read;
+        $message->save();
+
+        return response()->json(['success' => true]);
     }
 }

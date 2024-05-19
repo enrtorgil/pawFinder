@@ -35,7 +35,9 @@
                         </ul>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link" href="{{ route('texts.index') }}">Mensajes</a>
+                        <a class="nav-link" href="{{ route('texts.index') }}">
+                            Mensajes <span id="unread-count" class="badge bg-danger" style="display:none;">0</span>
+                        </a>
                     </li>
                 @endif
 

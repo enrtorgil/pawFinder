@@ -24,6 +24,12 @@ Route::get('publications/my', [PublicationController::class, 'myPublications'])-
 Route::post('/publications/{publication}/favorite', [FavController::class, 'favorite'])->name('publications.favorite');
 Route::post('/publications/{publication}/report', [ReportController::class, 'report'])->name('publications.report');
 
+
+Route::get('/messages/unread-count', [TextController::class, 'unreadCount'])->name('messages.unreadCount');
+Route::post('/texts/{id}/toggle-read', [TextController::class, 'toggleRead'])->name('texts.toggleRead');
+
+
+
 Route::resource('texts', TextController::class)->middleware('auth');
 Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('publications', PublicationController::class)->middleware('auth');

@@ -4,54 +4,59 @@
     <div class="container mt-3">
         <h2 class="mb-4">Mensajes Recibidos</h2>
         <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-striped table-hover table-bordered align-middle">
+                <thead class="table-dark">
                     <tr>
                         <th>De</th>
                         <th>Teléfono</th>
                         <th>Asunto</th>
                         <th>Descripción breve</th>
-                        <th>Fecha</th>
+                        <th>
+                            Fecha
+                            <div class="float-end">
+                                <a href="{{ route('texts.index', ['sort' => $sort === 'desc' ? 'asc' : 'desc']) }}"
+                                    class="btn btn-sm btn-link p-0 mx-2">
+                                    <i class="fas fa-sort"></i>
+                                </a>
+                            </div>
+                        </th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($messages as $message)
-                        <tr id="message-{{ $message->id }}">
+                        <tr id="message-{{ $message->id }}" class="{{ $message->is_read ? 'table-warning' : '' }}">
                             <td>{{ $message->sender->username }}</td>
                             <td>{{ $message->sender->phone }}</td>
-                            <td class="text-truncate" style="max-width: 30%;">
+                            <td class="text-truncate" style="max-width: 100%;">
+                                {{ Str::limit($message->subject, 50) }}
                                 @if (strlen($message->subject) > 50)
-                                    {{ Str::limit($message->subject, 50) }}
-                                    <button type="button" class="btn btn-link p-0 m-0 align-baseline" style="display: inline;"
-                                        data-bs-toggle="modal" data-bs-target="#subjectModal"
+                                    <button type="button" class="btn btn-link p-0 m-0 align-baseline"
+                                        style="display: inline;" data-bs-toggle="modal" data-bs-target="#subjectModal"
                                         data-subject="{{ $message->subject }}">
                                         Leer más
                                     </button>
-                                @else
-                                    {{ $message->subject }}
                                 @endif
                             </td>
-                            <td class="text-truncate" style="max-width: 40%;">
+                            <td class="text-truncate" style="max-width: 100%;">
+                                {{ Str::limit($message->short_description, 30) }}
                                 @if (strlen($message->short_description) > 50)
-                                    {{ Str::limit($message->short_description, 50) }}
                                     <button type="button" class="btn btn-link p-0 m-0 align-baseline"
                                         style="display: inline;" data-bs-toggle="modal" data-bs-target="#descriptionModal"
                                         data-description="{{ $message->short_description }}">
                                         Leer más
                                     </button>
-                                @else
-                                    {{ $message->short_description }}
                                 @endif
                             </td>
                             <td>{{ $message->created_at->format('d-m-Y H:i') }}</td>
-                            <td>
+                            <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#deleteMessageModal" data-message-id="{{ $message->id }}"><i
                                         class='bx bx-trash'></i></button>
                                 <button type="button" class="btn btn-sm btn-secondary"
                                     onclick="toggleRead({{ $message->id }})">
-                                    <i class="fas fa-eye" id="icon-{{ $message->id }}"></i>
+                                    <i class="fas fa-eye{{ $message->is_read ? '-slash' : '' }}"
+                                        id="icon-{{ $message->id }}"></i>
                                 </button>
                                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#replyMessageModal" data-emitter-id="{{ $message->emitter_id }}"
@@ -64,9 +69,11 @@
                 </tbody>
             </table>
         </div>
-        <div>
+
+        <div class="d-flex justify-content-start mt-2">
             {{ $messages->links() }}
         </div>
+
     </div>
 
     <!-- Modal de Confirmación para Eliminar Mensaje -->
@@ -93,24 +100,6 @@
         </div>
     </div>
 
-    <!-- Modal para Mostrar Descripción Completa -->
-    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="descriptionModalLabel">Descripción completa</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="fullDescription" class="text-wrap" style="white-space: pre-wrap; word-break: break-word;"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal para Mostrar Asunto Completo -->
     <div class="modal fade" id="subjectModal" tabindex="-1" aria-labelledby="subjectModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -121,6 +110,24 @@
                 </div>
                 <div class="modal-body">
                     <p id="fullSubject" class="text-wrap" style="white-space: pre-wrap; word-break: break-word;"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Mostrar Descripción Completa -->
+    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="descriptionModalLabel">Descripción completa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="fullDescription" class="text-wrap" style="white-space: pre-wrap; word-break: break-word;"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -162,23 +169,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Script para modal de eliminación
             var deleteMessageModal = document.getElementById('deleteMessageModal');
-            var deleteMessageForm = document.getElementById('deleteMessageForm');
-
             deleteMessageModal.addEventListener('show.bs.modal', function(event) {
                 var button = event.relatedTarget;
                 var messageId = button.getAttribute('data-message-id');
+                var deleteMessageForm = document.getElementById('deleteMessageForm');
                 deleteMessageForm.action = '/texts/' + messageId;
             });
 
-            var descriptionModal = document.getElementById('descriptionModal');
-            descriptionModal.addEventListener('show.bs.modal', function(event) {
-                var button = event.relatedTarget;
-                var description = button.getAttribute('data-description');
-                var fullDescription = document.getElementById('fullDescription');
-                fullDescription.textContent = description;
-            });
-
+            // Script para modal de asunto
             var subjectModal = document.getElementById('subjectModal');
             subjectModal.addEventListener('show.bs.modal', function(event) {
                 var button = event.relatedTarget;
@@ -187,6 +187,16 @@
                 fullSubject.textContent = subject;
             });
 
+            // Script para modal de descripción
+            var descriptionModal = document.getElementById('descriptionModal');
+            descriptionModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget;
+                var description = button.getAttribute('data-description');
+                var fullDescription = document.getElementById('fullDescription');
+                fullDescription.textContent = description;
+            });
+
+            // Script para modal de respuesta
             var replyMessageModal = document.getElementById('replyMessageModal');
             replyMessageModal.addEventListener('show.bs.modal', function(event) {
                 var button = event.relatedTarget;
@@ -198,10 +208,6 @@
                 replyReceiverId.value = emitterId;
                 replySubject.value = subject;
             });
-
-            @foreach ($messages as $message)
-                setIcon({{ $message->id }}, false); // Inicializa con no leído
-            @endforeach
         });
 
         function toggleRead(messageId) {
@@ -210,6 +216,21 @@
                 row.classList.toggle('table-warning');
                 var isRead = row.classList.contains('table-warning');
                 setIcon(messageId, isRead);
+
+                // Actualizar estado en el backend
+                fetch(`/texts/${messageId}/toggle-read`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                }).then(response => response.json()).then(data => {
+                    if (!data.success) {
+                        // Revertir cambios si hay error
+                        row.classList.toggle('table-warning');
+                        setIcon(messageId, !isRead);
+                    }
+                });
             }
         }
 

@@ -31,6 +31,54 @@
                 toastr.error("{{ $error }}");
             @endforeach
         @endif
+
+        function fetchUnreadCount() {
+            $.ajax({
+                url: '{{ route('messages.unreadCount') }}',
+                method: 'GET',
+                success: function(data) {
+                    let unreadCount = document.getElementById('unread-count');
+                    unreadCount.innerText = data.unread_count;
+                    if (data.unread_count > 0) {
+                        unreadCount.style.display = 'inline';
+                    } else {
+                        unreadCount.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchUnreadCount();
+            setInterval(fetchUnreadCount, 5000); // Polling cada 5 segundos
+        });
+
+        function toggleRead(messageId) {
+            $.ajax({
+                url: '{{ url('/texts') }}/' + messageId + '/toggle-read',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    if (data.success) {
+                        var row = document.getElementById('message-' + messageId);
+                        if (row) {
+                            row.classList.toggle('table-warning');
+                            var icon = document.getElementById('icon-' + messageId);
+                            if (row.classList.contains('table-warning')) {
+                                icon.classList.remove('fa-eye');
+                                icon.classList.add('fa-eye-slash');
+                            } else {
+                                icon.classList.remove('fa-eye-slash');
+                                icon.classList.add('fa-eye');
+                            }
+                            fetchUnreadCount();
+                        }
+                    }
+                }
+            });
+        }
     </script>
 </body>
 
