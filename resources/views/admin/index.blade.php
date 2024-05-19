@@ -6,94 +6,106 @@
         <h1 class="my-3">Admin Dashboard</h1>
 
         <div class="mb-4">
-            <h2>Users</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($users as $user)
+            <h2>Usuarios</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered align-middle">
+                    <thead class="table-dark">
                         <tr>
-                            <td>{{ $user->username }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
-                            <td>
-                                @if (Auth::user()->role !== 'admin' || $user->role !== 'admin')
-                                    <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-primary">Edit</a>
-                                @endif
-                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteUserModal" data-user-id="{{ $user->id }}">Delete</button>
-                            </td>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Rol</th>
+                            <th>Creado en</th>
+                            <th>Actualizado en</th>
+                            <th>Acciones</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->username }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->role }}</td>
+                                <td>{{ $user->created_at->format('d-m-Y H:i') }}</td>
+                                <td>{{ $user->updated_at->format('d-m-Y H:i') }}</td>
+                                <td>
+                                    @if (Auth::user()->role !== 'admin' || $user->role !== 'admin')
+                                        <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-primary">Editar</a>
+                                    @endif
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteUserModal"
+                                        data-user-id="{{ $user->id }}">Eliminar</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="mb-4">
-            <h2>Publications</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>User</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($publications as $publication)
+            <h2>Publicaciones</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered align-middle">
+                    <thead class="table-dark">
                         <tr>
-                            <td>{{ $publication->name }}</td>
-                            <td>{{ $publication->user->username }}</td>
-                            <td>{{ $publication->created_at }}</td>
-                            <td>{{ $publication->updated_at }}</td>
-                            <td>
-                                <a href="{{ route('publications.show', $publication) }}"
-                                    class="btn btn-sm btn-secondary">Show</a>
-                                <a href="{{ route('publications.edit', $publication) }}"
-                                    class="btn btn-sm btn-primary">Edit</a>
-                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deletePublicationModal"
-                                    data-publication-id="{{ $publication->id }}">Delete</button>
-                            </td>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>Creado en</th>
+                            <th>Actualizado en</th>
+                            <th>Acciones</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($publications as $publication)
+                            <tr>
+                                <td>{{ $publication->name }}</td>
+                                <td>{{ $publication->user->username }}</td>
+                                <td>{{ $publication->created_at->format('d-m-Y H:i') }}</td>
+                                <td>{{ $publication->updated_at->format('d-m-Y H:i') }}</td>
+                                <td>
+                                    <a href="{{ route('publications.show', $publication) }}"
+                                        class="btn btn-sm btn-secondary">Mostrar</a>
+                                    <a href="{{ route('publications.edit', $publication) }}"
+                                        class="btn btn-sm btn-primary">Editar</a>
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deletePublicationModal"
+                                        data-publication-id="{{ $publication->id }}">Eliminar</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="mb-4">
-            <h2>Reports</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Reporter</th>
-                        <th>Report Content</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($reports as $report)
+            <h2>Reportes</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered align-middle">
+                    <thead class="table-dark">
                         <tr>
-                            <td>{{ $report->reporter }}</td>
-                            <td>{{ $report->content }}</td>
-                            <td>
-                                <a href="{{ route('reports.edit', $report) }}" class="btn btn-sm btn-primary">Edit</a>
-                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteReportModal"
-                                    data-report-id="{{ $report->id }}">Delete</button>
-                            </td>
+                            <th>Reportero</th>
+                            <th>Contenido del Reporte</th>
+                            <th>Acciones</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($reports as $report)
+                            <tr>
+                                <td>{{ $report->reporter }}</td>
+                                <td>{{ $report->content }}</td>
+                                <td>
+                                    <a href="{{ route('reports.edit', $report) }}"
+                                        class="btn btn-sm btn-primary">Editar</a>
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteReportModal"
+                                        data-report-id="{{ $report->id }}">Eliminar</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
