@@ -2,51 +2,68 @@
 
 @section('content')
     <div class="container mt-3">
-        <h2>Mensajes Recibidos</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>De</th>
-                    <th>Teléfono</th>
-                    <th>Asunto</th>
-                    <th>Descripción breve</th>
-                    <th>Fecha</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($messages as $message)
-                    <tr id="message-{{ $message->id }}">
-                        <td>{{ $message->sender->username }}</td>
-                        <td>{{ $message->sender->phone }}</td>
-                        <td>{{ $message->subject }}</td>
-                        <td>
-                            {{ Str::limit($message->short_description, 50) }}
-                            @if (strlen($message->short_description) > 50)
-                                <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
-                                    data-bs-target="#descriptionModal" data-description="{{ $message->short_description }}">
-                                    Leer más
-                                </button>
-                            @endif
-                        </td>
-                        <td>{{ $message->created_at->format('d-m-Y H:i') }}</td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteMessageModal" data-message-id="{{ $message->id }}">Eliminar</button>
-                            <button type="button" class="btn btn-sm btn-secondary"
-                                onclick="toggleRead({{ $message->id }})">
-                                <i class="fas fa-eye" id="icon-{{ $message->id }}"></i>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#replyMessageModal" data-emitter-id="{{ $message->emitter_id }}"
-                                data-subject="Re: {{ $message->subject }}">
-                                <i class="fas fa-reply"></i>
-                            </button>
-                        </td>
+        <h2 class="mb-4">Mensajes Recibidos</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>De</th>
+                        <th>Teléfono</th>
+                        <th>Asunto</th>
+                        <th>Descripción breve</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($messages as $message)
+                        <tr id="message-{{ $message->id }}">
+                            <td>{{ $message->sender->username }}</td>
+                            <td>{{ $message->sender->phone }}</td>
+                            <td class="text-truncate" style="max-width: 30%;">
+                                @if (strlen($message->subject) > 50)
+                                    {{ Str::limit($message->subject, 50) }}
+                                    <button type="button" class="btn btn-link p-0 m-0 align-baseline" style="display: inline;"
+                                        data-bs-toggle="modal" data-bs-target="#subjectModal"
+                                        data-subject="{{ $message->subject }}">
+                                        Leer más
+                                    </button>
+                                @else
+                                    {{ $message->subject }}
+                                @endif
+                            </td>
+                            <td class="text-truncate" style="max-width: 40%;">
+                                @if (strlen($message->short_description) > 50)
+                                    {{ Str::limit($message->short_description, 50) }}
+                                    <button type="button" class="btn btn-link p-0 m-0 align-baseline"
+                                        style="display: inline;" data-bs-toggle="modal" data-bs-target="#descriptionModal"
+                                        data-description="{{ $message->short_description }}">
+                                        Leer más
+                                    </button>
+                                @else
+                                    {{ $message->short_description }}
+                                @endif
+                            </td>
+                            <td>{{ $message->created_at->format('d-m-Y H:i') }}</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteMessageModal" data-message-id="{{ $message->id }}"><i
+                                        class='bx bx-trash'></i></button>
+                                <button type="button" class="btn btn-sm btn-secondary"
+                                    onclick="toggleRead({{ $message->id }})">
+                                    <i class="fas fa-eye" id="icon-{{ $message->id }}"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#replyMessageModal" data-emitter-id="{{ $message->emitter_id }}"
+                                    data-subject="Re: {{ $message->subject }}">
+                                    <i class="fas fa-reply"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
         <div>
             {{ $messages->links() }}
         </div>
@@ -86,6 +103,24 @@
                 </div>
                 <div class="modal-body">
                     <p id="fullDescription" class="text-wrap" style="white-space: pre-wrap; word-break: break-word;"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Mostrar Asunto Completo -->
+    <div class="modal fade" id="subjectModal" tabindex="-1" aria-labelledby="subjectModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="subjectModalLabel">Asunto completo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="fullSubject" class="text-wrap" style="white-space: pre-wrap; word-break: break-word;"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -142,6 +177,14 @@
                 var description = button.getAttribute('data-description');
                 var fullDescription = document.getElementById('fullDescription');
                 fullDescription.textContent = description;
+            });
+
+            var subjectModal = document.getElementById('subjectModal');
+            subjectModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget;
+                var subject = button.getAttribute('data-subject');
+                var fullSubject = document.getElementById('fullSubject');
+                fullSubject.textContent = subject;
             });
 
             var replyMessageModal = document.getElementById('replyMessageModal');

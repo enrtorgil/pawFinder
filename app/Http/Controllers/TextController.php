@@ -15,7 +15,7 @@ class TextController extends Controller
      */
     public function index()
     {
-        $messages = Text::where('receiver_id', Auth::id())->with('sender')->simplePaginate(2);
+        $messages = Text::where('receiver_id', Auth::id())->with('sender')->simplePaginate(4);
         return view('texts.index', compact('messages'));
     }
 
