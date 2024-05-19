@@ -5,19 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Publication;
 use App\Models\Report;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    /**
-     * Display the admin dashboard.
-     */
-    public function index()
+    public function users()
     {
-        $users = User::all();
-        $publications = Publication::all();
-        $reports = Report::all();
-        return view('admin.index', compact('users', 'publications', 'reports'));
+        $users = User::simplePaginate(10);
+        return view('admin.users', compact('users'));
+    }
+
+    public function publications()
+    {
+        $publications = Publication::simplePaginate(10);
+        return view('admin.publications', compact('publications'));
+    }
+
+    public function reports()
+    {
+        $reports = Report::simplePaginate(10);
+        return view('admin.reports', compact('reports'));
     }
 }

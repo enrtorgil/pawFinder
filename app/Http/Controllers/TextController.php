@@ -65,7 +65,7 @@ class TextController extends Controller
     public function unreadCount()
     {
         $unreadCount = Text::where('receiver_id', Auth::id())
-            ->where('is_read', false) // Asegúrate de tener una columna 'is_read' en tu tabla 'texts'
+            ->where('is_read', false)
             ->count();
         return response()->json(['unread_count' => $unreadCount]);
     }

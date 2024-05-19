@@ -12,8 +12,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav w-100">
                 @if (Auth::check() && Auth::user()->role == 'administrador')
-                    <li class="nav-item mx-4">
-                        <a class="nav-link" href="{{ route('admin.index') }}">Admin</a>
+                    <li class="nav-item dropdown mx-4">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                            <li><a class="dropdown-item" href="{{ route('admin.users') }}">Usuarios</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.publications') }}">Publicaciones</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.reports') }}">Reportes</a></li>
+                        </ul>
                     </li>
                 @endif
 
