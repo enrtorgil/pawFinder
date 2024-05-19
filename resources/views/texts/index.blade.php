@@ -33,7 +33,7 @@
                                 data-bs-target="#deleteMessageModal" data-message-id="{{ $message->id }}">Eliminar</button>
                             <button type="button" class="btn btn-sm btn-secondary"
                                 onclick="toggleRead({{ $message->id }})">
-                                <i class="fas" id="icon-{{ $message->id }}"></i>
+                                <i class="fas fa-eye" id="icon-{{ $message->id }}"></i>
                             </button>
                             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#replyMessageModal" data-emitter-id="{{ $message->emitter_id }}"
@@ -45,6 +45,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div>
+            {{ $messages->links() }}
+        </div>
     </div>
 
     <!-- Modal de Confirmación para Eliminar Mensaje -->
@@ -151,7 +154,6 @@
                 replySubject.value = subject;
             });
 
-            // Initialize icons based on read status
             @foreach ($messages as $message)
                 setIcon({{ $message->id }}, false); // Inicializa con no leído
             @endforeach
@@ -160,7 +162,7 @@
         function toggleRead(messageId) {
             var row = document.getElementById('message-' + messageId);
             if (row) {
-                row.classList.toggle('table-warning'); // Use Bootstrap class for color change
+                row.classList.toggle('table-warning');
                 var isRead = row.classList.contains('table-warning');
                 setIcon(messageId, isRead);
             }

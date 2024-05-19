@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Text;
 use App\Models\Publication;
+use App\Http\Requests\TextRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,8 +15,7 @@ class TextController extends Controller
      */
     public function index()
     {
-        $messages = Text::where('receiver_id', Auth::id())->with('sender')->paginate(10);
-
+        $messages = Text::where('receiver_id', Auth::id())->with('sender')->simplePaginate(2);
         return view('texts.index', compact('messages'));
     }
 
@@ -34,14 +34,8 @@ class TextController extends Controller
     /**
      * Almacena un nuevo mensaje en la base de datos.
      */
-    public function store(Request $request)
+    public function store(TextRequest $request)
     {
-        $request->validate([
-            'subject' => 'required|string|max:255',
-            'short_description' => 'required|string|max:5000',
-            'receiver_id' => 'required|exists:users,id',
-        ]);
-
         Text::create([
             'emitter_id' => Auth::id(),
             'receiver_id' => $request->input('receiver_id'),
