@@ -12,7 +12,10 @@
                         <div class="card h-100">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
-                                    <h6 class="card-title mb-0 me-2">{{ $publication->name }}</h6>
+                                    <a href="{{ route('publications.show', $publication->id) }}"
+                                        class="text-decoration-none text-reset">
+                                        <h6 class="card-title mb-0 me-2">{{ $publication->name }}</h6>
+                                    </a>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <span class="badge bg-secondary mx-3">{{ strtoupper($publication->type) }}</span>
@@ -25,8 +28,10 @@
                                     @endif
                                 </div>
                             </div>
-                            <img src="{{ Storage::url($publication->image) }}" class="card-img-top img-fluid img-custom"
-                                alt="{{ $publication->name }}">
+                            <a href="{{ route('publications.show', $publication->id) }}">
+                                <img src="{{ Storage::url($publication->image) }}" class="card-img-top img-fluid img-custom"
+                                    alt="{{ $publication->name }}">
+                            </a>
                             <div class="card-body p-1">
                                 <div class="d-flex flex-wrap gap-1">
                                     <a href="{{ route('publications.show', $publication->id) }}"

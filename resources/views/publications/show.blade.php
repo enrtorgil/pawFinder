@@ -24,16 +24,18 @@
             <div class="col-md-6 d-flex flex-column">
                 <div class="flex-grow-1 mb-2">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Detalles de la Publicación</h5>
-                            <p class="card-text"><strong>Autor:</strong> {{ $publication->user->username }}</p>
-                            <p class="card-text"><strong>Tipo:</strong> {{ $publication->type }}</p>
-                            <p class="card-text"><strong>Tipo de Animal:</strong> {{ $publication->type_animal }}</p>
-                            <p class="card-text"><strong>Tamaño:</strong> {{ $publication->size }}</p>
-                            <p class="card-text"><strong>Fecha:</strong>
+                        <div class="card-body border rounded p-3">
+                            <h5 class="card-title text-primary border-bottom pb-2 mb-3">Detalles de la Publicación
+                            </h5>
+                            <p class="card-text mb-2"><strong>Autor:</strong> {{ $publication->user->username }}</p>
+                            <p class="card-text mb-2"><strong>Tipo:</strong> {{ $publication->type }}</p>
+                            <p class="card-text mb-2"><strong>Tipo de Animal:</strong> {{ $publication->type_animal }}</p>
+                            <p class="card-text mb-2"><strong>Tamaño:</strong> {{ $publication->size }}</p>
+                            <p class="card-text mb-2"><strong>Fecha:</strong>
                                 {{ \Carbon\Carbon::parse($publication->date)->format('d-m-Y') }}</p>
                             <p class="card-text"><strong>Descripción:</strong>
-                                {{ \Illuminate\Support\Str::limit($publication->description, 40) }}
+                                <span
+                                    class="text-muted">{{ \Illuminate\Support\Str::limit($publication->description, 40) }}</span>
                                 @if (strlen($publication->description) > 40)
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#descriptionModal">Leer más</a>
                                 @endif
@@ -111,7 +113,7 @@
         .img-custom {
             width: 100%;
             height: auto;
-            max-height: 70vh;
+            min-height: 70vh;
             object-fit: cover;
         }
 
