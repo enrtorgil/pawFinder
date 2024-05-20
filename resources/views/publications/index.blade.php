@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Publicaciones')
+
 @section('content')
     <div class="container mt-3">
         <div class="row mb-4">

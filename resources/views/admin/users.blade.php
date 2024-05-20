@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Panel usuarios')
+
 @section('content')
     <div class="container">
         <h1 class="my-3">Administrar Usuarios</h1>

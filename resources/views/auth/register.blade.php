@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Registro')
+
 @section('content')
     <div class="container mt-3">
             <div class="row mb-2">

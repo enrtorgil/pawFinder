@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Enviar mensaje')
+
 @section('content')
     <div class="container mt-3">
         <h2 class="mb-3">Contactar con {{ $creator_username }}</h2>

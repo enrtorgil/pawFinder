@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', $publication->name)
+
 @section('content')
     <div class="container mt-4">
         <h1>{{ $publication->name }}</h1>

@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Mensajes recibidos')
+
 @section('content')
     <div class="container mt-3">
         <h2 class="mb-4">Mensajes Recibidos</h2>

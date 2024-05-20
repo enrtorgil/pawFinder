@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Mi perfil')
+
 @section('content')
     <div class="container">
         <h1 class="my-3">¿Quieres modificar tu perfil, <strong>{{ $user->username }}</strong>?</h1>

@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Mis anuncios')
+
 @section('content')
     <div class="container mt-4">
 

@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'PawFinder')
+
 @section('content')
     <div class="container mt-5">
         @if (Auth::check())
