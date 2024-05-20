@@ -13,7 +13,7 @@ class CreateFavsTable extends Migration
             $table->unsignedBigInteger('publication_id');
             $table->timestamps();
 
-            $table->primary(['user_id', 'publication_id']);
+            // $table->primary(['user_id', 'publication_id']);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('publication_id')->references('id')->on('publications')->onDelete('cascade');
         });

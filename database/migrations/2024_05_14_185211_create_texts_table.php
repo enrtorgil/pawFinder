@@ -14,6 +14,7 @@ class CreateTextsTable extends Migration
             $table->unsignedBigInteger('receiver_id');
             $table->string('subject');
             $table->text('short_description');
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
 
             $table->foreign('emitter_id')->references('id')->on('users')->onDelete('cascade');
