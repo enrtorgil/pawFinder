@@ -39,7 +39,7 @@
                                 @endif
                             </td>
                             <td class="text-truncate" style="max-width: 100%;">
-                                {{ Str::limit($message->short_description, 30) }}
+                                {{ Str::limit($message->short_description, 50) }}
                                 @if (strlen($message->short_description) > 50)
                                     <button type="button" class="btn btn-link p-0 m-0 align-baseline"
                                         style="display: inline;" data-bs-toggle="modal" data-bs-target="#descriptionModal"

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-3">
-        <h2>Contactar con el creador del anuncio</h2>
+        <h2 class="mb-3">Contactar con {{ $creator_username }}</h2>
         <form action="{{ route('texts.store') }}" method="POST">
             @csrf
             <input type="hidden" name="receiver_id" value="{{ $receiver_id }}">

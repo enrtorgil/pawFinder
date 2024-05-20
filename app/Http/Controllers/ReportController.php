@@ -6,6 +6,8 @@ use App\Models\Publication;
 use App\Models\Report;
 use App\Http\Requests\ReportRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -27,9 +29,15 @@ class ReportController extends Controller
         return back()->with('success', 'Reporte enviado al administrador.');
     }
 
-    public function destroy(Report $report)
+    public function destroy($publication_id, $user_id, $created_at)
     {
-        $report->delete();
-        return back()->with('success', 'Reporte eliminado correctamente.');
+        $created_at = Carbon::parse($created_at);
+
+        Report::where('publication_id', $publication_id)
+            ->where('user_id', $user_id)
+            ->where('created_at', $created_at)
+            ->delete();
+
+        return redirect()->route('admin.reports')->with('success', 'Reporte eliminado correctamente.');
     }
 }

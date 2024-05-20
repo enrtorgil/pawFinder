@@ -15,7 +15,7 @@ class CreateReportsTable extends Migration
             $table->enum('reason', ['Contenido inapropiado', 'Información incorrecta', 'Spam', 'Otra razón']);
             $table->timestamps();
 
-            // $table->primary(['publication_id', 'user_id', 'created_at']);
+            $table->primary(['publication_id', 'user_id', 'created_at']);
             $table->foreign('publication_id')->references('id')->on('publications')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

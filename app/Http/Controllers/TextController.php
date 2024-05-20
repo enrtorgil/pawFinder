@@ -32,9 +32,10 @@ class TextController extends Controller
         $publication_id = $request->query('publication_id');
         $publication = Publication::findOrFail($publication_id);
         $receiver_id = $publication->user_id;
+        $creator_username = $publication->user->username;
         $phone = Auth::user()->phone;
 
-        return view('texts.create', compact('receiver_id', 'phone'));
+        return view('texts.create', compact('receiver_id', 'phone', 'creator_username'));
     }
 
     /**
@@ -49,7 +50,7 @@ class TextController extends Controller
             'short_description' => $request->input('short_description'),
         ]);
 
-        return redirect()->back()->with('success', 'Mensaje enviado correctamente.');
+        return redirect()->route('publications.index')->with('success', 'Mensaje enviado correctamente.');
     }
 
     /**

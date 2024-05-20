@@ -22,7 +22,7 @@ class AdminController extends Controller
 
     public function reports()
     {
-        $reports = Report::simplePaginate(10);
+        $reports = Report::with(['user', 'publication'])->simplePaginate(10);
         return view('admin.reports', compact('reports'));
     }
 }

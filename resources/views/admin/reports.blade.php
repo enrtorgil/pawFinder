@@ -39,7 +39,10 @@
                                     <a href="{{ route('publications.show', $report->publication) }}"
                                         class="btn btn-sm btn-secondary">Mostrar</a>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#deleteReportModal" data-report-id="{{ $report->id }}">
+                                        data-bs-target="#deleteReportModal"
+                                        data-publication-id="{{ $report->publication_id }}"
+                                        data-user-id="{{ $report->user_id }}"
+                                        data-created-at="{{ $report->created_at->toDateTimeString() }}">
                                         Eliminar
                                     </button>
                                 </td>
@@ -104,21 +107,23 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                var additionalInfoModal = document.getElementById('additionalInfoModal');
+                let additionalInfoModal = document.getElementById('additionalInfoModal');
                 additionalInfoModal.addEventListener('show.bs.modal', function(event) {
-                    var button = event.relatedTarget;
-                    var additionalInfo = button.getAttribute('data-additional-info');
-                    var fullAdditionalInfo = document.getElementById('fullAdditionalInfo');
+                    let button = event.relatedTarget;
+                    let additionalInfo = button.getAttribute('data-additional-info');
+                    let fullAdditionalInfo = document.getElementById('fullAdditionalInfo');
                     fullAdditionalInfo.textContent = additionalInfo;
                 });
 
-                var deleteReportModal = document.getElementById('deleteReportModal');
-                var deleteReportForm = document.getElementById('deleteReportForm');
+                let deleteReportModal = document.getElementById('deleteReportModal');
+                let deleteReportForm = document.getElementById('deleteReportForm');
 
                 deleteReportModal.addEventListener('show.bs.modal', function(event) {
-                    var button = event.relatedTarget;
-                    var reportId = button.getAttribute('data-report-id');
-                    deleteReportForm.action = '/reports/' + reportId;
+                    let button = event.relatedTarget;
+                    let publicationId = button.getAttribute('data-publication-id');
+                    let userId = button.getAttribute('data-user-id');
+                    let createdAt = button.getAttribute('data-created-at');
+                    deleteReportForm.action = `/reports/${publicationId}/${userId}/${createdAt}`;
                 });
             });
         </script>

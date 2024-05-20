@@ -148,6 +148,14 @@
         </div>
     </div>
 
+    <style>
+        .img-custom {
+            width: 100%;
+            height: 14rem;
+            object-fit: cover;
+        }
+    </style>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var reportModal = document.getElementById('reportModal');
@@ -159,12 +167,4 @@
             });
         });
     </script>
-
-    <style>
-        .img-custom {
-            width: 100%;
-            height: 14rem;
-            object-fit: cover;
-        }
-    </style>
 @endsection

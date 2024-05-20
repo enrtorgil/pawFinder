@@ -73,12 +73,12 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                var deletePublicationModal = document.getElementById('deletePublicationModal');
-                var deletePublicationForm = document.getElementById('deletePublicationForm');
+                let deletePublicationModal = document.getElementById('deletePublicationModal');
+                let deletePublicationForm = document.getElementById('deletePublicationForm');
 
                 deletePublicationModal.addEventListener('show.bs.modal', function(event) {
-                    var button = event.relatedTarget;
-                    var publicationId = button.getAttribute('data-publication-id');
+                    let button = event.relatedTarget;
+                    let publicationId = button.getAttribute('data-publication-id');
                     deletePublicationForm.action = '/publications/' + publicationId;
                 });
             });
