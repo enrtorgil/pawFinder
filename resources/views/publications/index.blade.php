@@ -112,7 +112,9 @@
                 </div>
             @endforeach
         </div>
-        {{ $publications->appends(request()->query())->links() }}
+        <div class="mb-4">
+            {{ $publications->appends(request()->query())->links() }}
+        </div>
     </div>
 
     <!-- Modal para reportar -->

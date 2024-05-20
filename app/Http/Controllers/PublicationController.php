@@ -148,7 +148,7 @@ class PublicationController extends Controller
     public function myPublications()
     {
         $user = Auth::user();
-        $publications = Publication::where('user_id', $user->id)->get();
+        $publications = Publication::where('user_id', $user->id)->simplePaginate(6);
 
         return view('publications.my', compact('publications'));
     }

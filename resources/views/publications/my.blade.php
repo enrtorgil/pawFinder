@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1>Mis Anuncios</h1>
 
         @if ($publications->isEmpty())
             <p>No has publicado ningún anuncio.</p>
@@ -49,6 +48,9 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+            <div class="mb-4">
+                {{ $publications->links() }}
             </div>
         @endif
     </div>
