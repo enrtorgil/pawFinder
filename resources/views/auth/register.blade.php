@@ -1,23 +1,15 @@
 @extends('layout')
 
 @section('content')
-    <div class="container mt-5">
-        @if (Auth::check())
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Bienvenido, {{ Auth::user()->username }}</h1>
-                    <p>Explora nuestras publicaciones y más.</p>
-                </div>
-            </div>
-        @else
-            <div class="row mb-4">
+    <div class="container mt-3">
+            <div class="row mb-2">
                 <div class="col-md-12 text-center">
                     <h1>Bienvenido a PawFinder</h1>
                     <p>Adopta o encuentra a tu mascota perdida</p>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="card-header text-center">Regístrate</div>
                         <div class="card-body">
@@ -93,6 +85,5 @@
                     </div>
                 </div>
             </div>
-        @endif
     </div>
 @endsection

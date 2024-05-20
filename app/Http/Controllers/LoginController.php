@@ -14,6 +14,10 @@ class LoginController extends Controller
     // Muestra el formulario de registro
     public function showRegistrationForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('index');
+        }
+
         return view('auth.register');
     }
 
