@@ -38,7 +38,7 @@
                             <li><a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">Mi
                                     Perfil</a></li>
                             <li><a class="dropdown-item" href="{{ route('publications.my') }}">Mis anuncios</a></li>
-                            <li><a class="dropdown-item" href="{{-- {{ route('favorites.index') }} --}}">Favoritos</a></li>
+                            <li><a class="dropdown-item" href="{{ route('favs.index') }}">Favoritos</a></li>
                         </ul>
                     </li>
                     <li class="nav-item mx-4">
