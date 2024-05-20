@@ -83,6 +83,6 @@ class UserController extends Controller
             return redirect()->route('index')->with('success', 'Cuenta eliminada correctamente.');
         }
 
-        return redirect()->route('admin.index')->with('success', 'User deleted successfully.');
+        return redirect()->route('admin.users')->with('success', 'User deleted successfully.');
     }
 }

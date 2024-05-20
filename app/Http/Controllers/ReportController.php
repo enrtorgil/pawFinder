@@ -12,7 +12,7 @@ class ReportController extends Controller
     public function index()
     {
         $reports = Report::with(['publication', 'user'])->get();
-        return view('admin.index', compact('reports'));
+        return view('admin.reports', compact('reports'));
     }
 
     public function report(ReportRequest $request, Publication $publication)
