@@ -62,10 +62,10 @@
                 },
                 success: function(data) {
                     if (data.success) {
-                        var row = document.getElementById('message-' + messageId);
+                        let row = document.getElementById('message-' + messageId);
                         if (row) {
                             row.classList.toggle('table-warning');
-                            var icon = document.getElementById('icon-' + messageId);
+                            let icon = document.getElementById('icon-' + messageId);
                             if (row.classList.contains('table-warning')) {
                                 icon.classList.remove('fa-eye');
                                 icon.classList.add('fa-eye-slash');

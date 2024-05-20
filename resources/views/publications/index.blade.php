@@ -158,11 +158,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var reportModal = document.getElementById('reportModal');
+            let reportModal = document.getElementById('reportModal');
             reportModal.addEventListener('show.bs.modal', function(event) {
-                var button = event.relatedTarget;
-                var publicationId = button.getAttribute('data-id');
-                var reportForm = document.getElementById('reportForm');
+                let button = event.relatedTarget;
+                let publicationId = button.getAttribute('data-id');
+                let reportForm = document.getElementById('reportForm');
                 reportForm.action = '/publications/' + publicationId + '/report';
             });
         });

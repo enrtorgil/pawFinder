@@ -170,40 +170,40 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Script para modal de eliminación
-            var deleteMessageModal = document.getElementById('deleteMessageModal');
+            let deleteMessageModal = document.getElementById('deleteMessageModal');
             deleteMessageModal.addEventListener('show.bs.modal', function(event) {
-                var button = event.relatedTarget;
-                var messageId = button.getAttribute('data-message-id');
-                var deleteMessageForm = document.getElementById('deleteMessageForm');
+                let button = event.relatedTarget;
+                let messageId = button.getAttribute('data-message-id');
+                let deleteMessageForm = document.getElementById('deleteMessageForm');
                 deleteMessageForm.action = '/texts/' + messageId;
             });
 
             // Script para modal de asunto
-            var subjectModal = document.getElementById('subjectModal');
+            let subjectModal = document.getElementById('subjectModal');
             subjectModal.addEventListener('show.bs.modal', function(event) {
-                var button = event.relatedTarget;
-                var subject = button.getAttribute('data-subject');
-                var fullSubject = document.getElementById('fullSubject');
+                let button = event.relatedTarget;
+                let subject = button.getAttribute('data-subject');
+                let fullSubject = document.getElementById('fullSubject');
                 fullSubject.textContent = subject;
             });
 
             // Script para modal de descripción
-            var descriptionModal = document.getElementById('descriptionModal');
+            let descriptionModal = document.getElementById('descriptionModal');
             descriptionModal.addEventListener('show.bs.modal', function(event) {
-                var button = event.relatedTarget;
-                var description = button.getAttribute('data-description');
-                var fullDescription = document.getElementById('fullDescription');
+                let button = event.relatedTarget;
+                let description = button.getAttribute('data-description');
+                let fullDescription = document.getElementById('fullDescription');
                 fullDescription.textContent = description;
             });
 
             // Script para modal de respuesta
-            var replyMessageModal = document.getElementById('replyMessageModal');
+            let replyMessageModal = document.getElementById('replyMessageModal');
             replyMessageModal.addEventListener('show.bs.modal', function(event) {
-                var button = event.relatedTarget;
-                var emitterId = button.getAttribute('data-emitter-id');
-                var subject = button.getAttribute('data-subject');
-                var replyReceiverId = document.getElementById('replyReceiverId');
-                var replySubject = document.getElementById('replySubject');
+                let button = event.relatedTarget;
+                let emitterId = button.getAttribute('data-emitter-id');
+                let subject = button.getAttribute('data-subject');
+                let replyReceiverId = document.getElementById('replyReceiverId');
+                let replySubject = document.getElementById('replySubject');
 
                 replyReceiverId.value = emitterId;
                 replySubject.value = subject;
@@ -211,10 +211,10 @@
         });
 
         function toggleRead(messageId) {
-            var row = document.getElementById('message-' + messageId);
+            let row = document.getElementById('message-' + messageId);
             if (row) {
                 row.classList.toggle('table-warning');
-                var isRead = row.classList.contains('table-warning');
+                let isRead = row.classList.contains('table-warning');
                 setIcon(messageId, isRead);
 
                 // Actualizar estado en el backend
@@ -235,7 +235,7 @@
         }
 
         function setIcon(messageId, isRead) {
-            var icon = document.getElementById('icon-' + messageId);
+            let icon = document.getElementById('icon-' + messageId);
             if (isRead) {
                 icon.classList.remove('fa-eye');
                 icon.classList.add('fa-eye-slash');

@@ -184,13 +184,13 @@
         });
 
         document.addEventListener("DOMContentLoaded", function() {
-            var dateInput = document.getElementById('date');
-            var today = new Date();
-            var year = today.getFullYear();
-            var month = ("0" + (today.getMonth() + 1)).slice(-2);
-            var day = ("0" + today.getDate()).slice(-2);
-            var maxDate = `${year}-${month}-${day}`;
-            var minDate = `${year - 1}-${month}-${day}`;
+            let dateInput = document.getElementById('date');
+            let today = new Date();
+            let year = today.getFullYear();
+            let month = ("0" + (today.getMonth() + 1)).slice(-2);
+            let day = ("0" + today.getDate()).slice(-2);
+            let maxDate = `${year}-${month}-${day}`;
+            let minDate = `${year - 1}-${month}-${day}`;
 
             dateInput.setAttribute('max', maxDate);
             dateInput.setAttribute('min', minDate);

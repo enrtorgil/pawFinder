@@ -74,12 +74,12 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                var deleteUserModal = document.getElementById('deleteUserModal');
-                var deleteUserForm = document.getElementById('deleteUserForm');
+                let deleteUserModal = document.getElementById('deleteUserModal');
+                let deleteUserForm = document.getElementById('deleteUserForm');
 
                 deleteUserModal.addEventListener('show.bs.modal', function(event) {
-                    var button = event.relatedTarget;
-                    var userId = button.getAttribute('data-user-id');
+                    let button = event.relatedTarget;
+                    let userId = button.getAttribute('data-user-id');
                     deleteUserForm.action = '/users/' + userId;
                 });
             });
