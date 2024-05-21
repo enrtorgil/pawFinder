@@ -119,12 +119,6 @@
                                                 class='bx bx-heart'></i></button>
                                     @endif
                                 </form>
-                                {{-- <form action="{{ route('publications.favorite', $publication->id) }}" method="POST"
-                                    class="d-inline flex-grow-1 m-0">
-                                    @csrf
-                                    <button type="submit" class="btn btn-warning w-100 border-0 rounded-0"><i
-                                            class='bx bx-heart'></i></button>
-                                </form> --}}
                             </div>
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-between">

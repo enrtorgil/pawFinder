@@ -12,14 +12,24 @@
                 <div class="d-flex justify-content-between mt-2">
                     <a href="{{ route('texts.create', ['publication_id' => $publication->id]) }}"
                         class="btn btn-success flex-grow-1 m-1"><i class='bx bx-envelope'></i></a>
-                    <form action="{{ route('publications.favorite', $publication->id) }}" method="POST"
-                        class="d-inline flex-grow-1 m-1">
+                    @php
+                        $isFavorited = Auth::user()->favs->contains($publication->id);
+                    @endphp
+
+                    <form
+                        action="{{ $isFavorited ? route('publications.unfavorite', $publication->id) : route('publications.favorite', $publication->id) }}"
+                        method="POST" class="d-inline flex-grow-1 m-1">
                         @csrf
-                        <button type="submit" class="btn btn-warning w-100"><i class='bx bx-heart'></i></button>
+                        @if ($isFavorited)
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger w-100"><i class='bx bxs-heart'></i></button>
+                        @else
+                            <button type="submit" class="btn btn-warning w-100"><i class='bx bx-heart'></i></button>
+                        @endif
                     </form>
                     <button type="button" class="btn btn-danger flex-grow-1 m-1" data-bs-toggle="modal"
                         data-id="{{ $publication->id }}" data-bs-target="#reportModal"><i class='bx bx-flag'></i></button>
-                    <a href="{{ url()->previous() }}" class="btn btn-secondary flex-grow-1 m-1"><i
+                    <a href="{{ route('publications.index') }}" class="btn btn-secondary flex-grow-1 m-1"><i
                             class='bx bx-arrow-back'></i></a>
                 </div>
             </div>
