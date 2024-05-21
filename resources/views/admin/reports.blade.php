@@ -11,9 +11,9 @@
                 <table class="table table-striped table-hover table-bordered align-middle">
                     <thead class="table-dark">
                         <tr>
-                            <th>De</th>
-                            <th>Animal</th>
-                            <th>
+                            <th class="ps-3">De</th>
+                            <th class="ps-3">Animal</th>
+                            <th class="ps-3">
                                 Razón
                                 <div class="float-end">
                                     <a href="{{ route('admin.reports', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'reason']) }}"
@@ -22,8 +22,8 @@
                                     </a>
                                 </div>
                             </th>
-                            <th>Información Adicional</th>
-                            <th>
+                            <th class="ps-3">Información Adicional</th>
+                            <th class="ps-3">
                                 Creado en
                                 <div class="float-end">
                                     <a href="{{ route('admin.reports', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'created_at']) }}"
@@ -32,16 +32,16 @@
                                     </a>
                                 </div>
                             </th>
-                            <th>Acciones</th>
+                            <th class="text-center justify-content-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($reports as $report)
                             <tr>
-                                <td>{{ $report->username }}</td>
-                                <td>{{ $report->publication_name }}</td>
-                                <td>{{ $report->reason }}</td>
-                                <td class="text-truncate" style="max-width: 100%;">
+                                <td class="ps-3">{{ $report->username }}</td>
+                                <td class="ps-3">{{ $report->publication_name }}</td>
+                                <td class="ps-3">{{ $report->reason }}</td>
+                                <td class="text-truncate ps-3" style="max-width: 100%;">
                                     {{ Str::limit($report->additional_info, 30) }}
                                     @if (strlen($report->additional_info) > 30)
                                         <button type="button" class="btn btn-link p-0 m-0 align-baseline"
@@ -52,7 +52,7 @@
                                         </button>
                                     @endif
                                 </td>
-                                <td class="text-nowrap">
+                                <td class="text-nowrap ps-3">
                                     {{ \Carbon\Carbon::parse($report->created_at)->format('d-m-Y H:i') }}</td>
                                 <td class="text-center d-flex justify-content-center gap-1">
                                     <a href="{{ route('publications.show', $report->publication_id) }}"

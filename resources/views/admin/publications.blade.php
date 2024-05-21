@@ -11,9 +11,9 @@
                 <table class="table table-striped table-hover table-bordered align-middle">
                     <thead class="table-dark">
                         <tr>
-                            <th>Nombre</th>
-                            <th>Usuario</th>
-                            <th>
+                            <th class="ps-3">Nombre</th>
+                            <th class="ps-3">Usuario</th>
+                            <th class="ps-3">
                                 Creado en
                                 <div class="float-end">
                                     <a href="{{ route('admin.publications', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'created_at']) }}"
@@ -22,7 +22,7 @@
                                     </a>
                                 </div>
                             </th>
-                            <th>
+                            <th class="ps-3">
                                 Actualizado en
                                 <div class="float-end">
                                     <a href="{{ route('admin.publications', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'updated_at']) }}"
@@ -31,16 +31,16 @@
                                     </a>
                                 </div>
                             </th>
-                            <th>Acciones</th>
+                            <th class="text-center justify-content-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($publications as $publication)
                             <tr>
-                                <td>{{ $publication->name }}</td>
-                                <td>{{ $publication->user->username }}</td>
-                                <td class="text-nowrap">{{ $publication->created_at->format('d-m-Y H:i') }}</td>
-                                <td class="text-nowrap">{{ $publication->updated_at->format('d-m-Y H:i') }}</td>
+                                <td class="ps-3">{{ $publication->name }}</td>
+                                <td class="ps-3">{{ $publication->user->username }}</td>
+                                <td class="text-nowrap ps-3">{{ $publication->created_at->format('d-m-Y H:i') }}</td>
+                                <td class="text-nowrap ps-3">{{ $publication->updated_at->format('d-m-Y H:i') }}</td>
                                 <td class="text-center d-flex justify-content-center gap-1">
                                     <a href="{{ route('publications.show', $publication) }}"
                                         class="btn btn-sm btn-secondary">

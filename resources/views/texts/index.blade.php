@@ -9,11 +9,11 @@
             <table class="table table-striped table-hover table-bordered align-middle">
                 <thead class="table-dark">
                     <tr>
-                        <th>De</th>
-                        <th>Teléfono</th>
-                        <th>Asunto</th>
-                        <th>Descripción breve</th>
-                        <th>
+                        <th class="ps-3">De</th>
+                        <th class="ps-3">Teléfono</th>
+                        <th class="ps-3">Asunto</th>
+                        <th class="ps-3">Descripción breve</th>
+                        <th class="ps-3">
                             Fecha
                             <div class="float-end">
                                 <a href="{{ route('texts.index', ['sort' => $sort === 'desc' ? 'asc' : 'desc']) }}"
@@ -22,15 +22,15 @@
                                 </a>
                             </div>
                         </th>
-                        <th>Acciones</th>
+                        <th class="text-center justify-content-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($messages as $message)
                         <tr id="message-{{ $message->id }}" class="{{ $message->is_read ? 'table-warning' : '' }}">
-                            <td>{{ $message->sender->username }}</td>
-                            <td>{{ $message->sender->phone }}</td>
-                            <td class="text-truncate" style="max-width: 100%;">
+                            <td class="ps-3">{{ $message->sender->username }}</td>
+                            <td class="ps-3">{{ $message->sender->phone }}</td>
+                            <td class="text-truncate ps-3" style="max-width: 100%;">
                                 {{ Str::limit($message->subject, 30) }}
                                 @if (strlen($message->subject) > 30)
                                     <button type="button" class="btn btn-link p-0 m-0 align-baseline"
@@ -40,7 +40,7 @@
                                     </button>
                                 @endif
                             </td>
-                            <td class="text-truncate" style="max-width: 100%;">
+                            <td class="text-truncate ps-3" style="max-width: 100%;">
                                 {{ Str::limit($message->short_description, 30) }}
                                 @if (strlen($message->short_description) > 30)
                                     <button type="button" class="btn btn-link p-0 m-0 align-baseline"
@@ -50,7 +50,7 @@
                                     </button>
                                 @endif
                             </td>
-                            <td class="text-nowrap">{{ $message->created_at->format('d-m-Y H:i') }}</td>
+                            <td class="text-nowrap ps-3">{{ $message->created_at->format('d-m-Y H:i') }}</td>
                             <td class="text-center d-flex justify-content-center gap-1">
                                 <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#deleteMessageModal" data-message-id="{{ $message->id }}"><i
@@ -72,10 +72,14 @@
             </table>
         </div>
 
-        <div class="d-flex justify-content-start mt-3 mb-2">
-            {{ $messages->links() }}
+        <div class="d-flex justify-content-between align-items-center mt-1 mb-2">
+            <div>
+                {{ $messages->links() }}
+            </div>
+            <a class="btn btn-outline-secondary" href="{{ route('index') }}">
+                <i class="fas fa-arrow-left"></i> Volver a inicio
+            </a>
         </div>
-
     </div>
 
     <!-- Modal de Confirmación para Eliminar Mensaje -->
@@ -121,7 +125,8 @@
     </div>
 
     <!-- Modal para Mostrar Descripción Completa -->
-    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

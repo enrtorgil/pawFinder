@@ -11,10 +11,10 @@
                 <table class="table table-striped table-hover table-bordered align-middle">
                     <thead class="table-dark">
                         <tr>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Rol</th>
-                            <th>
+                            <th class="ps-3">Nombre</th>
+                            <th class="ps-3">Email</th>
+                            <th class="ps-3">Rol</th>
+                            <th class="ps-3">
                                 Creado en
                                 <div class="float-end">
                                     <a href="{{ route('admin.users', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'created_at']) }}"
@@ -23,7 +23,7 @@
                                     </a>
                                 </div>
                             </th>
-                            <th>
+                            <th class="ps-3">
                                 Actualizado en
                                 <div class="float-end">
                                     <a href="{{ route('admin.users', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'updated_at']) }}"
@@ -32,17 +32,17 @@
                                     </a>
                                 </div>
                             </th>
-                            <th>Acciones</th>
+                            <th class="text-center justify-content-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td>{{ $user->username }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->role }}</td>
-                                <td class="text-nowrap">{{ $user->created_at->format('d-m-Y H:i') }}</td>
-                                <td class="text-nowrap">{{ $user->updated_at->format('d-m-Y H:i') }}</td>
+                                <td class="ps-3">{{ $user->username }}</td>
+                                <td class="ps-3">{{ $user->email }}</td>
+                                <td class="ps-3">{{ $user->role }}</td>
+                                <td class="text-nowrap ps-3">{{ $user->created_at->format('d-m-Y H:i') }}</td>
+                                <td class="text-nowrap ps-3">{{ $user->updated_at->format('d-m-Y H:i') }}</td>
                                 <td class="text-center d-flex justify-content-center gap-1">
                                     @if (Auth::user()->role !== 'admin' || $user->role !== 'admin')
                                         <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-primary">
