@@ -14,8 +14,24 @@
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Rol</th>
-                            <th>Creado en</th>
-                            <th>Actualizado en</th>
+                            <th>
+                                Creado en
+                                <div class="float-end">
+                                    <a href="{{ route('admin.users', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'created_at']) }}"
+                                        class="btn btn-sm btn-link p-0 mx-2">
+                                        <i class="fas fa-sort"></i>
+                                    </a>
+                                </div>
+                            </th>
+                            <th>
+                                Actualizado en
+                                <div class="float-end">
+                                    <a href="{{ route('admin.users', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'updated_at']) }}"
+                                        class="btn btn-sm btn-link p-0 mx-2">
+                                        <i class="fas fa-sort"></i>
+                                    </a>
+                                </div>
+                            </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -25,15 +41,18 @@
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role }}</td>
-                                <td>{{ $user->created_at->format('d-m-Y H:i') }}</td>
-                                <td>{{ $user->updated_at->format('d-m-Y H:i') }}</td>
-                                <td>
+                                <td class="text-nowrap">{{ $user->created_at->format('d-m-Y H:i') }}</td>
+                                <td class="text-nowrap">{{ $user->updated_at->format('d-m-Y H:i') }}</td>
+                                <td class="text-center d-flex justify-content-center gap-1">
                                     @if (Auth::user()->role !== 'admin' || $user->role !== 'admin')
-                                        <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-primary">Editar</a>
+                                        <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-primary">
+                                            <i class='bx bx-edit'></i>
+                                        </a>
                                     @endif
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#deleteUserModal"
-                                        data-user-id="{{ $user->id }}">Eliminar</button>
+                                        data-bs-target="#deleteUserModal" data-user-id="{{ $user->id }}">
+                                        <i class='bx bx-trash'></i>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -44,8 +63,8 @@
                 <div>
                     {{ $users->links() }}
                 </div>
-                <a class="btn btn-link" href="{{ route('index') }}">
-                    Volver a inicio
+                <a class="btn btn-outline-secondary" href="{{ route('index') }}">
+                    <i class="fas fa-arrow-left"></i> Volver a inicio
                 </a>
             </div>
         </div>

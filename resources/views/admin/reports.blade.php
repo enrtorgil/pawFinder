@@ -13,9 +13,25 @@
                         <tr>
                             <th>De</th>
                             <th>Animal</th>
-                            <th>Razón</th>
+                            <th>
+                                Razón
+                                <div class="float-end">
+                                    <a href="{{ route('admin.reports', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'reason']) }}"
+                                        class="btn btn-sm btn-link p-0 mx-2">
+                                        <i class="fas fa-sort"></i>
+                                    </a>
+                                </div>
+                            </th>
                             <th>Información Adicional</th>
-                            <th>Creado en</th>
+                            <th>
+                                Creado en
+                                <div class="float-end">
+                                    <a href="{{ route('admin.reports', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'created_at']) }}"
+                                        class="btn btn-sm btn-link p-0 mx-2">
+                                        <i class="fas fa-sort"></i>
+                                    </a>
+                                </div>
+                            </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -36,16 +52,18 @@
                                         </button>
                                     @endif
                                 </td>
-                                <td>{{ $report->created_at->format('d-m-Y H:i') }}</td>
-                                <td>
+                                <td class="text-nowrap">{{ $report->created_at->format('d-m-Y H:i') }}</td>
+                                <td class="text-center d-flex justify-content-center gap-1">
                                     <a href="{{ route('publications.show', $report->publication) }}"
-                                        class="btn btn-sm btn-secondary">Mostrar</a>
+                                        class="btn btn-sm btn-secondary">
+                                        <i class="bx bx-show"></i>
+                                    </a>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteReportModal"
                                         data-publication-id="{{ $report->publication_id }}"
                                         data-user-id="{{ $report->user_id }}"
                                         data-created-at="{{ $report->created_at->toDateTimeString() }}">
-                                        Eliminar
+                                        <i class="bx bx-trash"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -57,8 +75,8 @@
                 <div>
                     {{ $reports->links() }}
                 </div>
-                <a class="btn btn-link" href="{{ route('index') }}">
-                    Volver a inicio
+                <a class="btn btn-outline-secondary" href="{{ route('index') }}">
+                    <i class="fas fa-arrow-left"></i> Volver a inicio
                 </a>
             </div>
         </div>

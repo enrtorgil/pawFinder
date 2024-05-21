@@ -13,8 +13,24 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Usuario</th>
-                            <th>Creado en</th>
-                            <th>Actualizado en</th>
+                            <th>
+                                Creado en
+                                <div class="float-end">
+                                    <a href="{{ route('admin.publications', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'created_at']) }}"
+                                        class="btn btn-sm btn-link p-0 mx-2">
+                                        <i class="fas fa-sort"></i>
+                                    </a>
+                                </div>
+                            </th>
+                            <th>
+                                Actualizado en
+                                <div class="float-end">
+                                    <a href="{{ route('admin.publications', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'updated_at']) }}"
+                                        class="btn btn-sm btn-link p-0 mx-2">
+                                        <i class="fas fa-sort"></i>
+                                    </a>
+                                </div>
+                            </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -23,16 +39,21 @@
                             <tr>
                                 <td>{{ $publication->name }}</td>
                                 <td>{{ $publication->user->username }}</td>
-                                <td>{{ $publication->created_at->format('d-m-Y H:i') }}</td>
-                                <td>{{ $publication->updated_at->format('d-m-Y H:i') }}</td>
-                                <td>
+                                <td class="text-nowrap">{{ $publication->created_at->format('d-m-Y H:i') }}</td>
+                                <td class="text-nowrap">{{ $publication->updated_at->format('d-m-Y H:i') }}</td>
+                                <td class="text-center d-flex justify-content-center gap-1">
                                     <a href="{{ route('publications.show', $publication) }}"
-                                        class="btn btn-sm btn-secondary">Mostrar</a>
-                                    <a href="{{ route('publications.edit', $publication) }}"
-                                        class="btn btn-sm btn-primary">Editar</a>
+                                        class="btn btn-sm btn-secondary">
+                                        <i class="bx bx-show"></i>
+                                    </a>
+                                    <a href="{{ route('publications.edit', $publication) }}" class="btn btn-sm btn-primary">
+                                        <i class="bx bx-edit"></i>
+                                    </a>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deletePublicationModal"
-                                        data-publication-id="{{ $publication->id }}">Eliminar</button>
+                                        data-publication-id="{{ $publication->id }}">
+                                        <i class="bx bx-trash"></i>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -43,8 +64,8 @@
                 <div>
                     {{ $publications->links() }}
                 </div>
-                <a class="btn btn-link" href="{{ route('index') }}">
-                    Volver a inicio
+                <a class="btn btn-outline-secondary" href="{{ route('index') }}">
+                    <i class="fas fa-arrow-left"></i> Volver a inicio
                 </a>
             </div>
         </div>
