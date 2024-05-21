@@ -75,7 +75,7 @@
                 <div>
                     {{ $reports->links() }}
                 </div>
-                <a class="btn btn-outline-secondary" href="{{ route('index') }}">
+                <a class="btn btn-secondary" href="{{ route('index') }}">
                     <i class="fas fa-arrow-left"></i> Volver a inicio
                 </a>
             </div>

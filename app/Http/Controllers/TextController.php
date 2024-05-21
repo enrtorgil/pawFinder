@@ -19,7 +19,7 @@ class TextController extends Controller
         $messages = Text::where('receiver_id', Auth::id())
             ->with('sender')
             ->orderBy('created_at', $sort)
-            ->simplePaginate(4);
+            ->simplePaginate(10);
         return view('texts.index', compact('messages', 'sort'));
     }
 

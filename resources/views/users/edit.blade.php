@@ -8,7 +8,7 @@
 
         <form action="{{ route('users.update', $user) }}" method="POST">
             @csrf
-            @method('PUT')
+            @method('PATCH')
 
             <div class="mb-3">
                 <label for="username" class="form-label">Name</label>
@@ -41,10 +41,12 @@
 
             <div class="d-flex justify-content-between">
                 <div>
-                    <a href="{{ route('index') }}" class="btn btn-secondary">Volver a Inicio</a>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
                 <div>
+                    <a class="btn btn-secondary me-2" href="{{ route('index') }}">
+                        <i class="fas fa-arrow-left"></i> Volver a inicio
+                    </a>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                         data-bs-target="#deleteAccountModal">
                         Eliminar Cuenta
