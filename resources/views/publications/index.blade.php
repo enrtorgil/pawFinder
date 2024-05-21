@@ -3,7 +3,7 @@
 @section('title', 'Publicaciones')
 
 @section('content')
-    <div class="container mt-3">
+    <div class="container-fluid mt-4 px-5">
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="row g-3 align-items-center">
@@ -60,6 +60,10 @@
                                 <button type="submit" class="btn btn-primary w-100"><i class='bx bx-filter-alt'></i>
                                     Filtrar</button>
                             </div>
+                            <div class="col-auto">
+                                <a href="{{ route('publications.index') }}" class="btn btn-secondary w-100"><i
+                                        class='bx bx-refresh'></i></a>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -68,8 +72,8 @@
 
         <div class="row">
             @foreach ($publications as $publication)
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100">
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 border-0">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
                                 <a href="{{ route('publications.show', $publication->id) }}"
@@ -89,16 +93,16 @@
                             </div>
                         </div>
                         <a href="{{ route('publications.show', $publication->id) }}">
-                            <img src="{{ Storage::url($publication->image) }}" class="card-img-top img-fluid img-custom"
+                            <img src="{{ Storage::url($publication->image) }}" class="card-img-top img-fluid img-custom rounded-0"
                                 alt="{{ $publication->name }}"></a>
-                        <div class="card-body p-1">
+                        <div class="card-body p-2">
                             <div class="d-flex flex-wrap gap-1">
                                 <a href="{{ route('publications.show', $publication->id) }}"
-                                    class="btn btn-primary flex-grow-1 border-0 rounded-0"><i class='bx bx-show'></i></a>
+                                    class="btn btn-primary flex-grow-1 border-0 rounded-5"><i class='bx bx-show'></i></a>
                                 <a href="{{ route('texts.create', ['publication_id' => $publication->id]) }}"
-                                    class="btn btn-success flex-grow-1 border-0 rounded-0"><i
+                                    class="btn btn-success flex-grow-1 border-0 rounded-5"><i
                                         class='bx bx-envelope'></i></a>
-                                <button type="button" class="btn btn-danger flex-grow-1 border-0 rounded-0"
+                                <button type="button" class="btn btn-warning flex-grow-1 border-0 rounded-5"
                                     data-bs-toggle="modal" data-id="{{ $publication->id }}"
                                     data-bs-target="#reportModal"><i class='bx bx-flag'></i></button>
 
@@ -112,10 +116,10 @@
                                     @csrf
                                     @if ($isFavorited)
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger w-100 border-0 rounded-0"><i
+                                        <button type="submit" class="btn btn-danger w-100 border-0 rounded-5"><i
                                                 class='bx bxs-heart'></i></button>
                                     @else
-                                        <button type="submit" class="btn btn-warning w-100 border-0 rounded-0"><i
+                                        <button type="submit" class="btn btn-danger w-100 border-0 rounded-5"><i
                                                 class='bx bx-heart'></i></button>
                                     @endif
                                 </form>

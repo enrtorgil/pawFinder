@@ -50,7 +50,7 @@ class TextController extends Controller
             'short_description' => $request->input('short_description'),
         ]);
 
-        return redirect()->route('publications.index')->with('success', 'Mensaje enviado correctamente.');
+        return redirect()->route('texts.index')->with('success', 'Mensaje enviado correctamente.');
     }
 
     /**

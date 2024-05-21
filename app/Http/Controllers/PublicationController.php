@@ -45,7 +45,7 @@ class PublicationController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
-        $publications = $query->simplePaginate(6);
+        $publications = $query->simplePaginate(8);
 
         return view('publications.index', compact('publications'));
     }
@@ -119,7 +119,7 @@ class PublicationController extends Controller
             }
 
             // Almacena la nueva imagen
-            $path = $request->file('image')->storeAs('publications', $publication->id . '.jpg', 'public');
+            $path = $request->file('image')->storeAs('publications', $publication->id, 'public');
             $validatedData['image'] = $path;
         } else {
             // Mantiene la imagen actual
@@ -129,7 +129,7 @@ class PublicationController extends Controller
         // Actualiza la publicación
         $publication->update($validatedData);
 
-        return redirect()->route('publications.index')->with('success', 'Publicación actualizada exitosamente');
+        return redirect()->route('publications.my')->with('success', 'Publicación actualizada exitosamente');
     }
 
 
@@ -145,13 +145,39 @@ class PublicationController extends Controller
     /**
      * Display the user's publications.
      */
-    public function myPublications()
+    public function myPublications(Request $request)
     {
         $user = Auth::user();
-        $publications = Publication::where('user_id', $user->id)->simplePaginate(6);
+        $query = Publication::where('user_id', $user->id);
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->input('name') . '%');
+        }
+
+        if ($request->filled('type')) {
+            $query->where('type', $request->input('type'));
+        }
+
+        if ($request->filled('type_animal')) {
+            $query->where('type_animal', $request->input('type_animal'));
+        }
+
+        if ($request->filled('size')) {
+            $query->where('size', $request->input('size'));
+        }
+
+        if ($request->filled('date')) {
+            $order = $request->input('date') == 'asc' ? 'asc' : 'desc';
+            $query->orderBy('date', $order);
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $publications = $query->simplePaginate(8);
 
         return view('publications.my', compact('publications'));
     }
+
 
     /**
      * Get the list of countries.

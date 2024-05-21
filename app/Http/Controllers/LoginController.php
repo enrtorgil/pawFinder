@@ -68,10 +68,14 @@ class LoginController extends Controller
         return redirect()->route('index');
     }
 
-    // Cargar la vista de index con la última publicación
+    // Cargar la vista de index con la última publicación y con la más popular (en caso de empate la más reciente)
     public function index()
     {
         $latestPublication = Publication::latest()->first();
-        return view('index', compact('latestPublication'));
+        $mostFavsPublication = Publication::withCount('favs')
+            ->orderBy('favs_count', 'desc')
+            ->orderBy('created_at', 'desc')  // En caso de empate
+            ->first();
+        return view('index', compact('latestPublication', 'mostFavsPublication'));
     }
 }

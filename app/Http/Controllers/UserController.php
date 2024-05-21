@@ -69,7 +69,6 @@ class UserController extends Controller
         return redirect()->route('users.edit', $user)->with('success', 'User updated successfully.');
     }
 
-
     /**
      * Remove the specified resource from storage.
      */

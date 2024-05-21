@@ -3,35 +3,77 @@
 @section('title', 'PawFinder')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container-fluid mt-4 px-5">
         @if (Auth::check())
-            <div class="row mb-3">
-                <div class="col-md-12 d-flex justify-content-between align-items-center">
-                    <h1>Bienvenido, {{ Auth::user()->username }}</h1>
-                    <a href="{{ route('publications.create') }}" class="btn btn-primary"><i class='bx bx-plus'></i> Crear Publicación</a>
-                </div>
-                <p>Explora nuestras publicaciones y más.</p>
-            </div>
-
-            <!-- Última publicación -->
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Última Publicación</h2>
-                    @if ($latestPublication)
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $latestPublication->name }}</h5>
-                                <p class="card-text">{{ Str::limit($latestPublication->description, 150) }}</p>
-                                <a href="{{ route('publications.show', $latestPublication) }}" class="btn btn-primary">Ver
-                                    Detalles</a>
-                            </div>
-                            <div class="card-footer text-muted">
-                                Publicado {{ $latestPublication->created_at->diffForHumans() }}
-                            </div>
+            <div class="row mb-3 g-3">
+                <!-- Esquina Superior Izquierda: Mensaje de Bienvenida -->
+                <div class="col-md-8">
+                    <div class="card h-100 text-center d-flex justify-content-center align-items-center border-0">
+                        <div class="card-body">
+                            <h1>Bienvenido, {{ Auth::user()->username }}</h1>
+                            <p>Explora nuestras publicaciones y más.</p>
                         </div>
-                    @else
-                        <p>No hay publicaciones disponibles.</p>
-                    @endif
+                    </div>
+                </div>
+
+                <!-- Esquina Superior Derecha: Publicación con más Favoritos -->
+                <div class="col-md-4">
+                    <div class="card h-100 text-center border-0">
+                        <div class="card-body bg-light rounded">
+                            @if ($mostFavsPublication)
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-4"><i class="fas fa-fire me-3"></i> Publicación más popular, <strong>{{ $mostFavsPublication->name }}</strong></h5>
+                                        <a href="{{ route('publications.show', $mostFavsPublication) }}">
+                                            <img src="{{ Storage::url($mostFavsPublication->image) }}"
+                                                class="card-img-top rounded-circle img-custom"
+                                                alt="{{ $mostFavsPublication->name }}">
+                                        </a>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        Publicado {{ $mostFavsPublication->created_at->diffForHumans() }}
+                                    </div>
+                                </div>
+                            @else
+                                <p>No hay publicaciones disponibles.</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Esquina Inferior Izquierda: Formulario de Crear Publicación -->
+                <div class="col-md-8">
+                    <div class="card h-100 d-flex justify-content-center align-items-center border-0">
+                        <div class="card-body text-center">
+                            <a href="{{ route('publications.create') }}" class="btn btn-primary btn-lg"><i
+                                    class='bx bx-plus'></i> Crear Publicación</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Esquina Inferior Derecha: Última Publicación -->
+                <div class="col-md-4">
+                    <div class="card h-100 text-center border-0">
+                        <div class="card-body bg-light rounded">
+                            @if ($latestPublication)
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-4"><i class="fas fa-clock me-3"></i> Publicación más reciente, <strong>{{ $latestPublication->name }}</strong></h5>
+                                        <a href="{{ route('publications.show', $latestPublication) }}">
+                                            <img src="{{ Storage::url($latestPublication->image) }}"
+                                                class="card-img-top rounded-circle img-custom"
+                                                alt="{{ $latestPublication->name }}">
+                                        </a>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        Publicado {{ $latestPublication->created_at->diffForHumans() }}
+                                    </div>
+                                </div>
+                            @else
+                                <p>No hay publicaciones disponibles.</p>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         @else
@@ -117,12 +159,9 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between">
-                                    <button type="submit" class="btn btn-primary">
-                                        Iniciar sesión
-                                    </button>
-                                    <a class="btn btn-link" href="{{ route('register') }}">
-                                        ¿No tienes cuenta? Regístrate
-                                    </a>
+                                    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                                    <a class="btn btn-link" href="{{ route('register') }}">¿No tienes cuenta?
+                                        Regístrate</a>
                                 </div>
                             </form>
                         </div>
@@ -131,4 +170,11 @@
             </div>
         @endif
     </div>
+    <style>
+        .img-custom {
+            width: 15rem;
+            height: 15rem;
+            margin: 0 auto;
+        }
+    </style>
 @endsection

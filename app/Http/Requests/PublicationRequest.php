@@ -18,7 +18,7 @@ class PublicationRequest extends FormRequest
         $today = now()->format('Y-m-d');
 
         $rules = [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:20',
             'type' => [
                 'required',
                 Rule::in(['se busca', 'se adopta']),
@@ -55,7 +55,7 @@ class PublicationRequest extends FormRequest
         return [
             'name.required' => 'El nombre es obligatorio.',
             'name.string' => 'El nombre debe ser una cadena de texto.',
-            'name.max' => 'El nombre no debe superar los 255 caracteres.',
+            'name.max' => 'El nombre no debe superar los 20 caracteres.',
             'type.required' => 'El tipo es obligatorio.',
             'type.in' => 'El tipo seleccionado es inválido. Debe ser "se busca" o "se adopta".',
             'type_animal.required' => 'El tipo de animal es obligatorio.',

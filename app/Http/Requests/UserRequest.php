@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users,email,' . $userId,
             // si estás actualizando la información de un usuario existente, su propio correo electrónico no debería contarse como duplicado
             'phone' => 'required|string|max:9|min:9',
-            'password' => 'sometimes|nullable|string|min:8|confirmed',
+            'password' => 'sometimes|nullable|string|min:6|confirmed',
         ];
     }
 

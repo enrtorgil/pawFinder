@@ -3,12 +3,12 @@
 @section('title', $publication->name)
 
 @section('content')
-    <div class="container mt-4">
-        <h1>{{ $publication->name }}</h1>
-
-        <div class="row mb-4">
+    <div class="container-fluid mt-3 px-5">
+        <h1 class="mb-4 ms-3">{{ $publication->name }}</h1>
+        <div class="row mb-2">
             <div class="col-md-6">
-                <img src="{{ Storage::url($publication->image) }}" class="img-fluid img-custom" alt="{{ $publication->name }}">
+                <img src="{{ Storage::url($publication->image) }}" class="img-fluid img-custom rounded-5"
+                    alt="{{ $publication->name }}">
                 <div class="d-flex justify-content-between mt-2">
                     <a href="{{ route('texts.create', ['publication_id' => $publication->id]) }}"
                         class="btn btn-success flex-grow-1 m-1"><i class='bx bx-envelope'></i></a>
@@ -24,10 +24,10 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger w-100"><i class='bx bxs-heart'></i></button>
                         @else
-                            <button type="submit" class="btn btn-warning w-100"><i class='bx bx-heart'></i></button>
+                            <button type="submit" class="btn btn-danger w-100"><i class='bx bx-heart'></i></button>
                         @endif
                     </form>
-                    <button type="button" class="btn btn-danger flex-grow-1 m-1" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-warning flex-grow-1 m-1" data-bs-toggle="modal"
                         data-id="{{ $publication->id }}" data-bs-target="#reportModal"><i class='bx bx-flag'></i></button>
                     <a href="{{ route('publications.index') }}" class="btn btn-secondary flex-grow-1 m-1"><i
                             class='bx bx-arrow-back'></i></a>
