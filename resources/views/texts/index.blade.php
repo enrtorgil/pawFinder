@@ -31,8 +31,8 @@
                             <td>{{ $message->sender->username }}</td>
                             <td>{{ $message->sender->phone }}</td>
                             <td class="text-truncate" style="max-width: 100%;">
-                                {{ Str::limit($message->subject, 50) }}
-                                @if (strlen($message->subject) > 50)
+                                {{ Str::limit($message->subject, 30) }}
+                                @if (strlen($message->subject) > 30)
                                     <button type="button" class="btn btn-link p-0 m-0 align-baseline"
                                         style="display: inline;" data-bs-toggle="modal" data-bs-target="#subjectModal"
                                         data-subject="{{ $message->subject }}">
@@ -41,8 +41,8 @@
                                 @endif
                             </td>
                             <td class="text-truncate" style="max-width: 100%;">
-                                {{ Str::limit($message->short_description, 50) }}
-                                @if (strlen($message->short_description) > 50)
+                                {{ Str::limit($message->short_description, 30) }}
+                                @if (strlen($message->short_description) > 30)
                                     <button type="button" class="btn btn-link p-0 m-0 align-baseline"
                                         style="display: inline;" data-bs-toggle="modal" data-bs-target="#descriptionModal"
                                         data-description="{{ $message->short_description }}">
@@ -50,8 +50,8 @@
                                     </button>
                                 @endif
                             </td>
-                            <td>{{ $message->created_at->format('d-m-Y H:i') }}</td>
-                            <td class="text-center">
+                            <td class="text-nowrap">{{ $message->created_at->format('d-m-Y H:i') }}</td>
+                            <td class="text-center d-flex justify-content-center gap-1">
                                 <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#deleteMessageModal" data-message-id="{{ $message->id }}"><i
                                         class='bx bx-trash'></i></button>
