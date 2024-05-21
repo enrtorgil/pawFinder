@@ -20,7 +20,7 @@ class Publication extends Model
 
     public function favs() // Tiene muchos favoritos (usuarios).
     {
-        return $this->belongsToMany(User::class, 'favs');
+        return $this->belongsToMany(User::class, 'favs')->withTimestamps();
     }
 
     public function reports() // Tiene muchos reportes (usuarios).
