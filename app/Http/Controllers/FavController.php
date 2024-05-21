@@ -11,6 +11,7 @@ class FavController extends Controller
 {
     public function favorite(Publication $publication)
     {
+        /** @var User $user */
         $user = Auth::user();
         if (!$user->favs->contains($publication->id)) {
             $user->favs()->attach($publication->id);
@@ -21,6 +22,7 @@ class FavController extends Controller
 
     public function unfavorite(Publication $publication)
     {
+        /** @var User $user */
         $user = Auth::user();
         if ($user->favs->contains($publication->id)) {
             $user->favs()->detach($publication->id);

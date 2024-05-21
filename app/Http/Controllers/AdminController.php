@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Publication;
-use App\Models\Report;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -34,13 +33,19 @@ class AdminController extends Controller
         $sort = $request->query('sort', 'desc');
         $column = $request->query('column', 'created_at');
 
+        $reportsQuery = User::join('reports', 'users.id', '=', 'reports.user_id')
+            ->join('publications', 'publications.id', '=', 'reports.publication_id')
+            ->select('reports.*', 'users.username', 'publications.name as publication_name');
+
         if ($column === 'reason') {
-            $reports = Report::orderByRaw("
-                FIELD(reason, 'Contenido inapropiado', 'Información incorrecta', 'Spam', 'Otra razón') $sort
-            ")->with(['user', 'publication'])->simplePaginate(10);
+            $reportsQuery->orderByRaw("
+                FIELD(reports.reason, 'Contenido inapropiado', 'Información incorrecta', 'Spam', 'Otra razón') $sort
+            ");
         } else {
-            $reports = Report::orderBy($column, $sort)->with(['user', 'publication'])->simplePaginate(10);
+            $reportsQuery->orderBy("reports.$column", $sort);
         }
+
+        $reports = $reportsQuery->simplePaginate(10);
 
         return view('admin.reports', compact('reports'));
     }

@@ -38,8 +38,8 @@
                     <tbody>
                         @foreach ($reports as $report)
                             <tr>
-                                <td>{{ $report->user->username }}</td>
-                                <td>{{ $report->publication->name }}</td>
+                                <td>{{ $report->username }}</td>
+                                <td>{{ $report->publication_name }}</td>
                                 <td>{{ $report->reason }}</td>
                                 <td class="text-truncate" style="max-width: 100%;">
                                     {{ Str::limit($report->additional_info, 30) }}
@@ -52,17 +52,17 @@
                                         </button>
                                     @endif
                                 </td>
-                                <td class="text-nowrap">{{ $report->created_at->format('d-m-Y H:i') }}</td>
+                                <td class="text-nowrap">
+                                    {{ \Carbon\Carbon::parse($report->created_at)->format('d-m-Y H:i') }}</td>
                                 <td class="text-center d-flex justify-content-center gap-1">
-                                    <a href="{{ route('publications.show', $report->publication) }}"
+                                    <a href="{{ route('publications.show', $report->publication_id) }}"
                                         class="btn btn-sm btn-secondary">
                                         <i class="bx bx-show"></i>
                                     </a>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteReportModal"
                                         data-publication-id="{{ $report->publication_id }}"
-                                        data-user-id="{{ $report->user_id }}"
-                                        data-created-at="{{ $report->created_at->toDateTimeString() }}">
+                                        data-user-id="{{ $report->user_id }}" data-created-at="{{ $report->created_at }}">
                                         <i class="bx bx-trash"></i>
                                     </button>
                                 </td>
