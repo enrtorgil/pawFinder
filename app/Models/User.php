@@ -21,7 +21,7 @@ class User extends Authenticatable
 
     public function favs() // Un usuario puede marcar muchas publicaciones como favoritas, y una publicación puede ser marcada como favorita por muchos usuarios.
     {
-        return $this->belongsToMany(Publication::class, 'favs');
+        return $this->belongsToMany(Publication::class, 'favs')->withTimestamps();
     }
 
     public function reports() // Un usuario puede reportar muchas publicaciones, y una publicación puede ser reportada por muchos usuarios.
