@@ -79,8 +79,8 @@ class PublicationController extends Controller
         $publication->save();
 
         if ($request->hasFile('image')) {
-            $request->file('image')->storeAs('publications', $publication->id . '.jpg', 'public');
-            $publication->image = 'publications/' . $publication->id . '.jpg';
+            $request->file('image')->storeAs('publications', $publication->id, 'public');
+            $publication->image = 'publications/' . $publication->id;
             $publication->save();
         }
 
