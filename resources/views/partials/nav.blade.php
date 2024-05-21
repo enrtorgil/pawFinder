@@ -15,35 +15,48 @@
                     <li class="nav-item dropdown mx-4">
                         <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Admin
+                            <i class='bx bx-cog d-lg-none'></i> Admin
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-                            <li><a class="dropdown-item" href="{{ route('admin.users') }}">Usuarios</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.publications') }}">Publicaciones</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.reports') }}">Reportes</a></li>
+                        <ul class="dropdown-menu border-0 p-0" aria-labelledby="adminDropdown">
+                            <li><a class="dropdown-item py-2 px-3 d-flex align-items-center"
+                                    href="{{ route('admin.users') }}"><i class='bx bx-user d-lg-none me-2'></i>
+                                    Usuarios</a></li>
+                            <li><a class="dropdown-item py-2 px-3 d-flex align-items-center"
+                                    href="{{ route('admin.publications') }}"><i class='bx bx-book d-lg-none me-2'></i>
+                                    Publicaciones</a></li>
+                            <li><a class="dropdown-item py-2 px-3 d-flex align-items-center"
+                                    href="{{ route('admin.reports') }}"><i class='bx bx-flag d-lg-none me-2'></i>
+                                    Reportes</a></li>
                         </ul>
                     </li>
                 @endif
 
                 @if (Auth::check())
                     <li class="nav-item mx-4">
-                        <a class="nav-link" href="{{ route('publications.index') }}">Publicaciones</a>
+                        <a class="nav-link d-flex align-items-center" href="{{ route('publications.index') }}"><i
+                                class='bx bx-book d-lg-none me-2'></i> Publicaciones</a>
                     </li>
                     <li class="nav-item dropdown mx-4">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Mi espacio
+                            <i class='bx bx-user-circle d-lg-none me-2'></i> Mi espacio
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">Mi
-                                    Perfil</a></li>
-                            <li><a class="dropdown-item" href="{{ route('publications.my') }}">Mis anuncios</a></li>
-                            <li><a class="dropdown-item" href="{{ route('favs.index') }}">Favoritos</a></li>
+                        <ul class="dropdown-menu border-0 p-0" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item py-2 px-3 d-flex align-items-center"
+                                    href="{{ route('users.edit', Auth::user()->id) }}"><i
+                                        class='bx bx-user d-lg-none me-2'></i> Mi Perfil</a></li>
+                            <li><a class="dropdown-item py-2 px-3 d-flex align-items-center"
+                                    href="{{ route('publications.my') }}"><i class='bx bx-book d-lg-none me-2'></i> Mis
+                                    anuncios</a></li>
+                            <li><a class="dropdown-item py-2 px-3 d-flex align-items-center"
+                                    href="{{ route('favs.index') }}"><i class='bx bx-heart d-lg-none me-2'></i>
+                                    Favoritos</a></li>
                         </ul>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link" href="{{ route('texts.index') }}">
-                            Mensajes <span id="unread-count" class="badge bg-danger" style="display:none;">0</span>
+                        <a class="nav-link d-flex align-items-center" href="{{ route('texts.index') }}">
+                            <i class='bx bx-envelope d-lg-none me-2'></i>
+                            Mensajes <span id="unread-count" class="badge bg-danger ms-2" style="display:none;">0</span>
                         </a>
                     </li>
                 @endif
@@ -51,12 +64,14 @@
                 @if (!Auth::check())
                     @if (Route::currentRouteName() !== 'index')
                         <li class="nav-item mx-4">
-                            <a class="nav-link" href="{{ route('index') }}">Iniciar sesión</a>
+                            <a class="nav-link d-flex align-items-center" href="{{ route('index') }}"><i
+                                    class='bx bx-log-in d-lg-none me-2'></i> Iniciar sesión</a>
                         </li>
                     @endif
                     @if (Route::currentRouteName() !== 'register')
                         <li class="nav-item mx-4">
-                            <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
+                            <a class="nav-link d-flex align-items-center" href="{{ route('register') }}"><i
+                                    class='bx bx-user-plus d-lg-none me-2'></i> Registrarse</a>
                         </li>
                     @endif
                 @endif
@@ -67,12 +82,13 @@
                     <li class="nav-item mx-4">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="nav-link btn btn-link">Cerrar sesión</button>
+                            <button type="submit" class="nav-link btn btn-link d-flex align-items-center"><i
+                                    class='bx bx-log-out d-lg-none me-2'></i> Cerrar sesión</button>
                         </form>
                     </li>
                 @endif
                 <li class="nav-item mx-4">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link d-flex align-items-center" href="#">
                         <i class='bx bx-globe'></i>
                     </a>
                 </li>
@@ -80,3 +96,10 @@
         </div>
     </div>
 </nav>
+
+<style>
+    .navbar-nav .nav-item .nav-link i {
+        vertical-align: middle;
+        margin-top: 0.25rem;
+    }
+</style>
