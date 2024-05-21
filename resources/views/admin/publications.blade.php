@@ -60,7 +60,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center mt-1 mb-2">
                 <div>
                     {{ $publications->links() }}
                 </div>

@@ -72,7 +72,7 @@
             </table>
         </div>
 
-        <div class="d-flex justify-content-start mt-2">
+        <div class="d-flex justify-content-start mt-3 mb-2">
             {{ $messages->links() }}
         </div>
 
