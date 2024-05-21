@@ -126,6 +126,7 @@
             width: 100%;
             height: auto;
             min-height: 70vh;
+            max-height: 70vh;
             object-fit: cover;
         }
 
