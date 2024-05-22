@@ -45,7 +45,7 @@ class PublicationController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
-        $publications = $query->simplePaginate(8);
+        $publications = $query->simplePaginate(3);
 
         return view('publications.index', compact('publications'));
     }
@@ -173,7 +173,7 @@ class PublicationController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
-        $publications = $query->simplePaginate(8);
+        $publications = $query->simplePaginate(3);
 
         return view('publications.my', compact('publications'));
     }

@@ -3,76 +3,93 @@
 @section('title', 'PawFinder')
 
 @section('content')
-    <div class="container-fluid mt-4 px-5">
+    <div class="container-fluid px-5">
         @if (Auth::check())
-            <div class="row mb-3 g-3">
-                <!-- Esquina Superior Izquierda: Mensaje de Bienvenida -->
-                <div class="col-md-8">
+
+            <div class="row mt-0">
+                <div class="col-12 p-0">
+                    <img src="{{ url('img/pets-banner.jpg') }}" class="card-img banner-img p-0 m-0" alt="Mascotas banner">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4 mt-3">
                     <div class="card h-100 text-center d-flex justify-content-center align-items-center border-0">
                         <div class="card-body">
-                            <h1>Bienvenido, {{ Auth::user()->username }}</h1>
-                            <p>Explora nuestras publicaciones y más.</p>
+                            <h1>Bienvenido, <strong>{{ Auth::user()->username }}</strong></h1>
+                            <p>Explora nuestras publicaciones y más</p>
+                            <ul class="list-group list-group-flush mt-4">
+                                <li class="list-group-item d-flex align-items-center py-3">
+                                    <i class='bx bx-list-ul me-3 text-primary'></i>
+                                    <a href="{{ route('publications.index') }}" class="text-decoration-none flex-grow-1">
+                                        Ver Publicaciones
+                                    </a>
+                                </li>
+                                <li class="list-group-item d-flex align-items-center py-3">
+                                    <i class='bx bx-envelope me-3 text-primary'></i>
+                                    <a href="{{ route('texts.index') }}" class="text-decoration-none flex-grow-1">
+                                        Mensajes
+                                    </a>
+                                </li>
+                                <li class="list-group-item d-flex align-items-center py-3">
+                                    <i class='bx bx-user me-3 text-primary'></i>
+                                    <a href="{{ route('users.edit', ['user' => Auth::user()->id]) }}"
+                                        class="text-decoration-none flex-grow-1">
+                                        Mi Perfil
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body text-center border-0 bg-transparent w-75">
+                            <a href="{{ route('publications.create') }}" class="btn btn-primary opacity-75 btn-lg w-100"><i
+                                    class='bx bx-up-arrow-alt me-3'></i> Crear Publicación</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Esquina Superior Derecha: Publicación con más Favoritos -->
-                <div class="col-md-4">
+                <div class="col-md-4 mt-3">
                     <div class="card h-100 text-center border-0">
-                        <div class="card-body bg-light rounded">
-                            @if ($mostFavsPublication)
-                                <div class="card border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <h5 class="card-title mb-4"><i class="fas fa-fire me-3"></i> Publicación más popular, <strong>{{ $mostFavsPublication->name }}</strong></h5>
-                                        <a href="{{ route('publications.show', $mostFavsPublication) }}">
-                                            <img src="{{ Storage::url($mostFavsPublication->image) }}"
-                                                class="card-img-top img-fluid rounded-circle img-custom"
-                                                alt="{{ $mostFavsPublication->name }}">
-                                        </a>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Publicado {{ $mostFavsPublication->created_at->diffForHumans() }}
-                                    </div>
+                        @if ($mostFavsPublication)
+                            <div class="card border-0 shadow my-2 bg-body rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-4 mt-2"><i class="fas fa-fire me-3"></i> Publicación más
+                                        popular, <strong>{{ $mostFavsPublication->name }}</strong></h5>
+                                    <a href="{{ route('publications.show', $mostFavsPublication) }}">
+                                        <img src="{{ Storage::url($mostFavsPublication->image) }}"
+                                            class="card-img-top img-fluid rounded-circle img-custom"
+                                            alt="{{ $mostFavsPublication->name }}">
+                                    </a>
                                 </div>
-                            @else
-                                <p>No hay publicaciones disponibles.</p>
-                            @endif
-                        </div>
+                                <div class="card-footer text-muted">
+                                    Publicado {{ $mostFavsPublication->created_at->diffForHumans() }}
+                                </div>
+                            </div>
+                        @else
+                            <p>No hay publicaciones disponibles.</p>
+                        @endif
                     </div>
                 </div>
 
-                <!-- Esquina Inferior Izquierda: Formulario de Crear Publicación -->
-                <div class="col-md-8">
-                    <div class="card h-100 d-flex justify-content-center align-items-center border-0">
-                        <div class="card-body text-center">
-                            <a href="{{ route('publications.create') }}" class="btn btn-primary btn-lg"><i
-                                    class='bx bx-plus'></i> Crear Publicación</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esquina Inferior Derecha: Última Publicación -->
-                <div class="col-md-4">
+                <div class="col-md-4 mt-3">
                     <div class="card h-100 text-center border-0">
-                        <div class="card-body bg-light rounded">
-                            @if ($latestPublication)
-                                <div class="card border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <h5 class="card-title mb-4"><i class="fas fa-clock me-3"></i> Publicación más reciente, <strong>{{ $latestPublication->name }}</strong></h5>
-                                        <a href="{{ route('publications.show', $latestPublication) }}">
-                                            <img src="{{ Storage::url($latestPublication->image) }}"
-                                                class="card-img-top rounded-circle img-custom"
-                                                alt="{{ $latestPublication->name }}">
-                                        </a>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Publicado {{ $latestPublication->created_at->diffForHumans() }}
-                                    </div>
+                        @if ($latestPublication)
+                            <div class="card border-0 shadow my-2 bg-body rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-4 mt-2"><i class="fas fa-clock me-3"></i> Publicación más
+                                        reciente, <strong>{{ $latestPublication->name }}</strong></h5>
+                                    <a href="{{ route('publications.show', $latestPublication) }}">
+                                        <img src="{{ Storage::url($latestPublication->image) }}"
+                                            class="card-img-top img-fluid rounded-circle img-custom"
+                                            alt="{{ $latestPublication->name }}">
+                                    </a>
                                 </div>
-                            @else
-                                <p>No hay publicaciones disponibles.</p>
-                            @endif
-                        </div>
+                                <div class="card-footer text-muted">
+                                    Publicado {{ $latestPublication->created_at->diffForHumans() }}
+                                </div>
+                            </div>
+                        @else
+                            <p>No hay publicaciones disponibles.</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -175,6 +192,11 @@
             width: 15rem;
             height: 15rem;
             margin: 0 auto;
+        }
+
+        .banner-img {
+            height: 14rem;
+            object-fit: cover;
         }
     </style>
 @endsection

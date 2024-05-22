@@ -13,7 +13,7 @@ class AdminController extends Controller
         $sort = $request->query('sort', 'desc');
         $column = $request->query('column', 'created_at');
 
-        $users = User::orderBy($column, $sort)->simplePaginate(10);
+        $users = User::orderBy($column, $sort)->simplePaginate(9);
 
         return view('admin.users', compact('users'));
     }
@@ -23,7 +23,7 @@ class AdminController extends Controller
         $sort = $request->query('sort', 'desc');
         $column = $request->query('column', 'created_at');
 
-        $publications = Publication::orderBy($column, $sort)->simplePaginate(10);
+        $publications = Publication::orderBy($column, $sort)->simplePaginate(9);
 
         return view('admin.publications', compact('publications'));
     }
@@ -45,7 +45,7 @@ class AdminController extends Controller
             $reportsQuery->orderBy("reports.$column", $sort);
         }
 
-        $reports = $reportsQuery->simplePaginate(10);
+        $reports = $reportsQuery->simplePaginate(9);
 
         return view('admin.reports', compact('reports'));
     }

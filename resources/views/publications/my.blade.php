@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <a href="{{ route('publications.create') }}" class="btn btn-primary"><i class='bx bx-plus'></i> Crear
+                        <a href="{{ route('publications.create') }}" class="btn btn-primary"><i class='bx bx-up-arrow-alt'></i> Crear
                             Publicación</a>
                     </div>
                     <div class="col">
@@ -106,7 +106,7 @@
                                         class="btn btn-primary flex-grow-1 border-0 rounded-5"><i
                                             class='bx bx-show'></i></a>
                                     <a href="{{ route('publications.edit', $publication->id) }}"
-                                        class="btn btn-warning flex-grow-1 border-0 rounded-5"><i
+                                        class="btn btn-warning text-light flex-grow-1 border-0 rounded-5"><i
                                             class='bx bx-edit'></i></a>
                                     <button type="button" class="btn btn-danger flex-grow-1 border-0 rounded-5"
                                         data-bs-toggle="modal" data-id="{{ $publication->id }}"

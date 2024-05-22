@@ -8,7 +8,8 @@
             <div class="col-md-12">
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <a href="{{ route('publications.create') }}" class="btn btn-primary"><i class='bx bx-plus'></i> Crear
+                        <a href="{{ route('publications.create') }}" class="btn btn-primary"><i class='bx bx-up-arrow-alt'></i>
+                            Crear
                             Publicación</a>
                     </div>
                     <div class="col">
@@ -72,9 +73,10 @@
 
         <div class="row">
             @foreach ($publications as $publication)
-                <div class="col-md-3 mb-4">
+                <div class="col-md-4 mb-4">
                     <div class="card h-100 border-0">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                        <div
+                            class="card-header bg-success opacity-75 text-light d-flex justify-content-between align-items-center py-3 border-0 header-shadow">
                             <div class="d-flex align-items-center">
                                 <a href="{{ route('publications.show', $publication->id) }}"
                                     class="text-decoration-none text-reset">
@@ -82,7 +84,7 @@
                                 </a>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="badge bg-secondary mx-3">{{ strtoupper($publication->type) }}</span>
+                                <span class="badge bg-secondary mx-3 p-2">{{ strtoupper($publication->type) }}</span>
                                 @if ($publication->type_animal == 'perro')
                                     <i class='bx bxs-dog'></i>
                                 @elseif ($publication->type_animal == 'gato')
@@ -94,16 +96,15 @@
                         </div>
                         <a href="{{ route('publications.show', $publication->id) }}">
                             <img src="{{ Storage::url($publication->image) }}"
-                                class="card-img-top img-fluid img-custom border-0"
-                            alt="{{ $publication->name }}"></a>
-                        <div class="card-body p-2">
+                                class="card-img-top img-fluid img-custom border-0" alt="{{ $publication->name }}"></a>
+                        <div class="card-body">
                             <div class="d-flex flex-wrap gap-1">
                                 <a href="{{ route('publications.show', $publication->id) }}"
                                     class="btn btn-primary flex-grow-1 border-0 rounded-5"><i class='bx bx-show'></i></a>
                                 <a href="{{ route('texts.create', ['publication_id' => $publication->id]) }}"
-                                    class="btn btn-success flex-grow-1 border-0 rounded-5"><i
-                                        class='bx bx-envelope'></i></a>
-                                <button type="button" class="btn btn-warning flex-grow-1 border-0 rounded-5"
+                                    class="btn btn-info flex-grow-1 border-0 rounded-5"><i
+                                        class='bx bx-envelope text-light'></i></a>
+                                <button type="button" class="btn btn-warning text-light flex-grow-1 border-0 rounded-5"
                                     data-bs-toggle="modal" data-id="{{ $publication->id }}"
                                     data-bs-target="#reportModal"><i class='bx bx-flag'></i></button>
 
@@ -126,9 +127,10 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="card-footer text-muted d-flex justify-content-between">
-                            <span><i class='bx bx-ruler'></i> {{ $publication->size }}</span>
-                            <span><i class='bx bx-calendar'></i>
+                        <div
+                            class="card-footer text-muted d-flex justify-content-between border-0 py-2 px-4 rounded-5 bg-success opacity-75">
+                            <span class="text-light"><i class='bx bx-ruler'></i> {{ $publication->size }}</span>
+                            <span class="text-light"><i class='bx bx-calendar'></i>
                                 {{ \Carbon\Carbon::parse($publication->date)->format('d-m-Y') }}</span>
                         </div>
                     </div>
@@ -174,12 +176,16 @@
     <style>
         .img-custom {
             width: 100%;
-            height: 14rem;
+            height: 20rem;
             object-fit: cover;
             border-bottom-left-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
             border-top-left-radius: 0rem;
             border-top-right-radius: 0rem;
+        }
+
+        .header-shadow {
+            box-shadow: 0 4px 8px -4px rgba(234, 220, 220, 0.8);
         }
     </style>
 
