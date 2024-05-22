@@ -3,7 +3,7 @@
 @section('title', 'Mensajes recibidos')
 
 @section('content')
-    <div class="container mt-3">
+    <div class="container-fluid mt-4 px-5">
         <h2 class="mb-4">Mensajes Recibidos</h2>
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered align-middle">

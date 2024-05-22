@@ -94,15 +94,15 @@
                 </div>
             </div>
         @else
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <h1>Bienvenido a PawFinder</h1>
-                        <p>Encuentra tu mascota perdida o adopta una nueva.</p>
+                        <h1 class="mb-3">¡Bienvenido a PawFinder!</h1>
+                        <p>Encuentra a tu mascota perdida o adopta una.</p>
                     </div>
                     <div>
-                        <h2>Preguntas Frecuentes</h2>
-                        <div class="accordion mt-3" id="faqAccordion">
+                        <h2 class="mt-4">Preguntas Frecuentes</h2>
+                        <div class="accordion mt-4" id="faqAccordion">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="faqHeading1">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -133,14 +133,92 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Agrega más preguntas frecuentes aquí -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeading3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                        ¿Qué debo hacer si encuentro una mascota perdida?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
+                                    data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Si encuentras una mascota perdida, puedes publicar un anuncio en nuestra sección de
+                                        mascotas encontradas o contactar al propietario si la mascota está registrada.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeading4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapse4" aria-expanded="false"
+                                        aria-controls="faqCollapse4">
+                                        ¿Cómo puedo contactar al propietario de una mascota?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
+                                    data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Para contactar al propietario de una mascota, debes iniciar sesión en tu cuenta y
+                                        usar el botón de contacto en la publicación de la mascota.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeading5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapse5" aria-expanded="false"
+                                        aria-controls="faqCollapse5">
+                                        ¿Qué información debo proporcionar al registrar una mascota perdida?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5"
+                                    data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Al registrar una mascota perdida, debes proporcionar detalles como el nombre de la
+                                        mascota, una descripción, una foto, y la última ubicación conocida.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeading6">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapse6" aria-expanded="false"
+                                        aria-controls="faqCollapse6">
+                                        ¿Cómo puedo actualizar la información de mi mascota?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6"
+                                    data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Para actualizar la información de tu mascota, inicia sesión en tu cuenta, ve a tu
+                                        perfil y edita los detalles de tu mascota en la sección correspondiente.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
+                <div class="col-md-6 mb-3">
+                    <div class="card mt-2">
                         <div class="card-header text-center">Iniciar sesión</div>
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="text-center mb-3">
+                                        <img src="{{ url('img/cat-message.png') }}" alt="Iniciar sesión"
+                                            class="img-fluid" style="width: 250px;">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-center mb-3">
+                                        <img src="{{ url('img/cat-pc-heart.png') }}" alt="Iniciar sesión"
+                                            class="img-fluid" style="width: 240px;">
+                                    </div>
+                                </div>
+
+                            </div>
+
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
 

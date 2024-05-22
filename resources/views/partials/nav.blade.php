@@ -17,7 +17,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class='bx bx-cog d-lg-none'></i> Admin
                         </a>
-                        <ul class="dropdown-menu border-0 p-0" aria-labelledby="adminDropdown">
+                        <ul class="dropdown-menu border-1 p-0" aria-labelledby="adminDropdown">
                             <li><a class="dropdown-item py-2 px-3 d-flex align-items-center"
                                     href="{{ route('admin.users') }}"><i class='bx bx-user d-lg-none me-2'></i>
                                     Usuarios</a></li>
@@ -41,7 +41,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class='bx bx-user-circle d-lg-none me-2'></i> Mi espacio
                         </a>
-                        <ul class="dropdown-menu border-0 p-0" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu border-1 p-0" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item py-2 px-3 d-flex align-items-center"
                                     href="{{ route('users.edit', Auth::user()->id) }}"><i
                                         class='bx bx-user d-lg-none me-2'></i> Mi Perfil</a></li>

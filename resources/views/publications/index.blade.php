@@ -76,7 +76,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 border-0">
                         <div
-                            class="card-header bg-secondary opacity-75 text-light d-flex justify-content-between align-items-center py-3 border-0 header-shadow">
+                            class="card-header opacity-75 d-flex justify-content-between align-items-center py-3 header-shadow">
                             <div class="d-flex align-items-center">
                                 <a href="{{ route('publications.show', $publication->id) }}"
                                     class="text-decoration-none text-reset">
