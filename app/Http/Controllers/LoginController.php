@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Models\Publication;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\UserRegistered;
 
 class LoginController extends Controller
 {
@@ -31,6 +34,15 @@ class LoginController extends Controller
         $user->phone = $request->get('phone');
         $user->role = 'usuario';
         $user->save();
+
+        // Enviar correo al usuario recién registrado
+        Mail::to($user->email)->send(new UserRegistered($user));
+
+        // Enviar correo a todos los administradores
+        $admins = User::where('role', 'administrador')->get();
+        foreach ($admins as $admin) {
+            Mail::to($admin->email)->send(new UserRegistered($user));
+        }
 
         Auth::login($user);
         return redirect()->route('index');

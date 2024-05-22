@@ -77,7 +77,8 @@
                 @foreach ($publications as $publication)
                     <div class="col-md-3 mb-3">
                         <div class="card h-100 border-0">
-                            <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="card-header d-flex justify-content-between align-items-center"
+                                style="border-bottom: none;">
                                 <div class="d-flex align-items-center">
                                     <a href="{{ route('publications.show', $publication->id) }}"
                                         class="text-decoration-none text-reset">
