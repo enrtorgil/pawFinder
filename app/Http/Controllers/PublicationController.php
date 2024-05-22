@@ -104,33 +104,27 @@ class PublicationController extends Controller
         return view('publications.edit', compact('publication', 'countries'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(PublicationRequest $request, Publication $publication)
     {
         $validatedData = $request->validated();
 
-        // Manejar la imagen
         if ($request->hasFile('image')) {
-            // Elimina la imagen anterior si existe
             if ($publication->image) {
                 Storage::disk('public')->delete($publication->image);
             }
 
             // Almacena la nueva imagen
-            $path = $request->file('image')->storeAs('publications', $publication->id, 'public');
+            $path = $request->file('image')->storeAs('publications', $publication->id . '.' . $request->file('image')->getClientOriginalExtension(), 'public');
             $validatedData['image'] = $path;
         } else {
-            // Mantiene la imagen actual
             $validatedData['image'] = $publication->image;
         }
 
-        // Actualiza la publicación
         $publication->update($validatedData);
 
         return redirect()->route('publications.my')->with('success', 'Publicación actualizada exitosamente');
     }
+
 
 
     /**
