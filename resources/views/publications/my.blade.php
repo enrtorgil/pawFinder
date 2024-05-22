@@ -3,7 +3,8 @@
 @section('title', 'Mis anuncios')
 
 @section('content')
-    <div class="container-fluid mt-4 px-5">
+    <div class="container-fluid mt-3 px-5">
+        <h1 class="mb-3">Mis Publicaciones</h1>
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="row g-3 align-items-center">
@@ -75,7 +76,7 @@
             <div class="row">
                 @foreach ($publications as $publication)
                     <div class="col-md-3 mb-3">
-                        <div class="card h-100">
+                        <div class="card h-100 border-0">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
                                     <a href="{{ route('publications.show', $publication->id) }}"
@@ -96,7 +97,7 @@
                             </div>
                             <a href="{{ route('publications.show', $publication->id) }}">
                                 <img src="{{ Storage::url($publication->image) }}"
-                                    class="card-img-top img-fluid img-custom rounded-0" alt="{{ $publication->name }}">
+                                    class="card-img-top img-fluid img-custom border-0" alt="{{ $publication->name }}">
                             </a>
                             <div class="card-body p-2">
                                 <div class="d-flex flex-wrap gap-1">
@@ -164,6 +165,10 @@
             width: 100%;
             height: 14rem;
             object-fit: cover;
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            border-top-left-radius: 0rem;
+            border-top-right-radius: 0rem;
         }
     </style>
 @endsection

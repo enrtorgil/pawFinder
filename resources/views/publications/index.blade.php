@@ -93,8 +93,9 @@
                             </div>
                         </div>
                         <a href="{{ route('publications.show', $publication->id) }}">
-                            <img src="{{ Storage::url($publication->image) }}" class="card-img-top img-fluid img-custom rounded-0"
-                                alt="{{ $publication->name }}"></a>
+                            <img src="{{ Storage::url($publication->image) }}"
+                                class="card-img-top img-fluid img-custom border-0"
+                            alt="{{ $publication->name }}"></a>
                         <div class="card-body p-2">
                             <div class="d-flex flex-wrap gap-1">
                                 <a href="{{ route('publications.show', $publication->id) }}"
@@ -175,6 +176,10 @@
             width: 100%;
             height: 14rem;
             object-fit: cover;
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            border-top-left-radius: 0rem;
+            border-top-right-radius: 0rem;
         }
     </style>
 

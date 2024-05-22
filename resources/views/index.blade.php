@@ -26,7 +26,7 @@
                                         <h5 class="card-title mb-4"><i class="fas fa-fire me-3"></i> Publicación más popular, <strong>{{ $mostFavsPublication->name }}</strong></h5>
                                         <a href="{{ route('publications.show', $mostFavsPublication) }}">
                                             <img src="{{ Storage::url($mostFavsPublication->image) }}"
-                                                class="card-img-top rounded-circle img-custom"
+                                                class="card-img-top img-fluid rounded-circle img-custom"
                                                 alt="{{ $mostFavsPublication->name }}">
                                         </a>
                                     </div>

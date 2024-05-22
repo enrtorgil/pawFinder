@@ -31,10 +31,36 @@ class FavController extends Controller
         return back()->with('success', 'Publicación desmarcada como favorita.');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        /** @var User $user */
         $user = Auth::user();
-        $favs = $user->favs;
+        $query = $user->favs()->newQuery();
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->input('name') . '%');
+        }
+
+        if ($request->filled('type')) {
+            $query->where('type', $request->input('type'));
+        }
+
+        if ($request->filled('type_animal')) {
+            $query->where('type_animal', $request->input('type_animal'));
+        }
+
+        if ($request->filled('size')) {
+            $query->where('size', $request->input('size'));
+        }
+
+        if ($request->filled('date')) {
+            $order = $request->input('date') == 'asc' ? 'asc' : 'desc';
+            $query->orderBy('date', $order);
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $favs = $query->simplePaginate(8);
 
         return view('favs.index', compact('favs'));
     }
