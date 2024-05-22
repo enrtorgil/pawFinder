@@ -51,21 +51,23 @@
                                 @endif
                             </td>
                             <td class="text-nowrap ps-3">{{ $message->created_at->format('d-m-Y H:i') }}</td>
-                            <td class="text-center d-flex justify-content-center gap-1">
-                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteMessageModal" data-message-id="{{ $message->id }}"><i
-                                        class='bx bx-trash'></i></button>
-                                <button type="button" class="btn btn-sm btn-secondary"
+                            <td class="text-center d-flex justify-content-center gap-1 flex-wrap">
+                                <button type="button" class="btn btn-sm btn-danger flex-grow-1" data-bs-toggle="modal"
+                                    data-bs-target="#deleteMessageModal" data-message-id="{{ $message->id }}">
+                                    <i class='bx bx-trash'></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-secondary flex-grow-1"
                                     onclick="toggleRead({{ $message->id }})">
                                     <i class="fas fa-eye{{ $message->is_read ? '-slash' : '' }}"
                                         id="icon-{{ $message->id }}"></i>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-sm btn-primary flex-grow-1" data-bs-toggle="modal"
                                     data-bs-target="#replyMessageModal" data-emitter-id="{{ $message->emitter_id }}"
                                     data-subject="Re: {{ $message->subject }}">
                                     <i class="fas fa-reply"></i>
                                 </button>
                             </td>
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -76,9 +78,14 @@
             <div>
                 {{ $messages->links() }}
             </div>
-            <a class="btn btn-secondary" href="{{ route('index') }}">
-                <i class="fas fa-arrow-left"></i> Volver a inicio
-            </a>
+            <div class="ms-auto d-flex gap-2">
+                <a class="btn btn-secondary" href="{{ route('index') }}">
+                    <i class="fas fa-arrow-left me-2"></i> Volver a inicio
+                </a>
+                <a class="btn btn-success" href="#">
+                    <i class="fas fa-file-excel me-2"></i> Exportar
+                </a>
+            </div>
         </div>
     </div>
 

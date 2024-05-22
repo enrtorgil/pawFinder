@@ -43,13 +43,13 @@
                                 <td class="ps-3">{{ $user->role }}</td>
                                 <td class="text-nowrap ps-3">{{ $user->created_at->format('d-m-Y H:i') }}</td>
                                 <td class="text-nowrap ps-3">{{ $user->updated_at->format('d-m-Y H:i') }}</td>
-                                <td class="text-center d-flex justify-content-center gap-1">
+                                <td class="text-center d-flex justify-content-center gap-1 flex-wrap">
                                     @if (Auth::user()->role !== 'admin' || $user->role !== 'admin')
-                                        <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-primary">
+                                        <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-primary flex-grow-1">
                                             <i class='bx bx-edit'></i>
                                         </a>
                                     @endif
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-sm btn-danger flex-grow-1" data-bs-toggle="modal"
                                         data-bs-target="#deleteUserModal" data-user-id="{{ $user->id }}">
                                         <i class='bx bx-trash'></i>
                                     </button>
@@ -63,9 +63,14 @@
                 <div>
                     {{ $users->links() }}
                 </div>
-                <a class="btn btn-secondary" href="{{ route('index') }}">
-                    <i class="fas fa-arrow-left"></i> Volver a inicio
-                </a>
+                <div class="ms-auto d-flex gap-2">
+                    <a class="btn btn-secondary" href="{{ route('index') }}">
+                        <i class="fas fa-arrow-left me-2"></i> Volver a inicio
+                    </a>
+                    <a class="btn btn-success" href="#">
+                        <i class="fas fa-file-excel me-2"></i> Exportar
+                    </a>
+                </div>
             </div>
         </div>
 

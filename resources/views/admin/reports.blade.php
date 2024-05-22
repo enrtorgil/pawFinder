@@ -54,12 +54,12 @@
                                 </td>
                                 <td class="text-nowrap ps-3">
                                     {{ \Carbon\Carbon::parse($report->created_at)->format('d-m-Y H:i') }}</td>
-                                <td class="text-center d-flex justify-content-center gap-1">
+                                <td class="text-center d-flex justify-content-center gap-1 flex-wrap">
                                     <a href="{{ route('publications.show', $report->publication_id) }}"
-                                        class="btn btn-sm btn-secondary">
+                                        class="btn btn-sm btn-secondary flex-grow-1">
                                         <i class="bx bx-show"></i>
                                     </a>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-sm btn-danger flex-grow-1" data-bs-toggle="modal"
                                         data-bs-target="#deleteReportModal"
                                         data-publication-id="{{ $report->publication_id }}"
                                         data-user-id="{{ $report->user_id }}" data-created-at="{{ $report->created_at }}">
@@ -75,9 +75,14 @@
                 <div>
                     {{ $reports->links() }}
                 </div>
-                <a class="btn btn-secondary" href="{{ route('index') }}">
-                    <i class="fas fa-arrow-left"></i> Volver a inicio
-                </a>
+                <div class="ms-auto d-flex gap-2">
+                    <a class="btn btn-secondary" href="{{ route('index') }}">
+                        <i class="fas fa-arrow-left me-2"></i> Volver a inicio
+                    </a>
+                    <a class="btn btn-success" href="#">
+                        <i class="fas fa-file-excel me-2"></i> Exportar
+                    </a>
+                </div>
             </div>
         </div>
 

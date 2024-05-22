@@ -41,15 +41,16 @@
                                 <td class="ps-3">{{ $publication->user->username }}</td>
                                 <td class="text-nowrap ps-3">{{ $publication->created_at->format('d-m-Y H:i') }}</td>
                                 <td class="text-nowrap ps-3">{{ $publication->updated_at->format('d-m-Y H:i') }}</td>
-                                <td class="text-center d-flex justify-content-center gap-1">
+                                <td class="text-center d-flex justify-content-center gap-1 flex-wrap">
                                     <a href="{{ route('publications.show', $publication) }}"
-                                        class="btn btn-sm btn-secondary">
+                                        class="btn btn-sm btn-secondary flex-grow-1">
                                         <i class="bx bx-show"></i>
                                     </a>
-                                    <a href="{{ route('publications.edit', $publication) }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('publications.edit', $publication) }}"
+                                        class="btn btn-sm btn-primary flex-grow-1">
                                         <i class="bx bx-edit"></i>
                                     </a>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-sm btn-danger flex-grow-1" data-bs-toggle="modal"
                                         data-bs-target="#deletePublicationModal"
                                         data-publication-id="{{ $publication->id }}">
                                         <i class="bx bx-trash"></i>
@@ -64,9 +65,14 @@
                 <div>
                     {{ $publications->links() }}
                 </div>
-                <a class="btn btn-secondary" href="{{ route('index') }}">
-                    <i class="fas fa-arrow-left"></i> Volver a inicio
-                </a>
+                <div class="ms-auto d-flex gap-2">
+                    <a class="btn btn-secondary" href="{{ route('index') }}">
+                        <i class="fas fa-arrow-left me-2"></i> Volver a inicio
+                    </a>
+                    <a class="btn btn-success" href="#">
+                        <i class="fas fa-file-excel me-2"></i> Exportar
+                    </a>
+                </div>
             </div>
         </div>
 
