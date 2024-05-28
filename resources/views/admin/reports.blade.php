@@ -79,7 +79,7 @@
                     <a class="btn btn-secondary" href="{{ route('index') }}">
                         <i class="fas fa-arrow-left me-2"></i> Volver a inicio
                     </a>
-                    <a class="btn btn-success" href="#">
+                    <a class="btn btn-success" href="{{ route('admin.reports.export') }}">
                         <i class="fas fa-file-excel me-2"></i> Exportar
                     </a>
                 </div>

@@ -23,6 +23,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/publications', [AdminController::class, 'publications'])->name('admin.publications');
     Route::get('/admin/reports', [AdminController::class, 'reports'])->name('admin.reports');
+
+    Route::get('admin/users/export', [AdminController::class, 'exportUsers'])->name('admin.users.export');
+    Route::get('admin/publications/export', [AdminController::class, 'exportPublications'])->name('admin.publications.export');
+    Route::get('admin/reports/export', [AdminController::class, 'exportReports'])->name('admin.reports.export');
 });
 
 Route::middleware('auth')->group(function () {
@@ -34,6 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/messages/unread-count', [TextController::class, 'unreadCount'])->name('messages.unreadCount');
     Route::post('/texts/{id}/toggle-read', [TextController::class, 'toggleRead'])->name('texts.toggleRead');
+    Route::get('texts/export', [TextController::class, 'exportToExcel'])->name('texts.export');
     Route::delete('/reports/{publication_id}/{user_id}/{created_at}', [ReportController::class, 'destroy'])->name('reports.destroy');
 
     Route::resource('texts', TextController::class);
