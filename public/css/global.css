@@ -1,0 +1,15 @@
+/* Paleta de colores */
+:root {
+    --color-primary: #6B8375;
+    --color-secondary: #92B29B;
+    --color-tertiary: #C6E3C5;
+    --color-quaternary: #B2C8A2;
+    --color-quinary: #98B28F;
+}
+
+/* Estilos globales */
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--color-tertiary);
+    color: var(--color-primary);
+}

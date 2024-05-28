@@ -2,37 +2,41 @@
 
 @section('title', 'PawFinder')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+@endpush
+
 @section('content')
     <div class="container-fluid px-5">
         @if (Auth::check())
 
             <div class="row mt-0">
-                <div class="col-12 p-0">
-                    <img src="{{ url('img/pets-banner.jpg') }}" class="card-img banner-img p-0 m-0" alt="Mascotas banner">
+                <div class="col-12">
+                    <img src="{{ url('img/pet-banner-ia.png') }}" class="card-img banner-img p-0 mt-3" alt="Mascotas banner">
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-3 align-items-center">
                 <div class="col-md-4 mt-3">
-                    <div class="card h-100 text-center d-flex justify-content-center align-items-center border-0">
+                    <div class="card text-center d-flex justify-content-center align-items-center border-0 shadow bg-body rounded">
                         <div class="card-body">
                             <h1>Bienvenido, <strong>{{ Auth::user()->username }}</strong></h1>
                             <p>Explora nuestras publicaciones y más</p>
-                            <ul class="list-group list-group-flush mt-4">
+                            <ul class="list-group list-group-flush mt-4 mb-0">
                                 <li class="list-group-item d-flex align-items-center py-3">
-                                    <i class='bx bx-list-ul me-3 text-primary'></i>
+                                    <i class='bx bx-list-ul me-3 text-success'></i>
                                     <a href="{{ route('publications.index') }}" class="text-decoration-none flex-grow-1">
                                         Ver Publicaciones
                                     </a>
                                 </li>
                                 <li class="list-group-item d-flex align-items-center py-3">
-                                    <i class='bx bx-envelope me-3 text-primary'></i>
+                                    <i class='bx bx-envelope me-3 text-success'></i>
                                     <a href="{{ route('texts.index') }}" class="text-decoration-none flex-grow-1">
                                         Mensajes
                                     </a>
                                 </li>
                                 <li class="list-group-item d-flex align-items-center py-3">
-                                    <i class='bx bx-user me-3 text-primary'></i>
+                                    <i class='bx bx-user me-3 text-success'></i>
                                     <a href="{{ route('users.edit', ['user' => Auth::user()->id]) }}"
                                         class="text-decoration-none flex-grow-1">
                                         Mi Perfil
@@ -40,7 +44,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="card-body text-center border-0 bg-transparent w-75">
+                        <div class="text-center border-0 bg-transparent w-75 py-1 mb-3">
                             <a href="{{ route('publications.create') }}" class="btn btn-primary opacity-75 btn-lg w-100"><i
                                     class='bx bx-up-arrow-alt me-3'></i> Crear Publicación</a>
                         </div>
@@ -50,7 +54,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="card h-100 text-center border-0">
                         @if ($mostFavsPublication)
-                            <div class="card border-0 shadow my-2 bg-body rounded">
+                            <div class="card border-0 shadow bg-body rounded">
                                 <div class="card-body">
                                     <h5 class="card-title mb-4 mt-2"><i class="fas fa-fire me-3"></i> Publicación más
                                         popular, <strong>{{ $mostFavsPublication->name }}</strong></h5>
@@ -73,7 +77,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="card h-100 text-center border-0">
                         @if ($latestPublication)
-                            <div class="card border-0 shadow my-2 bg-body rounded">
+                            <div class="card border-0 shadow bg-body rounded">
                                 <div class="card-body">
                                     <h5 class="card-title mb-4 mt-2"><i class="fas fa-clock me-3"></i> Publicación más
                                         reciente, <strong>{{ $latestPublication->name }}</strong></h5>
@@ -265,16 +269,4 @@
             </div>
         @endif
     </div>
-    <style>
-        .img-custom {
-            width: 15rem;
-            height: 15rem;
-            margin: 0 auto;
-        }
-
-        .banner-img {
-            height: 14rem;
-            object-fit: cover;
-        }
-    </style>
 @endsection

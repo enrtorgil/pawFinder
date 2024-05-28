@@ -1,0 +1,61 @@
+/* Banner */
+.banner-img {
+    height: 14rem;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card */
+.card {
+    background-color: var(--color-quinary);
+    color: var(--color-primary);
+}
+
+/* Botones */
+.btn-primary {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-quaternary);
+    border-color: var(--color-quaternary);
+}
+
+/* List Group */
+.list-group-item a {
+    color: var(--color-primary);
+}
+
+.list-group-item a:hover,
+.list-group-item a:focus {
+    color: var(--color-secondary);
+}
+
+/* Otros estilos específicos */
+.img-custom {
+    width: 15rem;
+    height: 15rem;
+    margin: 0 auto;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    background-color: var(--color-tertiary);
+    border-top: 1px solid var(--color-secondary);
+}
+
+.accordion-button {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--color-primary);
+    background-color: var(--color-quinary);
+}

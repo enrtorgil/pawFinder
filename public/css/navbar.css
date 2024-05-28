@@ -1,0 +1,48 @@
+.navbar {
+    background-color: var(--color-tertiary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: var(--color-secondary);
+}
+
+.navbar-toggler {
+    border-color: var(--color-secondary);
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: var(--color-primary);
+}
+
+.navbar-nav .nav-item .nav-link:hover,
+.navbar-nav .nav-item .nav-link:focus {
+    color: var(--color-secondary);
+    border-radius: 0.25rem;
+}
+
+.navbar-nav .nav-item .nav-link i {
+    vertical-align: middle;
+    margin-top: 0.25rem;
+}
+
+.dropdown-menu {
+    background-color: var(--color-tertiary);
+    border-color: var(--color-secondary);
+}
+
+.dropdown-item {
+    color: var(--color-primary);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: var(--color-secondary);
+    background-color: #d8f0c7a2;
+}
