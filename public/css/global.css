@@ -14,3 +14,19 @@ body {
     background-color: var(--color-background);
     color: var(--color-primary);
 }
+
+/* Botones */
+.btn-primary {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-quaternary);
+    border-color: var(--color-quaternary);
+}
+
+.icon-center {
+    font-size: 1.5em;
+    vertical-align: middle;
+}

@@ -13,17 +13,6 @@
     color: var(--color-primary);
 }
 
-/* Botones */
-.btn-primary {
-    background-color: var(--color-secondary);
-    border-color: var(--color-secondary);
-}
-
-.btn-primary:hover {
-    background-color: var(--color-quaternary);
-    border-color: var(--color-quaternary);
-}
-
 /* List Group */
 .list-group-item a {
     color: var(--color-primary);
@@ -32,6 +21,12 @@
 .list-group-item a:hover,
 .list-group-item a:focus {
     color: var(--color-secondary);
+}
+
+/* icono arrow */
+.icon-center {
+    font-size: 1.5em;
+    vertical-align: middle;
 }
 
 /* Otros estilos específicos */

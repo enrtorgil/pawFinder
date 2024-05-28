@@ -45,8 +45,8 @@
                             </ul>
                         </div>
                         <div class="text-center border-0 bg-transparent w-75 py-1 mb-3">
-                            <a href="{{ route('publications.create') }}" class="btn btn-primary opacity-75 btn-lg w-100"><i
-                                    class='bx bx-up-arrow-alt me-3'></i> Crear Publicación</a>
+                            <a href="{{ route('publications.create') }}" class="btn btn-primary btn-lg w-100"><i
+                                    class='bx bx-up-arrow-alt me-3 icon-center'></i> Crear Publicación</a>
                         </div>
                     </div>
                 </div>

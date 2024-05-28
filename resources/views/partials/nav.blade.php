@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('index') }}">
             PawFinder
@@ -44,7 +44,7 @@
                         <ul class="dropdown-menu border-1 p-0" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item py-2 px-3 d-flex align-items-center"
                                     href="{{ route('users.edit', Auth::user()->id) }}"><i
-                                        class='bx bx-user d-lg-none me-2'></i> Mi Perfil</a></li>
+                                        class='bx bx-user d-lg-none me-2'></i> Mi perfil</a></li>
                             <li><a class="dropdown-item py-2 px-3 d-flex align-items-center"
                                     href="{{ route('publications.my') }}"><i class='bx bx-book d-lg-none me-2'></i> Mis
                                     anuncios</a></li>
@@ -96,10 +96,3 @@
         </div>
     </div>
 </nav>
-
-<style>
-    .navbar-nav .nav-item .nav-link i {
-        vertical-align: middle;
-        margin-top: 0.25rem;
-    }
-</style>

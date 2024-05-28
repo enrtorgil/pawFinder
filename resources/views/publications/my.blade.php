@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <a href="{{ route('publications.create') }}" class="btn btn-primary"><i class='bx bx-up-arrow-alt'></i> Crear
+                        <a href="{{ route('publications.create') }}" class="btn btn-primary"><i class='bx bx-up-arrow-alt icon-center'></i> Crear
                             Publicación</a>
                     </div>
                     <div class="col">
