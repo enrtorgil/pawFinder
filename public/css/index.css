@@ -9,7 +9,7 @@
 
 /* Card */
 .card {
-    background-color: var(--color-quinary);
+    /* background-color: var(--color-quinary); */
     color: var(--color-primary);
 }
 
@@ -45,7 +45,7 @@
     border-top: 1px solid var(--color-secondary);
 }
 
-.accordion-button {
+/* .accordion-button {
     background-color: var(--color-secondary);
     color: var(--color-primary);
 }
@@ -53,4 +53,4 @@
 .accordion-button:not(.collapsed) {
     color: var(--color-primary);
     background-color: var(--color-quinary);
-}
+} */
