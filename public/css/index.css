@@ -1,6 +1,6 @@
 /* Banner */
 .banner-img {
-    height: 14rem;
+    height: 12rem;
     object-fit: cover;
     width: 100%;
     border-radius: 20px;
@@ -23,11 +23,21 @@
     color: var(--color-secondary);
 }
 
-/* icono arrow */
+/* Icono arrow crear publicación */
 .icon-center {
     font-size: 1.5em;
     vertical-align: middle;
 }
+
+/* Zoom imágenes destacadas */
+.hover-zoom {
+    transition: transform 0.3s ease-in-out;
+}
+
+.hover-zoom:hover {
+    transform: scale(1.1);
+}
+
 
 /* Otros estilos específicos */
 .img-custom {

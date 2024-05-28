@@ -27,7 +27,7 @@
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
+    height: 2.5px;
     bottom: 4px;
     left: 0;
     background-color: var(--color-secondary);
@@ -64,5 +64,15 @@
 .dropdown-item:hover,
 .dropdown-item:focus {
     color: var(--color-secondary);
-    background-color: #d8f0c7a2;
+    background-color: #e2fed7;
 }
+
+.logo-img {
+    height: 2rem;
+    margin-right: 0.5rem;
+}
+
+.unread-count {
+    display: none;
+}
+

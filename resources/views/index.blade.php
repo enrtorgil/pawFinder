@@ -16,8 +16,8 @@
                 </div>
             </div>
 
-            <div class="row mb-3 align-items-center">
-                <div class="col-md-4 mt-3">
+            <div class="row mb-3">
+                <div class="col-md-4 mt-4">
                     <div class="card text-center d-flex justify-content-center align-items-center border-0 shadow bg-body rounded">
                         <div class="card-body">
                             <h1>Bienvenido, <strong>{{ Auth::user()->username }}</strong></h1>
@@ -44,15 +44,15 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="text-center border-0 bg-transparent w-75 py-1 mb-3">
+                        <div class="w-75 pb-3">
                             <a href="{{ route('publications.create') }}" class="btn btn-primary btn-lg w-100"><i
                                     class='bx bx-up-arrow-alt me-3 icon-center'></i> Crear Publicación</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4 mt-3">
-                    <div class="card h-100 text-center border-0">
+                <div class="col-md-4 mt-4">
+                    <div class="card text-center border-0">
                         @if ($mostFavsPublication)
                             <div class="card border-0 shadow bg-body rounded">
                                 <div class="card-body">
@@ -60,7 +60,7 @@
                                         popular, <strong>{{ $mostFavsPublication->name }}</strong></h5>
                                     <a href="{{ route('publications.show', $mostFavsPublication) }}">
                                         <img src="{{ Storage::url($mostFavsPublication->image) }}"
-                                            class="card-img-top img-fluid rounded-circle img-custom"
+                                            class="card-img-top img-fluid rounded-circle img-custom hover-zoom"
                                             alt="{{ $mostFavsPublication->name }}">
                                     </a>
                                 </div>
@@ -74,8 +74,8 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 mt-3">
-                    <div class="card h-100 text-center border-0">
+                <div class="col-md-4 mt-4">
+                    <div class="card text-center border-0">
                         @if ($latestPublication)
                             <div class="card border-0 shadow bg-body rounded">
                                 <div class="card-body">
@@ -83,7 +83,7 @@
                                         reciente, <strong>{{ $latestPublication->name }}</strong></h5>
                                     <a href="{{ route('publications.show', $latestPublication) }}">
                                         <img src="{{ Storage::url($latestPublication->image) }}"
-                                            class="card-img-top img-fluid rounded-circle img-custom"
+                                            class="card-img-top img-fluid rounded-circle img-custom hover-zoom"
                                             alt="{{ $latestPublication->name }}">
                                     </a>
                                 </div>
@@ -195,8 +195,8 @@
                                 <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body">
-                                        Para actualizar la información de tu mascota, inicia sesión en tu cuenta, ve a tu
-                                        perfil y edita los detalles de tu mascota en la sección correspondiente.
+                                        Para actualizar la información de tu mascota, inicia sesión en tu cuenta, ve a la sección de 'mis anuncios'
+                                        y edita los detalles de tu mascota en la sección correspondiente.
                                     </div>
                                 </div>
                             </div>

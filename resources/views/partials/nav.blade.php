@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('index') }}">
+            <img src="{{ asset('img/logo-pawfinder.png') }}" alt="PawFinder Logo"  class="logo-img">
             PawFinder
         </a>
 
@@ -56,7 +57,7 @@
                     <li class="nav-item mx-4">
                         <a class="nav-link d-flex align-items-center" href="{{ route('texts.index') }}">
                             <i class='bx bx-envelope d-lg-none me-2'></i>
-                            Mensajes <span id="unread-count" class="badge bg-danger ms-2" style="display:none;">0</span>
+                            Mensajes <span id="unread-count" class="badge bg-danger ms-2 unread-count">0</span>
                         </a>
                     </li>
                 @endif

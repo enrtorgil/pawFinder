@@ -17,7 +17,7 @@ body {
 
 /* Botones */
 .btn-primary {
-    background-color: var(--color-secondary);
+    background-color: var(--color-quinary);
     border-color: var(--color-secondary);
 }
 
