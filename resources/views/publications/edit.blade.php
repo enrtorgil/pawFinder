@@ -3,20 +3,20 @@
 @section('title', 'Editar anuncio')
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container mt-3">
 
         <form action="{{ route('publications.update', $publication->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
             <div class="row">
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-2">
                     <label for="name" class="form-label">Nombre</label>
                     <input type="text" name="name" class="form-control" id="name"
                         value="{{ old('name', $publication->name) }}" required>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-2">
                     <label for="type" class="form-label">Tipo</label>
                     <select name="type" class="form-select" id="type" required>
                         <option value="se busca" {{ old('type', $publication->type) == 'se busca' ? 'selected' : '' }}>Se
@@ -26,7 +26,7 @@
                     </select>
                 </div>
 
-                <div class="col-md-2 mb-3">
+                <div class="col-md-2 mb-2">
                     <label for="type_animal" class="form-label">Tipo de Animal</label>
                     <select name="type_animal" class="form-select" id="type_animal" required>
                         <option value="perro"
@@ -37,7 +37,7 @@
                             {{ old('type_animal', $publication->type_animal) == 'otro' ? 'selected' : '' }}>Otro</option>
                     </select>
                 </div>
-                <div class="col-md-2 mb-3">
+                <div class="col-md-2 mb-2">
                     <label for="size" class="form-label">Tamaño</label>
                     <select name="size" class="form-select" id="size" required>
                         <option value="Grande" {{ old('size', $publication->size) == 'Grande' ? 'selected' : '' }}>Grande
@@ -48,7 +48,7 @@
                         </option>
                     </select>
                 </div>
-                <div class="col-md-2 mb-3">
+                <div class="col-md-2 mb-2">
                     <label for="date" class="form-label">Fecha</label>
                     <input type="date" name="date" class="form-control" id="date"
                         value="{{ old('date', $publication->date) }}" required>
@@ -56,20 +56,20 @@
             </div>
 
             <div class="row">
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-2">
                     <label for="image" class="form-label">Imagen</label>
                     <input type="file" name="image" class="form-control" id="image">
                 </div>
-                <div class="col-md-9 mb-3">
+                <div class="col-md-9 mb-2">
                     <label for="description" class="form-label">Descripción</label>
                     <textarea rows="1" name="description" class="form-control" id="description">{{ old('description', $publication->description) }}</textarea>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 mb-2">
                     <!-- Mapa de Leaflet -->
-                    <div id="mi_mapa" style="width: 100%; height: 400px;" class="mb-3"></div>
+                    <div id="mi_mapa" style="width: 100%; height: 300px;"></div>
                     <!-- Campos ocultos para latitud y longitud -->
                     <input type="hidden" name="latitude" id="latitude"
                         value="{{ old('latitude', $publication->latitude) }}" required>
@@ -79,7 +79,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-2">
                     <label for="country" class="form-label">País</label>
                     <select name="country" class="form-select" id="country">
                         <option value="">Seleccionar País</option>
@@ -92,31 +92,31 @@
                     </select>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-2">
                     <label for="street" class="form-label">Calle</label>
                     <input type="text" name="street" class="form-control" id="street"
                         value="{{ old('street', $publication->street) }}">
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-2">
                     <label for="city" class="form-label">Ciudad</label>
                     <input type="text" name="city" class="form-control" id="city"
                         value="{{ old('city', $publication->city) }}">
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-2">
                     <label for="zip" class="form-label">Código Postal</label>
                     <input type="text" name="zip" class="form-control" id="zip"
                         value="{{ old('zip', $publication->zip) }}">
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-md-6">
-                    <a href="{{ url()->previous() }}" class="btn btn-secondary my-3 w-100">Volver</a>
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary w-100">Volver</a>
                 </div>
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary my-3 w-100">Actualizar Publicación</button>
+                    <button type="submit" class="btn btn-primary w-100">Actualizar Publicación</button>
                 </div>
             </div>
         </form>

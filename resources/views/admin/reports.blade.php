@@ -3,8 +3,8 @@
 @section('title', 'Panel reportes')
 
 @section('content')
-    <div class="container-fluid mt-4 px-5">
-        <h1 class="my-3">Administrar Reportes</h1>
+    <div class="container-fluid mt-3 px-5">
+        <h1 class="mb-4">Administrar Reportes</h1>
 
         <div class="mb-4">
             <div class="table-responsive">
