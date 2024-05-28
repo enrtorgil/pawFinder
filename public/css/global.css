@@ -1,15 +1,16 @@
 /* Paleta de colores */
 :root {
-    --color-primary: #6B8375;
-    --color-secondary: #92B29B;
-    --color-tertiary: #C6E3C5;
-    --color-quaternary: #B2C8A2;
-    --color-quinary: #98B28F;
+    --color-background: #d7f3d686;
+    --color-primary: #6b8375;
+    --color-secondary: #92b29b;
+    --color-tertiary: #c6e3c5;
+    --color-quaternary: #b2c8a2;
+    --color-quinary: #98b28f;
 }
 
 /* Estilos globales */
 body {
     font-family: "Poppins", sans-serif;
-    background-color: var(--color-tertiary);
+    background-color: var(--color-background);
     color: var(--color-primary);
 }

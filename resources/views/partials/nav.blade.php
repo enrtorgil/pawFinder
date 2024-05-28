@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navigation">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('index') }}">
             PawFinder

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container-fluid mt-1 px-5">
-        <h1 class="mb-3 ms-3">{{ $publication->name }}</h1>
+        <h1 class="mb-3 ms-3 mt-3">{{ $publication->name }}</h1>
         <div class="row mb-2">
             <div class="col-md-6">
                 <img src="{{ Storage::url($publication->image) }}" class="img-fluid img-custom rounded-5"
