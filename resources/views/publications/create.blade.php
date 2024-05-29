@@ -67,9 +67,10 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-md-3 mb-2">
-                    <label for="country" class="form-label">País *</label>
+                    <label for="country" class="form-label" data-bs-toggle="tooltip"
+                        title="Este campo no es obligatorio, pero ayudará a encontrar la ubicación en el mapa">País</label>
                     <select name="country" class="form-select" id="country">
                         <option value="">Seleccionar País</option>
                         @foreach ($countries as $country)
@@ -81,17 +82,21 @@
                 </div>
 
                 <div class="col-md-3 mb-2">
-                    <label for="street" class="form-label">Calle *</label>
+                    <label for="street" class="form-label" data-bs-toggle="tooltip"
+                        title="Este campo no es obligatorio, pero ayudará a encontrar la ubicación en el mapa.">Calle</label>
                     <input type="text" name="street" class="form-control" id="street" value="{{ old('street') }}">
                 </div>
 
                 <div class="col-md-3 mb-2">
-                    <label for="city" class="form-label">Ciudad *</label>
-                    <input type="text" name="city" class="form-control" id="city" value="{{ old('city') }}">
+                    <label for="city" class="form-label" data-bs-toggle="tooltip"
+                        title="Este campo no es obligatorio, pero ayudará a encontrar la ubicación en el mapa.">Ciudad</label>
+                    <input type="text" name="city" class="form-control" id="city"
+                        value="{{ old('city') }}">
                 </div>
 
                 <div class="col-md-3 mb-2">
-                    <label for="zip" class="form-label">Código Postal *</label>
+                    <label for="zip" class="form-label" data-bs-toggle="tooltip"
+                        title="Este campo no es obligatorio, pero ayudará a encontrar la ubicación en el mapa.">Código Postal</label>
                     <input type="text" name="zip" class="form-control" id="zip"
                         value="{{ old('zip') }}">
                 </div>
@@ -182,6 +187,14 @@
             if (!dateInput.value) {
                 dateInput.value = maxDate;
             }
+        });
+
+        // Initialize tooltips; campos país, ciudad, calle y zip
+        document.addEventListener("DOMContentLoaded", function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
         });
     </script>
 @endsection
