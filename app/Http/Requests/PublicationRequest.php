@@ -38,7 +38,7 @@ class PublicationRequest extends FormRequest
             'country' => 'nullable|string|max:255',
             'zip' => 'nullable|integer|max:99999',
             'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
+            'longitude' => 'nullable', // Aunque no es nullable se controla de este modo para que salga 1 sólo mensaje de error
         ];
 
         if ($this->isMethod('post')) {
@@ -78,10 +78,10 @@ class PublicationRequest extends FormRequest
             'country.max' => 'El país no debe superar los 255 caracteres.',
             'zip.integer' => 'El código postal debe ser un número entero.',
             'zip.max' => 'El código postal no debe superar los 99999.',
-            'latitude.required' => 'La latitud es obligatoria.',
+            'latitude.required' => 'Escoge un punto en el mapa.', // Omitimos longitud ya que se recogen juntos y así sale 1 mensaje de error y no 2
             'latitude.numeric' => 'La latitud debe ser un número.',
-            'longitude.required' => 'La longitud es obligatoria.',
-            'longitude.numeric' => 'La longitud debe ser un número.',
+            // 'longitude.required' => 'La longitud es obligatoria.',
+            // 'longitude.numeric' => 'La longitud debe ser un número.',
         ];
     }
 }

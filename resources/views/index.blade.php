@@ -57,7 +57,7 @@
                             <div class="card border-0 shadow bg-body rounded">
                                 <div class="card-body">
                                     <h5 class="card-title mb-4 mt-2"><i class="fas fa-fire me-3"></i> Publicación más
-                                        popular, <strong>{{ $mostFavsPublication->name }}</strong></h5>
+                                        popular, <br> <strong>{{ $mostFavsPublication->name }}</strong></h5>
                                     <a href="{{ route('publications.show', $mostFavsPublication) }}">
                                         <img src="{{ Storage::url($mostFavsPublication->image) }}"
                                             class="card-img-top img-fluid rounded-circle img-custom hover-zoom"
@@ -80,7 +80,7 @@
                             <div class="card border-0 shadow bg-body rounded">
                                 <div class="card-body">
                                     <h5 class="card-title mb-4 mt-2"><i class="fas fa-clock me-3"></i> Publicación más
-                                        reciente, <strong>{{ $latestPublication->name }}</strong></h5>
+                                        reciente, <br> <strong>{{ $latestPublication->name }}</strong></h5>
                                     <a href="{{ route('publications.show', $latestPublication) }}">
                                         <img src="{{ Storage::url($latestPublication->image) }}"
                                             class="card-img-top img-fluid rounded-circle img-custom hover-zoom"

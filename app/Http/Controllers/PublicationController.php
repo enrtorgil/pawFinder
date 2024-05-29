@@ -67,13 +67,6 @@ class PublicationController extends Controller
 
         $validatedData = $request->validated();
 
-        if (!$request->filled('latitude') || !$request->filled('longitude')) {
-            return redirect()->back()->withInput()->withErrors([
-                'latitude' => 'La latitud es obligatoria.',
-                'longitude' => 'La longitud es obligatoria.',
-            ]);
-        }
-
         $publication = new Publication($validatedData);
         $publication->user_id = Auth::id();
         $publication->save();
