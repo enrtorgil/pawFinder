@@ -18,7 +18,7 @@
                                 <div class="float-end">
                                     <a href="{{ route('admin.reports', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'reason']) }}"
                                         class="btn btn-sm btn-link p-0 mx-2">
-                                        <i class="fas fa-sort"></i>
+                                        <i class="fas fa-sort text-lightgreen"></i>
                                     </a>
                                 </div>
                             </th>
@@ -28,7 +28,7 @@
                                 <div class="float-end">
                                     <a href="{{ route('admin.reports', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'created_at']) }}"
                                         class="btn btn-sm btn-link p-0 mx-2">
-                                        <i class="fas fa-sort"></i>
+                                        <i class="fas fa-sort text-lightgreen"></i>
                                     </a>
                                 </div>
                             </th>
@@ -44,7 +44,7 @@
                                 <td class="text-truncate ps-3" style="max-width: 100%;">
                                     {{ Str::limit($report->additional_info, 30) }}
                                     @if (strlen($report->additional_info) > 30)
-                                        <button type="button" class="btn btn-link p-0 m-0 align-baseline"
+                                        <button type="button" class="btn btn-link p-0 m-0 align-baseline text-darkgreen"
                                             style="display: inline;" data-bs-toggle="modal"
                                             data-bs-target="#additionalInfoModal"
                                             data-additional-info="{{ $report->additional_info }}">

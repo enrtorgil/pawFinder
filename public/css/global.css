@@ -8,6 +8,14 @@
     --color-quinary: #98b28f;
 }
 
+.text-lightgreen {
+    color: lightgreen;
+}
+
+.text-darkgreen {
+    color: rgb(10, 138, 10);
+}
+
 /* Estilos globales */
 body {
     font-family: "Poppins", sans-serif;

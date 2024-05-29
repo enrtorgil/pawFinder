@@ -19,7 +19,7 @@
                                 <div class="float-end">
                                     <a href="{{ route('admin.publications', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'created_at']) }}"
                                         class="btn btn-sm btn-link p-0 mx-2">
-                                        <i class="fas fa-sort"></i>
+                                        <i class="fas fa-sort text-lightgreen"></i>
                                     </a>
                                 </div>
                             </th>
@@ -28,7 +28,7 @@
                                 <div class="float-end">
                                     <a href="{{ route('admin.publications', ['sort' => request('sort') === 'asc' ? 'desc' : 'asc', 'column' => 'updated_at']) }}"
                                         class="btn btn-sm btn-link p-0 mx-2">
-                                        <i class="fas fa-sort"></i>
+                                        <i class="fas fa-sort text-lightgreen"></i>
                                     </a>
                                 </div>
                             </th>

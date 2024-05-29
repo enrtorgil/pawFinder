@@ -18,7 +18,7 @@
                             <div class="float-end">
                                 <a href="{{ route('texts.index', ['sort' => $sort === 'desc' ? 'asc' : 'desc']) }}"
                                     class="btn btn-sm btn-link p-0 mx-2">
-                                    <i class="fas fa-sort"></i>
+                                    <i class="fas fa-sort text-lightgreen"></i>
                                 </a>
                             </div>
                         </th>
@@ -33,7 +33,7 @@
                             <td class="text-truncate ps-3" style="max-width: 100%;">
                                 {{ Str::limit($message->subject, 30) }}
                                 @if (strlen($message->subject) > 30)
-                                    <button type="button" class="btn btn-link p-0 m-0 align-baseline"
+                                    <button type="button" class="btn btn-link p-0 m-0 align-baseline text-darkgreen"
                                         style="display: inline;" data-bs-toggle="modal" data-bs-target="#subjectModal"
                                         data-subject="{{ $message->subject }}">
                                         Leer más
