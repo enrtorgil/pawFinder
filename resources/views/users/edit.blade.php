@@ -45,11 +45,11 @@
                             </a>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#deleteAccountModal">
-                                Eliminar Cuenta
+                                Eliminar cuenta
                             </button>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
                         </div>
                     </div>
                 </form>

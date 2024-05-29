@@ -2,9 +2,12 @@
 
 @section('title', $publication->name)
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/show-publications.css') }}">
+@endpush
+
 @section('content')
-    <div class="container-fluid mt-1 px-5">
-        <h1 class="mb-3 ms-3 mt-3">{{ $publication->name }}</h1>
+    <div class="container-fluid mt-5 px-5">
         <div class="row mb-2">
             <div class="col-md-6">
                 <img src="{{ Storage::url($publication->image) }}" class="img-fluid img-custom rounded-5"
@@ -37,25 +40,32 @@
                 <div class="flex-grow-1 mb-2">
                     <div class="card">
                         <div class="card-body border rounded p-3">
-                            <h5 class="card-title text-primary border-bottom pb-2 mb-3">Detalles de la Publicación
-                            </h5>
-                            <p class="card-text mb-2"><strong>Autor:</strong> {{ $publication->user->username }}</p>
-                            <p class="card-text mb-2"><strong>Tipo:</strong> {{ $publication->type }}</p>
-                            <p class="card-text mb-2"><strong>Tipo de Animal:</strong> {{ $publication->type_animal }}</p>
-                            <p class="card-text mb-2"><strong>Tamaño:</strong> {{ $publication->size }}</p>
-                            <p class="card-text mb-2"><strong>Fecha:</strong>
-                                {{ \Carbon\Carbon::parse($publication->date)->format('d-m-Y') }}</p>
-                            <p class="card-text"><strong>Descripción:</strong>
+                            <h1 class="mb-3">
+                                {{ $publication->name }}
+                                @if ($publication->reports->count() > 0 && Auth::user()->role == 'administrador')
+                                    <span class="badge bg-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="@foreach ($publication->reports as $report) {{ $report->pivot->reason }}: {{ $report->pivot->additional_info }}&#013; @endforeach">
+                                        {{ $publication->reports->count() }} Reportes
+                                    </span>
+                                @endif
+                            </h1>
+                            <div class="detail-item"><strong>Autor:</strong> {{ $publication->user->username }}</div>
+                            <div class="detail-item"><strong>Tipo:</strong> {{ $publication->type }}</div>
+                            <div class="detail-item"><strong>Tipo de Animal:</strong> {{ $publication->type_animal }}</div>
+                            <div class="detail-item"><strong>Tamaño:</strong> {{ $publication->size }}</div>
+                            <div class="detail-item"><strong>Fecha:</strong>
+                                {{ \Carbon\Carbon::parse($publication->date)->format('d-m-Y') }}</div>
+                            <div class="detail-item"><strong>Descripción:</strong>
                                 <span
                                     class="text-muted">{{ \Illuminate\Support\Str::limit($publication->description, 40) }}</span>
                                 @if (strlen($publication->description) > 40)
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#descriptionModal">Leer más</a>
                                 @endif
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="flex-grow-1 mt-2" id="mi_mapa" style="width: 100%; height: 100%;"></div>
+                <div class="flex-grow-1 mt-2" id="mi_mapa" style="width: 100%; height: 100%; border-radius: 1rem;"></div>
             </div>
         </div>
 
@@ -68,6 +78,12 @@
                 }).addTo(map);
 
                 L.marker([{{ $publication->latitude }}, {{ $publication->longitude }}]).addTo(map);
+
+                // Inicializar tooltips de Bootstrap
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl)
+                });
             });
         </script>
     </div>
@@ -120,23 +136,4 @@
             </div>
         </div>
     </div>
-
-    <style>
-        .img-custom {
-            width: 100%;
-            height: auto;
-            min-height: 70vh;
-            max-height: 70vh;
-            object-fit: cover;
-        }
-
-        .btn {
-            padding: 0.5rem;
-            margin: 0;
-        }
-
-        .modal-body {
-            word-wrap: break-word;
-        }
-    </style>
 @endsection

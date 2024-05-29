@@ -17,7 +17,7 @@
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-4 mt-4">
+                <div class="col-md-4 mt-3">
                     <div
                         class="card text-center d-flex justify-content-center align-items-center border-0 shadow bg-body rounded">
                         <div class="card-body">
@@ -45,19 +45,19 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="w-75 pb-3">
+                        <div class="w-75 pb-3 mt-3">
                             <a href="{{ route('publications.create') }}" class="btn btn-primary btn-lg w-100"><i
                                     class='bx bx-up-arrow-alt me-3 icon-center'></i> Crear Publicación</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4 mt-4">
+                <div class="col-md-4 mt-3">
                     <div class="card text-center border-0">
                         @if ($mostFavsPublication)
                             <div class="card border-0 shadow bg-body rounded">
                                 <div class="card-body">
-                                    <h5 class="card-title mb-4 mt-2"><i class="fas fa-fire me-3"></i> Publicación más
+                                    <h5 class="card-title mb-4 mt-0"><i class="fas fa-fire me-3"></i> Publicación más
                                         popular, <br> <strong>{{ $mostFavsPublication->name }}</strong></h5>
                                     <a href="{{ route('publications.show', $mostFavsPublication) }}">
                                         <img src="{{ Storage::url($mostFavsPublication->image) }}"
@@ -75,12 +75,12 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 mt-4">
+                <div class="col-md-4 mt-3">
                     <div class="card text-center border-0">
                         @if ($latestPublication)
                             <div class="card border-0 shadow bg-body rounded">
                                 <div class="card-body">
-                                    <h5 class="card-title mb-4 mt-2"><i class="fas fa-clock me-3"></i> Publicación más
+                                    <h5 class="card-title mb-4 mt-0"><i class="fas fa-clock me-3"></i> Publicación más
                                         reciente, <br> <strong>{{ $latestPublication->name }}</strong></h5>
                                     <a href="{{ route('publications.show', $latestPublication) }}">
                                         <img src="{{ Storage::url($latestPublication->image) }}"
@@ -210,7 +210,7 @@
                         <div class="card-header text-center">Iniciar sesión</div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="text-center mb-3">
+                                <div class="text-center mb-2">
                                     <img src="{{ url('img/cat-login.png') }}" alt="Iniciar sesión"
                                         class="img-dog-login img-fluid">
                                 </div>
@@ -218,7 +218,6 @@
 
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
-
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Correo electrónico</label>
                                     <input id="email" type="email"
@@ -255,7 +254,7 @@
                                 </div>
 
                                 <div class="align-items-center">
-                                    <button type="submit" class="btn btn-primary w-100 mt-3">Iniciar sesión</button>
+                                    <button type="submit" class="btn btn-primary w-100 mt-2">Iniciar sesión</button>
                                 </div>
                             </form>
                         </div>

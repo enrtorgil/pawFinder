@@ -42,7 +42,11 @@
             @endforeach
         @endif
 
+        const isAuthenticated = @json(Auth::check());
+
         function fetchUnreadCount() {
+            if (!isAuthenticated) return;
+
             $.ajax({
                 url: '{{ route('messages.unreadCount') }}',
                 method: 'GET',
@@ -59,11 +63,15 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            fetchUnreadCount();
-            setInterval(fetchUnreadCount, 5000); // Polling cada 5 segundos
+            if (isAuthenticated) {
+                fetchUnreadCount();
+                setInterval(fetchUnreadCount, 5000); // Polling cada 5 segundos
+            }
         });
 
         function toggleRead(messageId) {
+            if (!isAuthenticated) return;
+
             $.ajax({
                 url: '{{ url('/texts') }}/' + messageId + '/toggle-read',
                 method: 'POST',
