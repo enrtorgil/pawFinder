@@ -1,0 +1,6 @@
+.rounded-image {
+    max-width: 32rem;
+    min-width: 32rem;
+    border-radius: 40%;
+}
+

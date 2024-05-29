@@ -83,7 +83,7 @@
                     <li class="nav-item mx-4">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="nav-link btn btn-link d-flex align-items-center"><i
+                            <button type="submit" class="nav-link d-flex align-items-center"><i
                                     class='bx bx-log-out d-lg-none me-2'></i> Cerrar sesión</button>
                         </form>
                     </li>
