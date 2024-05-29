@@ -12,7 +12,7 @@
 
             <div class="row mt-0">
                 <div class="col-12">
-                    <img src="{{ url('img/pet-banner-ia.png') }}" class="card-img banner-img p-0 mt-3" alt="Mascotas banner">
+                    <img src="{{ url('img/pet-banner.png') }}" class="card-img banner-img p-0 mt-3" alt="Mascotas banner">
                 </div>
             </div>
 
