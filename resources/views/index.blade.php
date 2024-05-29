@@ -18,7 +18,8 @@
 
             <div class="row mb-3">
                 <div class="col-md-4 mt-4">
-                    <div class="card text-center d-flex justify-content-center align-items-center border-0 shadow bg-body rounded">
+                    <div
+                        class="card text-center d-flex justify-content-center align-items-center border-0 shadow bg-body rounded">
                         <div class="card-body">
                             <h1>Bienvenido, <strong>{{ Auth::user()->username }}</strong></h1>
                             <p>Explora nuestras publicaciones y más</p>
@@ -101,7 +102,7 @@
             <div class="row mt-4">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <h1 class="mb-3">¡Bienvenido a PawFinder!</h1>
+                        <h1 class="mb-3">¡ Bienvenido a <strong>PawFinder</strong> !</h1>
                         <p>Encuentra a tu mascota perdida o adopta una.</p>
                     </div>
                     <div>
@@ -195,7 +196,8 @@
                                 <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body">
-                                        Para actualizar la información de tu mascota, inicia sesión en tu cuenta, ve a la sección de 'mis anuncios'
+                                        Para actualizar la información de tu mascota, inicia sesión en tu cuenta, ve a la
+                                        sección de 'mis anuncios'
                                         y edita los detalles de tu mascota en la sección correspondiente.
                                     </div>
                                 </div>
@@ -208,19 +210,10 @@
                         <div class="card-header text-center">Iniciar sesión</div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="text-center mb-3">
-                                        <img src="{{ url('img/cat-message.png') }}" alt="Iniciar sesión"
-                                            class="img-fluid" style="width: 250px;">
-                                    </div>
+                                <div class="text-center mb-3">
+                                    <img src="{{ url('img/cat-login.png') }}" alt="Iniciar sesión"
+                                        class="img-dog-login img-fluid">
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="text-center mb-3">
-                                        <img src="{{ url('img/cat-pc-heart.png') }}" alt="Iniciar sesión"
-                                            class="img-fluid" style="width: 240px;">
-                                    </div>
-                                </div>
-
                             </div>
 
                             <form method="POST" action="{{ route('login') }}">
@@ -250,17 +243,19 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3 form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember">
-                                    <label class="form-check-label" for="remember">
-                                        Recordarme
-                                    </label>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                                        <label class="form-check-label" for="remember">
+                                            Recordarme
+                                        </label>
+                                    </div>
                                     <a class="btn btn-link" href="{{ route('register') }}">¿No tienes cuenta?
                                         Regístrate</a>
+                                </div>
+
+                                <div class="align-items-center">
+                                    <button type="submit" class="btn btn-primary w-100 mt-3">Iniciar sesión</button>
                                 </div>
                             </form>
                         </div>

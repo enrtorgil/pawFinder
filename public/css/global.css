@@ -34,6 +34,16 @@ body {
     border-color: var(--color-quaternary);
 }
 
+.btn-link {
+    color: #18742d !important;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: #28a745 !important;
+    text-decoration: underline;
+}
+
 /* Extra */
 
 .icon-center {
@@ -45,12 +55,19 @@ a {
     color: green;
 }
 
-.btn-link {
-    color: #18742d !important;
-    text-decoration: none;
+/* Inputs */
+.form-control:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 0.25rem rgba(46, 89, 61, 0.25);
 }
 
-.btn-link:hover {
-    color: #28a745 !important;
-    text-decoration: underline;
+/* Mapa Leaflet */
+.mapa-leaflet {
+    width: 100%;
+    height: 18rem;
+    border-radius: 1rem;
+}
+
+.leaflet-control-attribution {
+    display: none !important;
 }

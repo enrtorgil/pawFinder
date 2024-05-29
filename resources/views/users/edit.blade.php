@@ -2,6 +2,10 @@
 
 @section('title', 'Mi perfil')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/edit-user.css') }}">
+@endpush
+
 @section('content')
     <div class="container">
         <div class="row mt-3">
@@ -11,27 +15,27 @@
                     @csrf
                     @method('PATCH')
                     <div class="mb-3">
-                        <label for="username" class="form-label">Name</label>
+                        <label for="username" class="form-label">Nombre</label>
                         <input type="text" name="username" class="form-control" id="username"
                             value="{{ old('username', $user->username) }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
+                        <label for="email" class="form-label">Correo electrónico</label>
                         <input type="email" name="email" class="form-control" id="email"
                             value="{{ old('email', $user->email) }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Phone</label>
+                        <label for="phone" class="form-label">Teléfono</label>
                         <input type="text" name="phone" class="form-control" id="phone"
                             value="{{ old('phone', $user->phone) }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label">Contraseña</label>
                         <input type="password" name="password" class="form-control" id="password">
-                        <small class="form-text text-muted">Leave blank if you don't want to change the password.</small>
+                        <small class="form-text text-muted">Déjelo en blanco si no desea cambiar la contraseña</small>
                     </div>
                     <div class="mb-3">
-                        <label for="password_confirmation" class="form-label">Confirm Password</label>
+                        <label for="password_confirmation" class="form-label">Confirmar contraseña</label>
                         <input type="password" name="password_confirmation" class="form-control" id="password_confirmation">
                     </div>
                     <div class="d-flex justify-content-between">
@@ -50,7 +54,9 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-6"></div>
+            <div class="col-md-6 d-none d-md-flex mt-5 pt-5">
+                <img src="{{ url('img/edit-profile.png') }}" alt="Perfil de usuario" class="img-edit-user img-fluid">
+            </div>
         </div>
     </div>
 

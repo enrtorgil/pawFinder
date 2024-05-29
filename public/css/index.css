@@ -38,10 +38,15 @@
     transform: scale(1.1);
 }
 
-
 /* Otros estilos específicos */
 .img-custom {
     width: 15rem;
+    height: 15rem;
+    margin: 0 auto;
+}
+
+.img-dog-login {
+    width: auto;
     height: 15rem;
     margin: 0 auto;
 }
@@ -55,12 +60,27 @@
     border-top: 1px solid var(--color-secondary);
 }
 
-/* .accordion-button {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
+.accordion-button:not(.collapsed) {
+    color: white;
+    background-color: var(--color-quinary);
 }
 
-.accordion-button:not(.collapsed) {
-    color: var(--color-primary);
-    background-color: var(--color-quinary);
-} */
+.accordion-button:not(.collapsed)::after {
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.form-check-input:checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+    border-color: var(--color-quinary);
+}
+
+

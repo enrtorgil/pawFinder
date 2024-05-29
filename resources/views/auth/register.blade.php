@@ -73,12 +73,12 @@
                             </div>
 
                             <div class="d-flex justify-content-between mt-3">
-                                <button type="submit" class="btn btn-primary">
-                                    Registrarse
-                                </button>
                                 <a class="btn btn-link" href="{{ route('index') }}">
                                     ¿Ya tienes cuenta? Inicia sesión
                                 </a>
+                                <button type="submit" class="btn btn-primary">
+                                    Registrarse
+                                </button>
                             </div>
                         </form>
                     </div>

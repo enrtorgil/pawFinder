@@ -57,17 +57,17 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-12 mb-2">
+            <div class="row my-3">
+                <div class="col-md-12">
                     <!-- Mapa de Leaflet -->
-                    <div id="mi_mapa" style="width: 100%; height: 300px;"></div>
+                    <div id="mi_mapa" class="mapa-leaflet"></div>
                     <!-- Campos ocultos para latitud y longitud -->
                     <input type="hidden" name="latitude" id="latitude" value="{{ old('latitude') }}" required>
                     <input type="hidden" name="longitude" id="longitude" value="{{ old('longitude') }}" required>
                 </div>
             </div>
 
-            <div class="row mt-2">
+            <div class="row">
                 <div class="col-md-3 mb-2">
                     <label for="country" class="form-label" data-bs-toggle="tooltip"
                         title="Este campo no es obligatorio, pero ayudará a encontrar la ubicación en el mapa">País</label>
