@@ -185,4 +185,9 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'languages' => [
+        'en' => 'English',
+        'es' => 'Español',
+    ],
+
 ];

@@ -1,0 +1,40 @@
+<?php
+
+return [
+    'author' => 'Autor',
+    'type' => 'Tipo',
+    'animal_type' => 'Tipo de Animal',
+    'size' => 'Tamaño',
+    'date' => 'Fecha',
+    'description' => 'Descripción',
+    'read_more' => 'Leer más',
+    'contact' => 'Contactar',
+    'favorite' => 'Favorito',
+    'unfavorite' => 'Eliminar Favorito',
+    'report' => 'Reportar',
+    'home' => 'Inicio',
+    'report_publication' => 'Reportar Publicación',
+    'report_reason' => 'Razón del Reporte',
+    'report_reason_inappropriate' => 'Contenido inapropiado',
+    'report_reason_incorrect' => 'Información incorrecta',
+    'report_reason_spam' => 'Spam',
+    'report_reason_other' => 'Otra razón',
+    'additional_info' => 'Información Adicional',
+    'send_report' => 'Enviar Reporte',
+    'close' => 'Cerrar',
+    'reports' => 'Reportes',
+    'type_values' => [
+        'se busca' => 'Se busca',
+        'se adopta' => 'Se adopta',
+    ],
+    'animal_type_values' => [
+        'perro' => 'Perro',
+        'gato' => 'Gato',
+        'otro' => 'Otro',
+    ],
+    'publication_size' => [
+        'grande' => 'Grande',
+        'mediano' => 'Mediano',
+        'pequeño' => 'Pequeño',
+    ],
+];

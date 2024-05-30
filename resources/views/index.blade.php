@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'PawFinder')
+@section('title', __('index.title'))
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
@@ -21,33 +21,34 @@
                     <div
                         class="card text-center d-flex justify-content-center align-items-center border-0 shadow bg-body rounded">
                         <div class="card-body">
-                            <h1>Bienvenido, <strong>{{ Auth::user()->username }}</strong></h1>
-                            <p>Explora nuestras publicaciones y más</p>
+                            <h1>{{ __('index.welcome', ['username' => Auth::user()->username]) }}</h1>
+                            <p>{{ __('index.subtitle') }}</p>
                             <ul class="list-group list-group-flush mt-4 mb-0">
                                 <li class="list-group-item d-flex align-items-center py-3">
                                     <i class='bx bx-list-ul me-3 text-success'></i>
                                     <a href="{{ route('publications.index') }}" class="text-decoration-none flex-grow-1">
-                                        Ver Publicaciones
+                                        {{ __('index.view_publications') }}
                                     </a>
                                 </li>
                                 <li class="list-group-item d-flex align-items-center py-3">
                                     <i class='bx bx-envelope me-3 text-success'></i>
                                     <a href="{{ route('texts.index') }}" class="text-decoration-none flex-grow-1">
-                                        Mensajes
+                                        {{ __('index.messages') }}
                                     </a>
                                 </li>
                                 <li class="list-group-item d-flex align-items-center py-3">
                                     <i class='bx bx-user me-3 text-success'></i>
                                     <a href="{{ route('users.edit', ['user' => Auth::user()->id]) }}"
                                         class="text-decoration-none flex-grow-1">
-                                        Mi Perfil
+                                        {{ __('index.my_profile') }}
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="w-75 pb-3 mt-3">
                             <a href="{{ route('publications.create') }}" class="btn btn-primary btn-lg w-100"><i
-                                    class='bx bx-up-arrow-alt me-3 icon-center'></i> Crear Publicación</a>
+                                    class='bx bx-up-arrow-alt me-3 icon-center'></i>
+                                {{ __('index.create_publication') }}</a>
                         </div>
                     </div>
                 </div>
@@ -57,8 +58,9 @@
                         @if ($mostFavsPublication)
                             <div class="card border-0 shadow bg-body rounded">
                                 <div class="card-body">
-                                    <h5 class="card-title mb-4 mt-0"><i class="fas fa-fire me-3"></i> Publicación más
-                                        popular, <br> <strong>{{ $mostFavsPublication->name }}</strong></h5>
+                                    <h5 class="card-title mb-4 mt-0"><i class="fas fa-fire me-3"></i>
+                                        {{ __('index.most_popular_publication') }} <br>
+                                        <strong>{{ $mostFavsPublication->name }}</strong></h5>
                                     <a href="{{ route('publications.show', $mostFavsPublication) }}">
                                         <img src="{{ Storage::url($mostFavsPublication->image) }}"
                                             class="card-img-top img-fluid rounded-circle img-custom hover-zoom"
@@ -66,11 +68,11 @@
                                     </a>
                                 </div>
                                 <div class="card-footer text-muted">
-                                    Publicado {{ $mostFavsPublication->created_at->diffForHumans() }}
+                                    {{ __('index.published', ['time_ago' => $mostFavsPublication->created_at->diffForHumans()]) }}
                                 </div>
                             </div>
                         @else
-                            <p>No hay publicaciones disponibles.</p>
+                            <p>{{ __('index.no_publications') }}</p>
                         @endif
                     </div>
                 </div>
@@ -80,8 +82,9 @@
                         @if ($latestPublication)
                             <div class="card border-0 shadow bg-body rounded">
                                 <div class="card-body">
-                                    <h5 class="card-title mb-4 mt-0"><i class="fas fa-clock me-3"></i> Publicación más
-                                        reciente, <br> <strong>{{ $latestPublication->name }}</strong></h5>
+                                    <h5 class="card-title mb-4 mt-0"><i class="fas fa-clock me-3"></i>
+                                        {{ __('index.recent_publication') }} <br>
+                                        <strong>{{ $latestPublication->name }}</strong></h5>
                                     <a href="{{ route('publications.show', $latestPublication) }}">
                                         <img src="{{ Storage::url($latestPublication->image) }}"
                                             class="card-img-top img-fluid rounded-circle img-custom hover-zoom"
@@ -89,11 +92,11 @@
                                     </a>
                                 </div>
                                 <div class="card-footer text-muted">
-                                    Publicado {{ $latestPublication->created_at->diffForHumans() }}
+                                    {{ __('index.published', ['time_ago' => $latestPublication->created_at->diffForHumans()]) }}
                                 </div>
                             </div>
                         @else
-                            <p>No hay publicaciones disponibles.</p>
+                            <p>{{ __('index.no_publications') }}</p>
                         @endif
                     </div>
                 </div>
@@ -102,24 +105,23 @@
             <div class="row mt-4">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <h1 class="mb-3">¡ Bienvenido a <strong>PawFinder</strong> !</h1>
-                        <p>Encuentra a tu mascota perdida o adopta una.</p>
+                        <h1 class="mb-3">{{ __('index.welcome_to') }} <strong>PawFinder</strong> !</h1>
+                        <p>{{ __('index.adopt_find') }}</p>
                     </div>
                     <div>
-                        <h2 class="mt-4">Preguntas Frecuentes</h2>
+                        <h2 class="mt-4">{{ __('index.faq_title') }}</h2>
                         <div class="accordion mt-4" id="faqAccordion">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="faqHeading1">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
-                                        ¿Cómo puedo registrar una mascota perdida?
+                                        {{ __('index.faq_register_pet') }}
                                     </button>
                                 </h2>
                                 <div id="faqCollapse1" class="accordion-collapse collapse show"
                                     aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
                                     <div class="accordion-body">
-                                        Para registrar una mascota perdida, debes crear una cuenta y completar el formulario
-                                        de registro de mascota perdida en tu perfil.
+                                        {{ __('index.faq_register_pet_answer') }}
                                     </div>
                                 </div>
                             </div>
@@ -127,14 +129,13 @@
                                 <h2 class="accordion-header" id="faqHeading2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
-                                        ¿Cómo puedo adoptar una mascota?
+                                        {{ __('index.faq_adopt_pet') }}
                                     </button>
                                 </h2>
                                 <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body">
-                                        Puedes adoptar una mascota navegando en nuestra sección de adopciones y contactando
-                                        al propietario.
+                                        {{ __('index.faq_adopt_pet_answer') }}
                                     </div>
                                 </div>
                             </div>
@@ -142,14 +143,13 @@
                                 <h2 class="accordion-header" id="faqHeading3">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
-                                        ¿Qué debo hacer si encuentro una mascota perdida?
+                                        {{ __('index.faq_found_pet') }}
                                     </button>
                                 </h2>
                                 <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body">
-                                        Si encuentras una mascota perdida, puedes publicar un anuncio en nuestra sección de
-                                        mascotas encontradas o contactar al propietario si la mascota está registrada.
+                                        {{ __('index.faq_found_pet_answer') }}
                                     </div>
                                 </div>
                             </div>
@@ -158,14 +158,13 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faqCollapse4" aria-expanded="false"
                                         aria-controls="faqCollapse4">
-                                        ¿Cómo puedo contactar al propietario de una mascota?
+                                        {{ __('index.faq_contact_owner') }}
                                     </button>
                                 </h2>
                                 <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body">
-                                        Para contactar al propietario de una mascota, debes iniciar sesión en tu cuenta y
-                                        usar el botón de contacto en la publicación de la mascota.
+                                        {{ __('index.faq_contact_owner_answer') }}
                                     </div>
                                 </div>
                             </div>
@@ -174,14 +173,13 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faqCollapse5" aria-expanded="false"
                                         aria-controls="faqCollapse5">
-                                        ¿Qué información debo proporcionar al registrar una mascota perdida?
+                                        {{ __('index.faq_provide_info') }}
                                     </button>
                                 </h2>
                                 <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body">
-                                        Al registrar una mascota perdida, debes proporcionar detalles como el nombre de la
-                                        mascota, una descripción, una foto, y la última ubicación conocida.
+                                        {{ __('index.faq_provide_info_answer') }}
                                     </div>
                                 </div>
                             </div>
@@ -190,15 +188,13 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faqCollapse6" aria-expanded="false"
                                         aria-controls="faqCollapse6">
-                                        ¿Cómo puedo actualizar la información de mi mascota?
+                                        {{ __('index.faq_update_info') }}
                                     </button>
                                 </h2>
                                 <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body">
-                                        Para actualizar la información de tu mascota, inicia sesión en tu cuenta, ve a la
-                                        sección de 'mis anuncios'
-                                        y edita los detalles de tu mascota en la sección correspondiente.
+                                        {{ __('index.faq_update_info_answer') }}
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +203,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <div class="card mt-2">
-                        <div class="card-header text-center">Iniciar sesión</div>
+                        <div class="card-header text-center">{{ __('index.login_header') }}</div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="text-center mb-2">
@@ -219,7 +215,7 @@
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Correo electrónico</label>
+                                    <label for="email" class="form-label">{{ __('index.login_email') }}</label>
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -231,7 +227,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Contraseña</label>
+                                    <label for="password" class="form-label">{{ __('index.login_password') }}</label>
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="current-password">
@@ -246,15 +242,16 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember">
                                         <label class="form-check-label" for="remember">
-                                            Recordarme
+                                            {{ __('index.remember_me') }}
                                         </label>
                                     </div>
-                                    <a class="btn btn-link" href="{{ route('register') }}">¿No tienes cuenta?
-                                        Regístrate</a>
+                                    <a class="btn btn-link"
+                                        href="{{ route('register') }}">{{ __('index.no_account') }}</a>
                                 </div>
 
                                 <div class="align-items-center">
-                                    <button type="submit" class="btn btn-primary w-100 mt-2">Iniciar sesión</button>
+                                    <button type="submit"
+                                        class="btn btn-primary w-100 mt-2">{{ __('index.sign_in') }}</button>
                                 </div>
                             </form>
                         </div>

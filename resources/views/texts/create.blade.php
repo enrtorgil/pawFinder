@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Enviar mensaje')
+@section('title', __('texts_create.title'))
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/texts-create.css') }}">
@@ -14,35 +14,30 @@
                     class="img-fluid rounded-image">
             </div>
             <div class="col-md-6">
-                <h2 class="mb-3">Contactar con <strong>{{ $creator_username }}</strong></h2>
+                <h2 class="mb-3">{{ __('texts_create.header', ['username' => $creator_username]) }}</h2>
                 <form action="{{ route('texts.store') }}" method="POST" id="messageForm">
                     @csrf
                     <input type="hidden" name="receiver_id" value="{{ $receiver_id }}">
-                    <input type="hidden" name="phone" value="{{ $phone }}"> <!-- Campo oculto para el teléfono -->
+                    <input type="hidden" name="phone" value="{{ $phone }}">
                     <div class="mb-3">
-                        <label for="subject" class="form-label">Asunto</label>
+                        <label for="subject" class="form-label">{{ __('texts_create.subject') }}</label>
                         <input type="text" class="form-control" id="subject" name="subject" required>
                     </div>
                     <div class="mb-3">
-                        <label for="short_description" class="form-label">Descripción</label>
+                        <label for="short_description" class="form-label">{{ __('texts_create.description') }}</label>
                         <textarea class="form-control" id="short_description" name="short_description" rows="3" required></textarea>
                     </div>
                     <div class="d-flex">
                         <a href="{{ route('index') }}" class="btn btn-secondary flex-grow-1 m-1"><i
-                                class='bx bx-arrow-back me-3 icon-center'></i>Volver a inicio</a>
-                        <button type="submit" class="btn btn-primary flex-grow-1 m-1">Enviar Mensaje</button>
+                                class='bx bx-arrow-back me-3 icon-center'></i>{{ __('texts_create.back_to_home') }}</a>
+                        <button type="submit"
+                            class="btn btn-primary flex-grow-1 m-1">{{ __('texts_create.send_message') }}</button>
                     </div>
                 </form>
                 <div class="alert alert-success text-center mt-3" role="alert">
-                    Al enviar este mensaje, <strong>compartirás</strong> tus datos con la persona contactada. <br><br>
-                    Esto incluye tu <strong>número de teléfono</strong>, para facilitar la comunicación, incluso fuera de la
-                    aplicación si fuese necesario.
-                </div>
-                <div class="alert alert-success mt-3" id="successMessage" style="display: none;">
-                    ¡Mensaje enviado con éxito!
+                    {!! __('texts_create.alert_message') !!}
                 </div>
             </div>
         </div>
     </div>
-
 @endsection

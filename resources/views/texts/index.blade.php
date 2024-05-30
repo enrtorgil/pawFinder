@@ -1,20 +1,20 @@
 @extends('layout')
 
-@section('title', 'Mensajes recibidos')
+@section('title', __('texts_index.title'))
 
 @section('content')
     <div class="container-fluid mt-4 px-5">
-        <h2 class="mb-4">Mensajes Recibidos</h2>
+        <h2 class="mb-4">{{ __('texts_index.header') }}</h2>
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered align-middle">
                 <thead class="table-dark">
                     <tr>
-                        <th class="ps-3">De</th>
-                        <th class="ps-3">Teléfono</th>
-                        <th class="ps-3">Asunto</th>
-                        <th class="ps-3">Descripción breve</th>
+                        <th class="ps-3">{{ __('texts_index.from') }}</th>
+                        <th class="ps-3">{{ __('texts_index.phone') }}</th>
+                        <th class="ps-3">{{ __('texts_index.subject') }}</th>
+                        <th class="ps-3">{{ __('texts_index.short_description') }}</th>
                         <th class="ps-3">
-                            Fecha
+                            {{ __('texts_index.date') }}
                             <div class="float-end">
                                 <a href="{{ route('texts.index', ['sort' => $sort === 'desc' ? 'asc' : 'desc']) }}"
                                     class="btn btn-sm btn-link p-0 mx-2">
@@ -22,7 +22,7 @@
                                 </a>
                             </div>
                         </th>
-                        <th class="text-center justify-content-center">Acciones</th>
+                        <th class="text-center justify-content-center">{{ __('texts_index.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,7 +36,7 @@
                                     <button type="button" class="btn btn-link p-0 m-0 align-baseline text-darkgreen"
                                         style="display: inline;" data-bs-toggle="modal" data-bs-target="#subjectModal"
                                         data-subject="{{ $message->subject }}">
-                                        Leer más
+                                        {{ __('texts_index.read_more') }}
                                     </button>
                                 @endif
                             </td>
@@ -46,7 +46,7 @@
                                     <button type="button" class="btn btn-link p-0 m-0 align-baseline"
                                         style="display: inline;" data-bs-toggle="modal" data-bs-target="#descriptionModal"
                                         data-description="{{ $message->short_description }}">
-                                        Leer más
+                                        {{ __('texts_index.read_more') }}
                                     </button>
                                 @endif
                             </td>
@@ -80,10 +80,10 @@
             </div>
             <div class="ms-auto d-flex gap-2">
                 <a class="btn btn-secondary" href="{{ route('index') }}">
-                    <i class="fas fa-arrow-left me-2"></i> Volver a inicio
+                    <i class="fas fa-arrow-left me-2"></i> {{ __('texts_index.back_to_home') }}
                 </a>
                 <a class="btn btn-success" href="{{ route('texts.export') }}">
-                    <i class="fas fa-file-excel me-2"></i> Exportar
+                    <i class="fas fa-file-excel me-2"></i> {{ __('texts_index.export') }}
                 </a>
             </div>
         </div>
@@ -95,18 +95,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteMessageModalLabel">Confirmar Eliminación</h5>
+                    <h5 class="modal-title" id="deleteMessageModalLabel">{{ __('texts_index.confirm_delete') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ¿Estás seguro de que deseas eliminar este mensaje?
+                    {{ __('texts_index.confirm_delete_body') }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">{{ __('texts_index.cancel') }}</button>
                     <form id="deleteMessageForm" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                        <button type="submit" class="btn btn-danger">{{ __('texts_index.confirm') }}</button>
                     </form>
                 </div>
             </div>
@@ -118,14 +119,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="subjectModalLabel">Asunto completo</h5>
+                    <h5 class="modal-title" id="subjectModalLabel">{{ __('texts_index.full_subject') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p id="fullSubject" class="text-wrap" style="white-space: pre-wrap; word-break: break-word;"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">{{ __('texts_index.close') }}</button>
                 </div>
             </div>
         </div>
@@ -137,14 +139,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="descriptionModalLabel">Descripción completa</h5>
+                    <h5 class="modal-title" id="descriptionModalLabel">{{ __('texts_index.full_description') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p id="fullDescription" class="text-wrap" style="white-space: pre-wrap; word-break: break-word;"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">{{ __('texts_index.close') }}</button>
                 </div>
             </div>
         </div>
@@ -156,7 +159,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="replyMessageModalLabel">Responder Mensaje</h5>
+                    <h5 class="modal-title" id="replyMessageModalLabel">{{ __('texts_index.reply_message') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -164,16 +167,17 @@
                         @csrf
                         <input type="hidden" name="receiver_id" id="replyReceiverId">
                         <div class="mb-3">
-                            <label for="replySubject" class="form-label">Asunto</label>
+                            <label for="replySubject" class="form-label">{{ __('texts_index.subject') }}</label>
                             <input type="text" class="form-control" id="replySubject" name="subject" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="replyDescription" class="form-label">Mensaje</label>
+                            <label for="replyDescription" class="form-label">{{ __('texts_index.message') }}</label>
                             <textarea class="form-control" id="replyDescription" name="short_description" rows="4" required></textarea>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">{{ __('texts_index.close') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('texts_index.send') }}</button>
                         </div>
                     </form>
                 </div>

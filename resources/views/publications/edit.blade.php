@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Editar anuncio')
+@section('title', __('publications_edit.title'))
 
 @section('content')
     <div class="container mt-3">
@@ -11,45 +11,53 @@
 
             <div class="row">
                 <div class="col-md-3 mb-2">
-                    <label for="name" class="form-label">Nombre</label>
+                    <label for="name" class="form-label">{{ __('publications_edit.name') }}</label>
                     <input type="text" name="name" class="form-control" id="name"
                         value="{{ old('name', $publication->name) }}" required>
                 </div>
 
                 <div class="col-md-3 mb-2">
-                    <label for="type" class="form-label">Tipo</label>
+                    <label for="type" class="form-label">{{ __('publications_edit.type') }}</label>
                     <select name="type" class="form-select" id="type" required>
-                        <option value="se busca" {{ old('type', $publication->type) == 'se busca' ? 'selected' : '' }}>Se
-                            busca</option>
-                        <option value="se adopta" {{ old('type', $publication->type) == 'se adopta' ? 'selected' : '' }}>Se
-                            adopta</option>
+                        <option value="se busca" {{ old('type', $publication->type) == 'se busca' ? 'selected' : '' }}>
+                            {{ __('publications_edit.type_seeking') }}
+                        </option>
+                        <option value="se adopta" {{ old('type', $publication->type) == 'se adopta' ? 'selected' : '' }}>
+                            {{ __('publications_edit.type_adopt') }}
+                        </option>
                     </select>
                 </div>
 
                 <div class="col-md-2 mb-2">
-                    <label for="type_animal" class="form-label">Tipo de Animal</label>
+                    <label for="type_animal" class="form-label">{{ __('publications_edit.animal_type') }}</label>
                     <select name="type_animal" class="form-select" id="type_animal" required>
-                        <option value="perro"
-                            {{ old('type_animal', $publication->type_animal) == 'perro' ? 'selected' : '' }}>Perro</option>
-                        <option value="gato"
-                            {{ old('type_animal', $publication->type_animal) == 'gato' ? 'selected' : '' }}>Gato</option>
-                        <option value="otro"
-                            {{ old('type_animal', $publication->type_animal) == 'otro' ? 'selected' : '' }}>Otro</option>
+                        <option value="perro" {{ old('type_animal', $publication->type_animal) == 'perro' ? 'selected' : '' }}>
+                            {{ __('publications_edit.animal_type_dog') }}
+                        </option>
+                        <option value="gato" {{ old('type_animal', $publication->type_animal) == 'gato' ? 'selected' : '' }}>
+                            {{ __('publications_edit.animal_type_cat') }}
+                        </option>
+                        <option value="otro" {{ old('type_animal', $publication->type_animal) == 'otro' ? 'selected' : '' }}>
+                            {{ __('publications_edit.animal_type_other') }}
+                        </option>
                     </select>
                 </div>
                 <div class="col-md-2 mb-2">
-                    <label for="size" class="form-label">Tamaño</label>
+                    <label for="size" class="form-label">{{ __('publications_edit.size') }}</label>
                     <select name="size" class="form-select" id="size" required>
-                        <option value="Grande" {{ old('size', $publication->size) == 'Grande' ? 'selected' : '' }}>Grande
+                        <option value="Grande" {{ old('size', $publication->size) == 'Grande' ? 'selected' : '' }}>
+                            {{ __('publications_edit.size_large') }}
                         </option>
-                        <option value="Mediano" {{ old('size', $publication->size) == 'Mediano' ? 'selected' : '' }}>Mediano
+                        <option value="Mediano" {{ old('size', $publication->size) == 'Mediano' ? 'selected' : '' }}>
+                            {{ __('publications_edit.size_medium') }}
                         </option>
-                        <option value="Pequeño" {{ old('size', $publication->size) == 'Pequeño' ? 'selected' : '' }}>Pequeño
+                        <option value="Pequeño" {{ old('size', $publication->size) == 'Pequeño' ? 'selected' : '' }}>
+                            {{ __('publications_edit.size_small') }}
                         </option>
                     </select>
                 </div>
                 <div class="col-md-2 mb-2">
-                    <label for="date" class="form-label">Fecha</label>
+                    <label for="date" class="form-label">{{ __('publications_edit.date') }}</label>
                     <input type="date" name="date" class="form-control" id="date"
                         value="{{ old('date', $publication->date) }}" required>
                 </div>
@@ -57,11 +65,11 @@
 
             <div class="row">
                 <div class="col-md-3 mb-2">
-                    <label for="image" class="form-label">Imagen</label>
+                    <label for="image" class="form-label">{{ __('publications_edit.image') }}</label>
                     <input type="file" name="image" class="form-control" id="image">
                 </div>
                 <div class="col-md-9 mb-2">
-                    <label for="description" class="form-label">Descripción</label>
+                    <label for="description" class="form-label">{{ __('publications_edit.description') }}</label>
                     <textarea rows="1" name="description" class="form-control" id="description">{{ old('description', $publication->description) }}</textarea>
                 </div>
             </div>
@@ -81,12 +89,11 @@
             <div class="row">
                 <div class="col-md-3 mb-2">
                     <label for="country" class="form-label" data-bs-toggle="tooltip"
-                        title="Este campo no es obligatorio, pero ayudará a encontrar la ubicación en el mapa.">País</label>
+                        title="{{ __('publications_edit.country_tooltip') }}">{{ __('publications_edit.country') }}</label>
                     <select name="country" class="form-select" id="country">
-                        <option value="">Seleccionar País</option>
+                        <option value="">{{ __('publications_edit.select_country') }}</option>
                         @foreach ($countries as $country)
-                            <option value="{{ $country }}"
-                                {{ old('country', $publication->country) == $country ? 'selected' : '' }}>
+                            <option value="{{ $country }}" {{ old('country', $publication->country) == $country ? 'selected' : '' }}>
                                 {{ $country }}
                             </option>
                         @endforeach
@@ -95,22 +102,21 @@
 
                 <div class="col-md-3 mb-2">
                     <label for="street" class="form-label" data-bs-toggle="tooltip"
-                        title="Este campo no es obligatorio, pero ayudará a encontrar la ubicación en el mapa.">Calle</label>
+                        title="{{ __('publications_edit.street_tooltip') }}">{{ __('publications_edit.street') }}</label>
                     <input type="text" name="street" class="form-control" id="street"
                         value="{{ old('street', $publication->street) }}">
                 </div>
 
                 <div class="col-md-3 mb-2">
                     <label for="city" class="form-label" data-bs-toggle="tooltip"
-                        title="Este campo no es obligatorio, pero ayudará a encontrar la ubicación en el mapa.">Ciudad</label>
+                        title="{{ __('publications_edit.city_tooltip') }}">{{ __('publications_edit.city') }}</label>
                     <input type="text" name="city" class="form-control" id="city"
                         value="{{ old('city', $publication->city) }}">
                 </div>
 
                 <div class="col-md-3 mb-2">
                     <label for="zip" class="form-label" data-bs-toggle="tooltip"
-                        title="Este campo no es obligatorio, pero ayudará a encontrar la ubicación en el mapa.">Código
-                        Postal</label>
+                        title="{{ __('publications_edit.zip_tooltip') }}">{{ __('publications_edit.zip') }}</label>
                     <input type="text" name="zip" class="form-control" id="zip"
                         value="{{ old('zip', $publication->zip) }}">
                 </div>
@@ -118,10 +124,10 @@
 
             <div class="row mt-3">
                 <div class="col-md-6">
-                    <a href="{{ url()->previous() }}" class="btn btn-secondary w-100">Volver</a>
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary w-100">{{ __('publications_edit.back') }}</a>
                 </div>
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary w-100">Actualizar Publicación</button>
+                    <button type="submit" class="btn btn-primary w-100">{{ __('publications_edit.update_publication') }}</button>
                 </div>
             </div>
         </form>

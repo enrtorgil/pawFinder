@@ -8,6 +8,7 @@ use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\FavController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TextController;
+use App\Http\Controllers\LanguageController;
 
 Route::get('/', function () {
     return view('index');
@@ -18,6 +19,8 @@ Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('register', [LoginController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [LoginController::class, 'register']);
+
+Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
