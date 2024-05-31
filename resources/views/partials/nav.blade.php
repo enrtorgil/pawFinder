@@ -92,10 +92,10 @@
                     <a class="nav-link d-flex align-items-center"
                         href="{{ route('lang.switch', App::getLocale() === 'en' ? 'es' : 'en') }}">
                         @if (App::getLocale() === 'en')
-                            <img src="{{ asset('img/flag-spain.png') }}" alt="Spain Flag"
+                            <img src="{{ asset('img/flag-uk.png') }}" alt="UK Flag"
                                 style="width: 20px; height: auto;">
                         @else
-                            <img src="{{ asset('img/flag-uk.png') }}" alt="UK Flag"
+                            <img src="{{ asset('img/flag-spain.png') }}" alt="Spain Flag"
                                 style="width: 20px; height: auto;">
                         @endif
                     </a>
