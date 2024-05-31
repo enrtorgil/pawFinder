@@ -6,6 +6,15 @@
     --color-tertiary: #c6e3c5;
     --color-quaternary: #b2c8a2;
     --color-quinary: #98b28f;
+    --color-pastel-green: #74db9d;
+    --color-pastel-green-hover: #90c59b;
+    --color-pastel-red: #ec5d5d;
+    --color-pastel-red-hover: #e68a8a;
+    --color-favorite: #ff6f61;
+    --color-favorite-hover: #e55a50;
+    --color-star: #ffffff;
+    --color-star-bg: #f1d76c;
+    --color-star-hover: #e4de1f;
 }
 
 .text-lightgreen {
@@ -27,11 +36,49 @@ body {
 .btn-primary {
     background-color: var(--color-quinary);
     border-color: var(--color-secondary);
+    color: white;
 }
 
 .btn-primary:hover {
-    background-color: var(--color-quaternary);
-    border-color: var(--color-quaternary);
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: white;
+}
+
+.btn-pastel-green {
+    background-color: var(--color-pastel-green);
+    border-color: var(--color-pastel-green);
+    color: white;
+}
+
+.btn-pastel-green:hover {
+    background-color: var(--color-pastel-green-hover);
+    border-color: var(--color-pastel-green-hover);
+    color: white;
+}
+
+.btn-pastel-red {
+    background-color: var(--color-pastel-red);
+    border-color: var(--color-pastel-red);
+    color: white;
+}
+
+.btn-pastel-red:hover {
+    background-color: var(--color-pastel-red-hover);
+    border-color: var(--color-pastel-red-hover);
+    color: white;
+}
+
+.btn-favorite, .btn-unfavorite {
+    background-color: var(--color-star-bg);
+    border-color: var(--color-star-bg);
+    color: var(--color-star);
+}
+
+.btn-favorite:hover, .btn-unfavorite:hover {
+    background-color: var(--color-star-hover);
+    border-color: var(--color-star-hover);
+    color: var(--color-star);
 }
 
 .btn-link {
@@ -45,7 +92,6 @@ body {
 }
 
 /* Extra */
-
 .icon-center {
     font-size: 1.5em;
     vertical-align: middle;
@@ -70,4 +116,9 @@ a {
 
 .leaflet-control-attribution {
     display: none !important;
+}
+
+/* Animaciones */
+.btn {
+    transition: all 0.3s ease-in-out;
 }

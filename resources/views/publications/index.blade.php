@@ -86,9 +86,9 @@
         <div class="row">
             @forelse ($publications as $publication)
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100 border-0">
+                    <div class="card h-100 border-0 bg-transparent">
                         <div
-                            class="card-header opacity-75 d-flex justify-content-between align-items-center py-3 header-shadow">
+                            class="card-header border-0 opacity-75 d-flex justify-content-between align-items-center py-2 header-shadow bg-success text-light">
                             <div class="d-flex align-items-center">
                                 <a href="{{ route('publications.show', $publication->id) }}"
                                     class="text-decoration-none text-reset">
@@ -117,10 +117,10 @@
                                     <i class='bx bx-show'></i> {{ __('publications_index.view') }}
                                 </a>
                                 <a href="{{ route('texts.create', ['publication_id' => $publication->id]) }}"
-                                    class="btn btn-info text-light flex-grow-1 border-0 rounded-5">
+                                    class="btn btn-pastel-green text-light flex-grow-1 border-0 rounded-5">
                                     <i class='bx bx-envelope'></i> {{ __('publications_index.message') }}
                                 </a>
-                                <button type="button" class="btn btn-warning text-light flex-grow-1 border-0 rounded-5"
+                                <button type="button" class="btn btn-pastel-red text-light flex-grow-1 border-0 rounded-5"
                                     data-bs-toggle="modal" data-id="{{ $publication->id }}" data-bs-target="#reportModal">
                                     <i class='bx bx-flag'></i> {{ __('publications_index.report') }}
                                 </button>
@@ -135,12 +135,12 @@
                                     @csrf
                                     @if ($isFavorited)
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger w-100 border-0 rounded-5">
-                                            <i class='bx bxs-heart'></i>
+                                        <button type="submit" class="btn btn-favorite w-100 border-0 rounded-5">
+                                            <i class="fas fa-star"></i>
                                         </button>
                                     @else
-                                        <button type="submit" class="btn btn-danger w-100 border-0 rounded-5">
-                                            <i class='bx bx-heart'></i>
+                                        <button type="submit" class="btn btn-unfavorite w-100 border-0 rounded-5">
+                                            <i class="far fa-star"></i>
                                         </button>
                                     @endif
                                 </form>
