@@ -60,7 +60,7 @@ class FavController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
-        $favs = $query->simplePaginate(8);
+        $favs = $query->simplePaginate(3);
 
         return view('favs.index', compact('favs'));
     }

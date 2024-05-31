@@ -80,9 +80,10 @@
         @else
             <div class="row">
                 @foreach ($favs as $publication)
-                    <div class="col-md-3 mb-4">
-                        <div class="card h-100 border-0">
-                            <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 bg-transparent">
+                            <div
+                                class="card-header border-0 opacity-75 d-flex justify-content-between align-items-center py-2 header-shadow bg-success text-light">
                                 <div class="d-flex align-items-center">
                                     <a href="{{ route('publications.show', $publication->id) }}"
                                         class="text-decoration-none text-reset">
@@ -91,7 +92,7 @@
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <span
-                                        class="badge bg-secondary mx-3">{{ __('favs_index.type_values.' . $publication->type) }}</span>
+                                        class="badge bg-secondary mx-3 p-2">{{ __('favs_index.type_values.' . $publication->type) }}</span>
                                     @if ($publication->type_animal == 'perro')
                                         <i class='bx bxs-dog'></i>
                                     @elseif ($publication->type_animal == 'gato')
@@ -103,7 +104,8 @@
                             </div>
                             <a href="{{ route('publications.show', $publication->id) }}">
                                 <img src="{{ Storage::url($publication->image) }}"
-                                    class="card-img-top img-fluid img-custom border-0" alt="{{ $publication->name }}"></a>
+                                    class="card-img-top img-fluid img-custom border-0" alt="{{ $publication->name }}">
+                            </a>
                             <div class="card-body p-2">
                                 <div class="d-flex flex-wrap gap-1">
                                     <a href="{{ route('publications.show', $publication->id) }}"
@@ -129,10 +131,11 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="card-footer text-muted d-flex justify-content-between">
-                                <span><i class='bx bx-ruler'></i>
+                            <div
+                                class="card-footer text-muted d-flex justify-content-between border-0 py-2 px-4 rounded-5 bg-success opacity-75">
+                                <span class="text-light"><i class='bx bx-ruler'></i>
                                     {{ __('favs_index.publication_size.' . strtolower($publication->size)) }}</span>
-                                <span><i class='bx bx-calendar'></i>
+                                <span class="text-light"><i class='bx bx-calendar'></i>
                                     {{ \Carbon\Carbon::parse($publication->date)->format('d-m-Y') }}</span>
                             </div>
                         </div>
@@ -147,12 +150,16 @@
     <style>
         .img-custom {
             width: 100%;
-            height: 14rem;
+            height: 18rem;
             object-fit: cover;
             border-bottom-left-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
             border-top-left-radius: 0rem;
             border-top-right-radius: 0rem;
+        }
+
+        .header-shadow {
+            box-shadow: 0 4px 8px -4px rgba(234, 220, 220, 0.8);
         }
     </style>
 @endsection

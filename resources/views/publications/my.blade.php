@@ -88,10 +88,9 @@
         @else
             <div class="row">
                 @foreach ($publications as $publication)
-                    <div class="col-md-3 mb-3">
-                        <div class="card h-100 border-0">
-                            <div class="card-header d-flex justify-content-between align-items-center"
-                                style="border-bottom: none;">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 bg-transparent">
+                            <div class="card-header border-0 opacity-75 d-flex justify-content-between align-items-center py-2 header-shadow bg-success text-light">
                                 <div class="d-flex align-items-center">
                                     <a href="{{ route('publications.show', $publication->id) }}"
                                         class="text-decoration-none text-reset">
@@ -99,7 +98,7 @@
                                     </a>
                                 </div>
                                 <div class="d-flex align-items-center">
-                                    <span class="badge bg-secondary mx-3">{{ __('publications_index.publication.type.' . strtoupper($publication->type)) }}</span>
+                                    <span class="badge bg-secondary mx-3 p-2">{{ __('publications_my.publication.type.' . strtoupper($publication->type)) }}</span>
                                     @if ($publication->type_animal == 'perro')
                                         <i class='bx bxs-dog'></i>
                                     @elseif ($publication->type_animal == 'gato')
@@ -130,10 +129,10 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="card-footer text-muted d-flex justify-content-between">
-                                <span><i class='bx bx-ruler'></i>
-                                    {{ __('publications_index.publication.size.' . $publication->size) }}</span>
-                                <span><i class='bx bx-calendar'></i>
+                            <div class="card-footer text-muted d-flex justify-content-between border-0 py-2 px-4 rounded-5 bg-success opacity-75">
+                                <span class="text-light"><i class='bx bx-ruler'></i>
+                                    {{ __('publications_my.publication.size.' . $publication->size) }}</span>
+                                <span class="text-light"><i class='bx bx-calendar'></i>
                                     {{ \Carbon\Carbon::parse($publication->date)->format('d-m-Y') }}</span>
                             </div>
                         </div>
@@ -151,7 +150,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">{{ __('publications_my.confirm_delete') }}</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">{{ __('publications_my.title.confirm_delete') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -183,12 +182,16 @@
     <style>
         .img-custom {
             width: 100%;
-            height: 14rem;
+            height: 18rem;
             object-fit: cover;
             border-bottom-left-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
             border-top-left-radius: 0rem;
             border-top-right-radius: 0rem;
+        }
+
+        .header-shadow {
+            box-shadow: 0 4px 8px -4px rgba(234, 220, 220, 0.8);
         }
     </style>
 @endsection

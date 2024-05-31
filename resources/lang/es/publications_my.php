@@ -27,6 +27,7 @@ return [
     'edit' => 'Editar',
     'delete' => 'Eliminar',
     'confirm_delete' => '¿Estás seguro de que quieres eliminar esta publicación?',
+    'title.confirm_delete'=> 'Confirmar Eliminación',
     'cancel' => 'Cancelar',
     'send_report' => 'Enviar Reporte',
     'no_publications' => 'No has publicado ningún anuncio.',

@@ -27,6 +27,7 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'confirm_delete' => 'Are you sure you want to delete this publication?',
+    'title.confirm_delete'=> 'Confirm Delete',
     'cancel' => 'Cancel',
     'send_report' => 'Send Report',
     'no_publications' => 'You have not published any ads.',
