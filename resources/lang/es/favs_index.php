@@ -3,7 +3,7 @@
 return [
     'title' => 'Mis Favoritos',
     'filter' => 'Filtrar',
-    'refresh' => 'Actualizar',
+    'reset' => 'Restablecer',
     'no_favorites' => 'No tienes publicaciones favoritas.',
     'name' => 'Nombre',
     'type' => 'Tipo',
@@ -20,8 +20,8 @@ return [
         'pequeño' => 'Pequeño'
     ],
     'type_values' => [
-        'se busca' => 'Se busca',
-        'se adopta' => 'Se adopta',
+        'se busca' => 'SE BUSCA',
+        'se adopta' => 'SE ADOPTA',
     ],
     'animal_type_values' => [
         'perro' => 'Perro',

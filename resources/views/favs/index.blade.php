@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-auto">
                                 <a href="{{ route('favs.index') }}" class="btn btn-secondary w-100"><i
-                                        class='bx bx-refresh'></i></a>
+                                        class='bx bx-refresh'></i> {{ __('favs_index.reset') }}</a>
                             </div>
                         </form>
                     </div>
@@ -91,8 +91,7 @@
                                     </a>
                                 </div>
                                 <div class="d-flex align-items-center">
-                                    <span
-                                        class="badge bg-secondary mx-3 p-2">{{ __('favs_index.type_values.' . $publication->type) }}</span>
+                                    <span class="badge bg-secondary mx-3 p-2">{{ __('favs_index.type_values.' . $publication->type) }}</span>
                                     @if ($publication->type_animal == 'perro')
                                         <i class='bx bxs-dog'></i>
                                     @elseif ($publication->type_animal == 'gato')
