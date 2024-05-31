@@ -65,6 +65,7 @@
 .dropdown-item:focus {
     color: var(--color-secondary);
     background-color: #e2fed7;
+    border-radius: 0.25rem;
 }
 
 .logo-img {
