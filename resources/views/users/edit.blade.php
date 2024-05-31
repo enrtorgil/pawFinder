@@ -8,8 +8,8 @@
 
 @section('content')
     <div class="container">
-        <div class="row mt-3">
-            <div class="col-md-6">
+        <div class="row mt-4">
+            <div class="col-md-7">
                 <h1 class="mb-3">{{ __('edit_user.header', ['username' => $user->username]) }}</h1>
                 <form action="{{ route('users.update', $user) }}" method="POST">
                     @csrf
@@ -55,7 +55,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-6 d-none d-md-flex mt-5 pt-5">
+            <div class="col-md-5 d-none d-md-flex mt-5 pt-5 ps-5">
                 <img src="{{ url('img/edit-profile.png') }}" alt="Perfil de usuario" class="img-edit-user img-fluid">
             </div>
         </div>
