@@ -48,14 +48,23 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $authUser = Auth::user();
+
+        if ($authUser->id !== $user->id && $authUser->role !== 'administrador') {
+            return redirect()->route('index')->with('error', 'No tienes permiso para editar este perfil.');
+        }
+
         return view('users.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UserRequest $request, User $user)
     {
+        $authUser = Auth::user();
+
+        if ($authUser->id !== $user->id && $authUser->role !== 'administrador') {
+            return redirect()->route('index')->with('error', 'No tienes permiso para actualizar este perfil.');
+        }
+
         $user->username = $request->username;
         $user->email = $request->email;
         $user->phone = $request->phone;
