@@ -22,13 +22,21 @@ class TextController extends Controller
     public function index(Request $request)
     {
         $sort = $request->input('sort', 'desc');
-        $messages = Text::where('receiver_id', Auth::id())
-            ->with('sender')
-            ->orderBy('created_at', $sort)
-            ->simplePaginate(9);
-        return view('texts.index', compact('messages', 'sort'));
-    }
+        $subjectSort = $request->input('subject_sort', null);
 
+        $query = Text::where('receiver_id', Auth::id())
+            ->with('sender');
+
+        if ($subjectSort) {
+            $query->orderBy('subject', $subjectSort);
+        } else {
+            $query->orderBy('created_at', $sort);
+        }
+
+        $messages = $query->simplePaginate(9);
+
+        return view('texts.index', compact('messages', 'sort', 'subjectSort'));
+    }
 
     /**
      * Muestra el formulario de contacto.

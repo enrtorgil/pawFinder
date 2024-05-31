@@ -11,7 +11,14 @@
                     <tr>
                         <th class="ps-3">{{ __('texts_index.from') }}</th>
                         <th class="ps-3">{{ __('texts_index.phone') }}</th>
-                        <th class="ps-3">{{ __('texts_index.subject') }}</th>
+                        <th class="ps-3">{{ __('texts_index.subject') }}
+                            <div class="float-end">
+                                <a href="{{ route('texts.index', ['subject_sort' => $subjectSort === 'asc' ? 'desc' : 'asc']) }}"
+                                    class="btn btn-sm btn-link p-0 mx-2">
+                                    <i class="fas fa-sort text-lightgreen"></i>
+                                </a>
+                            </div>
+                        </th>
                         <th class="ps-3">{{ __('texts_index.short_description') }}</th>
                         <th class="ps-3">
                             {{ __('texts_index.date') }}
@@ -63,11 +70,10 @@
                                 </button>
                                 <button type="button" class="btn btn-sm btn-primary flex-grow-1" data-bs-toggle="modal"
                                     data-bs-target="#replyMessageModal" data-emitter-id="{{ $message->emitter_id }}"
-                                    data-subject="Re: {{ $message->subject }}">
+                                    data-subject="{{ $message->subject }}">
                                     <i class="fas fa-reply"></i>
                                 </button>
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>
