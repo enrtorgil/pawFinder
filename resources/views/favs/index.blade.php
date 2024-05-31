@@ -2,6 +2,10 @@
 
 @section('title', __('favs_index.title'))
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/favs-my.css') }}">
+@endpush
+
 @section('content')
     <div class="container-fluid mt-3 px-5">
         <h1 class="mb-3">{{ __('favs_index.title') }}</h1>
@@ -66,7 +70,7 @@
                                     {{ __('favs_index.filter') }}</button>
                             </div>
                             <div class="col-auto">
-                                <a href="{{ route('favs.index') }}" class="btn btn-secondary w-100"><i
+                                <a href="{{ route('favs.index') }}" class="btn btn-pastel-blue w-100"><i
                                         class='bx bx-refresh'></i> {{ __('favs_index.reset') }}</a>
                             </div>
                         </form>
@@ -121,10 +125,10 @@
                                         @csrf
                                         @if ($isFavorited)
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger w-100 border-0 rounded-5"><i
+                                            <button type="submit" class="btn btn-report w-100 border-0 rounded-5"><i
                                                     class='bx bxs-heart'></i> {{ __('favs_index.unfavorite') }}</button>
                                         @else
-                                            <button type="submit" class="btn btn-danger w-100 border-0 rounded-5"><i
+                                            <button type="submit" class="btn btn-report w-100 border-0 rounded-5"><i
                                                     class='bx bx-heart'></i></button>
                                         @endif
                                     </form>
@@ -146,19 +150,4 @@
             </div>
         @endif
     </div>
-    <style>
-        .img-custom {
-            width: 100%;
-            height: 18rem;
-            object-fit: cover;
-            border-bottom-left-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
-            border-top-left-radius: 0rem;
-            border-top-right-radius: 0rem;
-        }
-
-        .header-shadow {
-            box-shadow: 0 4px 8px -4px rgba(234, 220, 220, 0.8);
-        }
-    </style>
 @endsection

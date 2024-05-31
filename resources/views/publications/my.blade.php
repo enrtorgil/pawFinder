@@ -2,6 +2,10 @@
 
 @section('title', __('publications_my.title'))
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/favs-my.css') }}">
+@endpush
+
 @section('content')
     <div class="container-fluid mt-3 px-5">
         <h1 class="mb-3">{{ __('publications_my.title') }}</h1>
@@ -74,7 +78,7 @@
                                 </button>
                             </div>
                             <div class="col-auto">
-                                <a href="{{ route('publications.my') }}" class="btn btn-secondary w-100">
+                                <a href="{{ route('publications.my') }}" class="btn btn-pastel-blue w-100">
                                     <i class='bx bx-refresh'></i> {{ __('publications_my.reset') }}
                                 </a>
                             </div>
@@ -119,10 +123,10 @@
                                         <i class='bx bx-show'></i> {{ __('publications_my.view') }}
                                     </a>
                                     <a href="{{ route('publications.edit', $publication->id) }}"
-                                        class="btn btn-warning text-light flex-grow-1 border-0 rounded-5">
+                                        class="btn btn-favorite text-light flex-grow-1 border-0 rounded-5">
                                         <i class='bx bx-edit'></i> {{ __('publications_my.edit') }}
                                     </a>
-                                    <button type="button" class="btn btn-danger flex-grow-1 border-0 rounded-5"
+                                    <button type="button" class="btn btn-report flex-grow-1 border-0 rounded-5"
                                         data-bs-toggle="modal" data-id="{{ $publication->id }}"
                                         data-bs-target="#deleteModal">
                                         <i class='bx bx-trash'></i> {{ __('publications_my.delete') }}
@@ -178,20 +182,4 @@
             deleteForm.action = `/publications/${publicationId}`;
         });
     </script>
-
-    <style>
-        .img-custom {
-            width: 100%;
-            height: 18rem;
-            object-fit: cover;
-            border-bottom-left-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
-            border-top-left-radius: 0rem;
-            border-top-right-radius: 0rem;
-        }
-
-        .header-shadow {
-            box-shadow: 0 4px 8px -4px rgba(234, 220, 220, 0.8);
-        }
-    </style>
 @endsection

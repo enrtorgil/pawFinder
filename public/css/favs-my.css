@@ -1,0 +1,13 @@
+.img-custom {
+    width: 100%;
+    height: 18rem;
+    object-fit: cover;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+}
+
+.header-shadow {
+    box-shadow: 0 4px 8px -4px rgba(234, 220, 220, 0.8);
+}

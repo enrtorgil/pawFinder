@@ -10,10 +10,10 @@
     --color-pastel-green-hover: #90c59b;
     --color-pastel-red: #ec5d5d;
     --color-pastel-red-hover: #e68a8a;
-    --color-favorite: #ff6f61;
-    --color-favorite-hover: #e55a50;
+    --color-pastel-blue: #8cb9ef;
+    --color-pastel-blue-hover: #6997d0;
     --color-star: #ffffff;
-    --color-star-bg: #f1d76c;
+    --color-star-bg: #edcf59;
     --color-star-hover: #e4de1f;
 }
 
@@ -33,6 +33,7 @@ body {
 }
 
 /* Botones */
+
 .btn-primary {
     background-color: var(--color-quinary);
     border-color: var(--color-secondary);
@@ -54,6 +55,18 @@ body {
 .btn-pastel-green:hover {
     background-color: var(--color-pastel-green-hover);
     border-color: var(--color-pastel-green-hover);
+    color: white;
+}
+
+.btn-pastel-blue {
+    background-color: var(--color-pastel-blue);
+    border-color: var(--color-pastel-blue);
+    color: white;
+}
+
+.btn-pastel-blue:hover {
+    background-color: var(--color-pastel-blue-hover);
+    border-color: var(--color-pastel-blue-hover);
     color: white;
 }
 
@@ -81,6 +94,30 @@ body {
     color: var(--color-star);
 }
 
+.btn-report {
+    background-color: var(--color-pastel-red);
+    border-color: var(--color-pastel-red);
+    color: white;
+}
+
+.btn-report:hover {
+    background-color: var(--color-pastel-red-hover);
+    border-color: var(--color-pastel-red-hover);
+    color: white;
+}
+
+.btn-home {
+    background-color: var(--color-pastel-blue);
+    border-color: var(--color-pastel-blue);
+    color: white;
+}
+
+.btn-home:hover {
+    background-color: var(--color-pastel-blue-hover);
+    border-color: var(--color-pastel-blue-hover);
+    color: white;
+}
+
 .btn-link {
     color: #18742d !important;
     text-decoration: none;
@@ -91,7 +128,6 @@ body {
     text-decoration: underline;
 }
 
-/* Extra */
 .icon-center {
     font-size: 1.5em;
     vertical-align: middle;
@@ -116,9 +152,4 @@ a {
 
 .leaflet-control-attribution {
     display: none !important;
-}
-
-/* Animaciones */
-.btn {
-    transition: all 0.3s ease-in-out;
 }

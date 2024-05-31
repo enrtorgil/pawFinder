@@ -2,6 +2,10 @@
 
 @section('title', __('publications_index.title'))
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/index-publications.css') }}">
+@endpush
+
 @section('content')
     <div class="container-fluid mt-4 px-5">
         <div class="row mb-4">
@@ -73,7 +77,7 @@
                                 </button>
                             </div>
                             <div class="col-auto">
-                                <a href="{{ route('publications.index') }}" class="btn btn-secondary w-100">
+                                <a href="{{ route('publications.index') }}" class="btn btn-pastel-blue w-100">
                                     <i class='bx bx-refresh'></i> {{ __('publications_index.reset') }}
                                 </a>
                             </div>
@@ -197,22 +201,6 @@
             </div>
         </div>
     </div>
-
-    <style>
-        .img-custom {
-            width: 100%;
-            height: 20rem;
-            object-fit: cover;
-            border-bottom-left-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
-            border-top-left-radius: 0rem;
-            border-top-right-radius: 0rem;
-        }
-
-        .header-shadow {
-            box-shadow: 0 4px 8px -4px rgba(234, 220, 220, 0.8);
-        }
-    </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
