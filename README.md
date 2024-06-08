@@ -31,7 +31,7 @@ Con PawFinder, se espera abordar de manera efectiva el creciente problema del ex
 > - **Páginas adicionales para usuarios registrados**: Los usuarios registrados tienen acceso a todas las secciones de la aplicación, incluyendo ‘Inicio’, ‘Publicaciones’, ‘Mis anuncios’, ‘Favoritos’, ‘Mi perfil’, ‘Mensajes’, ‘Administrador’ (solo para administradores), ‘Cerrar sesión’ y ‘Alternar idioma’.
 > 
 > #### 2. Visualización de Páginas Específicas
-- **Todas las páginas**: La aplicación muestra un conjunto de publicaciones, incluyendo el anuncio más reciente, el anuncio con más favoritos, y permite la creación de nuevas publicaciones desde cualquier sección accesible para usuarios registrados.
+> - **Todas las páginas**: La aplicación muestra un conjunto de publicaciones, incluyendo el anuncio más reciente, el anuncio con más favoritos, y permite la creación de nuevas publicaciones desde cualquier sección accesible para usuarios registrados.
 > 
 > #### 3. Funcionalidades Específicas
 > - **Registro de Usuario**: Permite a los usuarios registrarse proporcionando un nombre de usuario, correo electrónico, contraseña y número de contacto.
