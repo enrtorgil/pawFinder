@@ -143,7 +143,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="mb-4">
+            <div>
                 {{ $publications->appends(request()->query())->links() }}   
             </div>
         @endif

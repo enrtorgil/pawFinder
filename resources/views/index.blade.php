@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row">
                 <div class="col-md-4 mt-3">
                     <div
                         class="card text-center d-flex justify-content-center align-items-center border-0 shadow bg-body rounded">

@@ -4,9 +4,9 @@
 
 @section('content')
     <div class="container-fluid mt-3 px-5">
-        <h1 class="mb-4">{{ __('admin.reports.title') }}</h1>
+        <h2 class="mb-4">{{ __('admin.reports.title') }}</h2>
 
-        <div class="mb-4">
+        <div>
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered align-middle">
                     <thead class="table-dark">
