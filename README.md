@@ -89,18 +89,13 @@ Con PawFinder, se espera abordar de manera efectiva el creciente problema del ex
 > 7. Abre tu navegador y visita `http://localhost:8000/` o host de prueba si lo hubiese.
 > 8. Se recomienda desplegar desde Laragon. En ese caso acceder al dominio local `pawfinder.test`.
 
-<p align="center">
-  <a href="https://classroom.github.com/online_ide?assignment_repo_id=TU_ID_REPO&assignment_repo_type=AssignmentRepo" target="_blank">
-    <img src="https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg" height="30" alt="Open in Visual Studio Code">
-  </a>
-  <a href="https://www.linkedin.com/in/enriquetorrellagil/" target="_blank">
-    <img src="https://img.shields.io/badge/-enriquetorrellagil-blue?style=flat-square&logo=Linkedin&logoColor=white" height="30" alt="LinkedIn">
-  </a>
-  <a href="mailto:ktorrellagil@gmail.com" target="_blank">
-    <img src="https://img.shields.io/badge/-ktorrellagil@gmail.com-006bed?style=flat-square&logo=Gmail&logoColor=white" height="30" alt="Gmail">
-  </a>
-  <a href="https://github.com/enrtorgil" target="_blank">
-    <img src="https://img.shields.io/github/followers/enrtorgil?label=follow&style=social" height="30" alt="GitHub">
-  </a>
-  
-</p>
+## Algunas capturas de pantalla
+
+### Página de Inicio (usuario no autenticado)
+![Página de Inicio](public/img/img-readme/index1-captura.png)
+
+### Gestión de Usuarios
+![Gestión de Usuarios](public/img/img-readme/manage-users.png)
+
+### Mis Publicaciones
+![Mis Publicaciones](public/img/img-readme/mypublications.png)
