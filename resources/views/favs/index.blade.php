@@ -145,7 +145,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="mb-4">
+            <div>
                 {{ $favs->appends(request()->query())->links() }}
             </div>
         @endif

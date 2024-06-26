@@ -122,7 +122,7 @@
                 </div>
             </div>
 
-            <div class="row mt-3">
+            <div class="row mt-2">
                 <div class="col-md-6">
                     <a href="{{ url()->previous() }}" class="btn btn-secondary w-100">{{ __('publications_edit.back') }}</a>
                 </div>

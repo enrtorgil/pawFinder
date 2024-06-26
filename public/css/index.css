@@ -1,6 +1,6 @@
 /* Banner */
 .banner-img {
-    height: 12rem;
+    height: 11rem;
     object-fit: cover;
     width: 100%;
     border-radius: 20px;
@@ -47,7 +47,7 @@
 
 .img-dog-login {
     width: auto;
-    height: 15rem;
+    height: 13rem;
     margin: 0 auto;
 }
 
@@ -82,5 +82,3 @@
     box-shadow: none;
     border-color: var(--color-quinary);
 }
-
-
